@@ -120,37 +120,37 @@ public class DataWorkbook {
 
         @Override
         public String getURL() {
-            return null;
+            return url;
         }
 
         @Override
         public String getTitle() {
-            return null;
+            return title;
         }
 
         @Override
         public String getMetaDescription() {
-            return null;
+            return metaDescription;
         }
 
         @Override
         public String getBreadCrumbsText() {
-            return null;
+            return breadcumbsText;
         }
 
         @Override
         public List<String> getBreadCrumbs() {
-            return null;
+            return breadcumbs;
         }
 
         @Override
         public String getHeader1() {
-            return null;
+            return header1;
         }
 
         @Override
         public String getDescription() {
-            return null;
+            return description;
         }
 
 
