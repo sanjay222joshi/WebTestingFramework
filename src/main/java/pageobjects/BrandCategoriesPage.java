@@ -1,5 +1,6 @@
 package pageobjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -22,17 +23,17 @@ public class BrandCategoriesPage extends BasePage {
         super(driver);
     }
 
-    @Override
-    public BasePage initializeElements() {
-        PageFactory.initElements(driver, this);
-        return this;
-    }
-
     public List<String> getBrandsLinks() {
         ArrayList<String> links = new ArrayList<>();
-        for (WebElement brand : brands) {
-           links.add(brand.getAttribute("href"));
+        if (hasBrands()) {
+            for (WebElement brand : brands) {
+                links.add(brand.getAttribute("href"));
+            }
         }
         return links;
+    }
+
+    private boolean hasBrands() {
+        return driver.findElements(By.cssSelector(".brand")).size() > 0;
     }
 }
