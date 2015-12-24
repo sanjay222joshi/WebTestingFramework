@@ -24,21 +24,13 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         Instant start = Instant.now();
-
-        LogFactory.
-                getFactory().
-                setAttribute("org.apache.commons.logging.Log",
-                        "org.apache.commons.logging.impl.NoOpLog");
-
-        Logger.getLogger("com.gargoylesoftware.htmlunit").setLevel(Level.OFF);
-        Logger.getLogger("org.apache.commons.httpclient").setLevel(Level.OFF);
-
+        shutOffLogger();
         WebDriver driver = WebDriverFactory.createSilentDriver(
                 "https://www.famous-smoke.com/brand-list"
         );
-        CategoriesPage page = new CategoriesPage(driver);
-        page.initializeElements();
-        CategoriesPageData categoriesData = page.getCategoriesData();
+        CategoriesPage categories = new CategoriesPage(driver);
+        categories.initializeElements();
+        CategoriesPageData categoriesData = categories.getCategoriesData();
         List<BrandPageData> brandsData = new ArrayList<>();
         int i = 0;
         try {
@@ -46,23 +38,29 @@ public class Main {
                 System.out.println(link);
                 brandsData.add(navigate(link));
                 ++i;
-                if (i > 3)
-                    break;
             }
         } catch (Exception ex) {
             System.err.println(i);
             ex.printStackTrace();
             System.exit(1);
         }
-
         DataWorkbook workbook = DataWorkbook.getDefaultWorkbook();
         workbook.writeBrandPages(brandsData);
-        Collection<BrandPageData> brands = workbook.readBrands();
+        Collection<BrandPageData> writtenBrands = workbook.readBrands();
         System.out.println(categoriesData.getBrandsLinks().size());
-        System.out.println(brands.size());
+        System.out.println(writtenBrands.size());
         Instant end = Instant.now();
         long minutes = ChronoUnit.MINUTES.between(start, end);
         System.out.println(minutes);
+    }
+
+    private static void shutOffLogger(){
+        LogFactory.
+                getFactory().
+                setAttribute("org.apache.commons.logging.Log",
+                        "org.apache.commons.logging.impl.NoOpLog");
+        Logger.getLogger("com.gargoylesoftware.htmlunit").setLevel(Level.OFF);
+        Logger.getLogger("org.apache.commons.httpclient").setLevel(Level.OFF);
     }
 
     private static BrandPageData navigate(final String url) {
