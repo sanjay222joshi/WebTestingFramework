@@ -44,25 +44,14 @@ public class DataWorkbook {
     }
 
     public DataWorkbook writeBrandPages(final Collection<BrandPageData> datas) throws IOException {
-        File dataFile = new File(location);
-        FileInputStream inputStream = new FileInputStream(dataFile);
-        XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
-        XSSFSheet sheet = workbook.getSheet("TestData");
+        Workbook workbook = openWorkBook(location);
+        Sheet sheet = workbook.getSheet("TestData");
 
         int row = 1;
         for (BrandPageData data : datas) {
             Row brandRow = sheet.getRow(row);
             if(brandRow == null) {
                 brandRow = sheet.createRow(row);
-            }
-
-            StringBuilder breadcrumbs = new StringBuilder();
-            if (!data.getBreadcrumbs().isEmpty()) {
-                for (String link : data.getBreadcrumbs()){
-                    breadcrumbs.append(link);
-                    breadcrumbs.append(BREADCRUMBS_SEPARATOR);
-                }
-                breadcrumbs.deleteCharAt(breadcrumbs.lastIndexOf(BREADCRUMBS_SEPARATOR));
             }
 
             CellStyle dataStyle = createDataStyle(workbook);
@@ -82,14 +71,12 @@ public class DataWorkbook {
             header1Cell.setCellValue(data.getHeader1());
             descriptionCell.setCellValue(data.getDescription());
             breadcrumbsTextCell.setCellValue(data.getBreadcrumbsText());
-            breadrumbsCell.setCellValue(breadcrumbs.toString());
+            breadrumbsCell.setCellValue(getBreadcrumbs(data.getBreadcrumbs()));
             ++row;
         }
 
-        FileOutputStream outputStream = new FileOutputStream(dataFile);
-        workbook.write(outputStream);
+        writeWorkBook(workbook, location);
         workbook.close();
-
         return this;
     }
 
@@ -98,9 +85,8 @@ public class DataWorkbook {
     public Collection<BrandPageData> readBrands() throws IOException {
         ArrayList<BrandPageData> brands = new ArrayList<>();
 
-        File dataFile = new File(location);
-        FileInputStream inputStream = new FileInputStream(dataFile);
-        Workbook workbook = new XSSFWorkbook(inputStream);
+        Workbook workbook = openWorkBook(location);
+
         Sheet sheet = workbook.getSheet("TestData");
         for (int row = 1; row <= sheet.getLastRowNum(); ++row) {
             Row dataRow = sheet.getRow(row);
@@ -126,6 +112,20 @@ public class DataWorkbook {
         return brands;
     }
 
+    private Workbook openWorkBook(final String location) throws IOException {
+        File dataFile = new File(location);
+        FileInputStream inputStream = new FileInputStream(dataFile);
+        return new XSSFWorkbook(inputStream);
+    }
+
+    private Workbook writeWorkBook(final Workbook workbook,
+                                   final String location) throws IOException {
+        File dataFile = new File(location);
+        FileOutputStream outputStream = new FileOutputStream(dataFile);
+        workbook.write(outputStream);
+        return workbook;
+    }
+
     private CellStyle createDataStyle(final Workbook workbook) {
         CellStyle style = workbook.createCellStyle();
         style.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
@@ -141,6 +141,18 @@ public class DataWorkbook {
         Cell cell = row.createCell(column);
         cell.setCellStyle(style);
         return cell;
+    }
+
+    private String getBreadcrumbs(final Collection<String> breadcrumbs) {
+        StringBuilder builder = new StringBuilder();
+        if (!breadcrumbs.isEmpty()) {
+            for (String link : breadcrumbs){
+                builder.append(link);
+                builder.append(BREADCRUMBS_SEPARATOR);
+            }
+            builder.deleteCharAt(builder.lastIndexOf(BREADCRUMBS_SEPARATOR));
+        }
+        return builder.toString();
     }
 
     private String getCellValue(final Row row, final int column) {
