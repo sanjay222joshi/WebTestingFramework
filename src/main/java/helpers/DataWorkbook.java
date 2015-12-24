@@ -1,10 +1,9 @@
 package helpers;
 
-import api.Brand;
+import api.BrandPageData;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import pageobjects.BrandPage;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,7 +12,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 
 
 /**
@@ -31,31 +29,34 @@ public class DataWorkbook {
         return new DataWorkbook("src/test/resources/testData/TestData-seleniumframework.xlsx");
     }
 
-    public DataWorkbook writeBrandPages(final Collection<BrandPage> pages) throws IOException {
+    public DataWorkbook writeBrandPages(final Collection<BrandPageData> datas) throws IOException {
         File dataFile = new File(location);
         FileInputStream inputStream = new FileInputStream(dataFile);
         XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
         XSSFSheet sheet = workbook.getSheet("TestData");
 
         int row = 1;
-        for (BrandPage page : pages) {
+        for (BrandPageData data : datas) {
+            StringBuilder breadcrumbs = new StringBuilder();
+            for (String link : data.getBreadcrumbs()){
+                breadcrumbs.append(link);
+                breadcrumbs.append(",");
+            }
+            if(breadcrumbs.lastIndexOf(",") > -1) {
+                breadcrumbs.deleteCharAt(breadcrumbs.lastIndexOf(","));
+            }
             XSSFRow brandRow = sheet.getRow(row);
             if(brandRow == null) {
                 brandRow = sheet.createRow(row);
             }
-            brandRow.createCell(0).setCellValue(page.getURL());
-            brandRow.createCell(1).setCellValue(page.getTitle());
-            brandRow.createCell(2).setCellValue(page.getMetaDescription());
-            brandRow.createCell(3).setCellValue(page.getHeader1());
-            brandRow.createCell(4).setCellValue(page.getDescription());
-            brandRow.createCell(5).setCellValue(page.getBreadCrumbsText());
-            StringBuilder builder = new StringBuilder();
-            for (String link : page.getBreadCrumbs()){
-                builder.append(link);
-                builder.append(",");
-            }
-            builder.deleteCharAt(builder.lastIndexOf(","));
-            brandRow.createCell(6).setCellValue(builder.toString());
+            brandRow.createCell(0).setCellValue(data.getURL());
+            brandRow.createCell(1).setCellValue(data.getCanonical());
+            brandRow.createCell(2).setCellValue(data.getTitle());
+            brandRow.createCell(3).setCellValue(data.getMetaDescription());
+            brandRow.createCell(4).setCellValue(data.getHeader1());
+            brandRow.createCell(5).setCellValue(data.getDescription());
+            brandRow.createCell(6).setCellValue(data.getBreadcrumbsText());
+            brandRow.createCell(7).setCellValue(breadcrumbs.toString());
             ++row;
         }
 
@@ -66,8 +67,8 @@ public class DataWorkbook {
         return this;
     }
 
-    public Collection<Brand> readBrands() throws IOException {
-        ArrayList<Brand> brands = new ArrayList<>();
+    public Collection<BrandPageData> readBrands() throws IOException {
+        ArrayList<BrandPageData> brands = new ArrayList<>();
 
         File dataFile = new File(location);
         FileInputStream inputStream = new FileInputStream(dataFile);
@@ -76,85 +77,23 @@ public class DataWorkbook {
         for (int row = 1; row <= sheet.getLastRowNum(); ++row) {
             XSSFRow dataRow = sheet.getRow(row);
             String url = dataRow.getCell(0, XSSFRow.CREATE_NULL_AS_BLANK).getStringCellValue();
-            String title = dataRow.getCell(1, XSSFRow.CREATE_NULL_AS_BLANK).getStringCellValue();
-            String metaDescription = dataRow.getCell(2, XSSFRow.CREATE_NULL_AS_BLANK).getStringCellValue();
-            String header1 = dataRow.getCell(3, XSSFRow.CREATE_NULL_AS_BLANK).getStringCellValue();
-            String description = dataRow.getCell(4, XSSFRow.CREATE_NULL_AS_BLANK).getStringCellValue();
-            String breadcrumbsText = dataRow.getCell(5, XSSFRow.CREATE_NULL_AS_BLANK).getStringCellValue();
-            String[] breadcrumbs = dataRow.getCell(6, XSSFRow.CREATE_NULL_AS_BLANK).getStringCellValue().split(",");
-            brands.add( new BrandImpl(
-                    url, title, metaDescription,
-                    breadcrumbsText, breadcrumbs,
-                    header1, description
+            String canonical = dataRow.getCell(1, XSSFRow.CREATE_NULL_AS_BLANK).getStringCellValue();
+            String title = dataRow.getCell(2, XSSFRow.CREATE_NULL_AS_BLANK).getStringCellValue();
+            String metaDescription = dataRow.getCell(3, XSSFRow.CREATE_NULL_AS_BLANK).getStringCellValue();
+            String header1 = dataRow.getCell(4, XSSFRow.CREATE_NULL_AS_BLANK).getStringCellValue();
+            String description = dataRow.getCell(5, XSSFRow.CREATE_NULL_AS_BLANK).getStringCellValue();
+            String breadcrumbsText = dataRow.getCell(6, XSSFRow.CREATE_NULL_AS_BLANK).getStringCellValue();
+            String[] breadcrumbs = dataRow.getCell(7, XSSFRow.CREATE_NULL_AS_BLANK).getStringCellValue().split(",");
+            brands.add(DataFactory.createBrand(
+                    DataFactory.createPage(
+                            url, title, canonical,
+                            metaDescription,
+                            breadcrumbsText, Arrays.asList(breadcrumbs)),
+                    header1,
+                    description
             ));
         }
         return brands;
     }
-
-    private static class BrandImpl implements Brand {
-
-        private final String url;
-        private final String title;
-        private final String metaDescription;
-        private final String breadcumbsText;
-        private final List<String> breadcumbs;
-        private final String header1;
-        private final String description;
-
-        BrandImpl(String url,
-                          String title,
-                          String metaDescription,
-                          String breadcumbsText,
-                          String[] breadcumbs,
-                          String header1,
-                          String description) {
-            this.url = url;
-            this.title = title;
-            this.metaDescription = metaDescription;
-            this.breadcumbsText = breadcumbsText;
-            this.breadcumbs = Arrays.asList(breadcumbs);
-            this.header1 = header1;
-            this.description = description;
-        }
-
-
-        @Override
-        public String getURL() {
-            return url;
-        }
-
-        @Override
-        public String getTitle() {
-            return title;
-        }
-
-        @Override
-        public String getMetaDescription() {
-            return metaDescription;
-        }
-
-        @Override
-        public String getBreadCrumbsText() {
-            return breadcumbsText;
-        }
-
-        @Override
-        public List<String> getBreadCrumbs() {
-            return breadcumbs;
-        }
-
-        @Override
-        public String getHeader1() {
-            return header1;
-        }
-
-        @Override
-        public String getDescription() {
-            return description;
-        }
-
-
-    }
-
 
 }

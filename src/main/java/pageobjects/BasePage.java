@@ -1,6 +1,7 @@
 package pageobjects;
 
-import api.Page;
+import api.PageData;
+import helpers.DataFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,21 +14,29 @@ import java.util.List;
 /**
  * Created by jorge on 21-12-2015.
  */
-public abstract class BasePage implements Page {
+public abstract class BasePage {
 
     protected final WebDriver driver;
-    private final String url;
-    private final String title;
 
     @FindBy(name = "description")
-    private WebElement metaDescription;
+    protected WebElement metaDescription;
     @FindBy(css = ".breadcrumb")
-    private WebElement breadcrumbs;
+    protected WebElement breadcrumbs;
 
     public BasePage(final WebDriver driver) {
         this.driver = driver;
-        url = driver.getCurrentUrl();
-        title = driver.getTitle();
+    }
+
+    public WebDriver getDriver() {
+        return driver;
+    }
+
+    public WebElement getMetaDescription() {
+        if (hasMetaDescription()) {
+            return metaDescription;
+        } else {
+            return null;
+        }
     }
 
     public BasePage initializeElements() {
@@ -35,52 +44,49 @@ public abstract class BasePage implements Page {
         return this;
     }
 
-    @Override
-    public String getURL() {
-        return url;
-    }
-
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String getMetaDescription() {
-        if (hasMetaDescription()) {
-            return metaDescription.getAttribute("content");
-        } else {
-            return "";
-        }
-    }
-
-    @Override
-    public List<String> getBreadCrumbs() {
-        ArrayList<String> list = new ArrayList<>();
+    public List<WebElement> getBreadcrumbs() {
+        ArrayList<WebElement> list = new ArrayList<>();
         if (hasBreadcrumbs()) {
-            for (WebElement breadcrumb : breadcrumbs.findElements(By.cssSelector(".link"))) {
-                String link = breadcrumb.getAttribute("href");
-                String text = breadcrumb.findElement(By.xpath(".//span")).getText();
-                list.add(text + ">>" + link);
-            }
+            list.addAll(
+                    breadcrumbs.findElements(
+                            By.cssSelector(".link")
+                    )
+            );
         }
         return list;
     }
 
-    @Override
-    public String getBreadCrumbsText() {
-        if (hasBreadcrumbs()) {
-            return breadcrumbs.getText();
-        } else {
-            return "";
-        }
-    }
-
-    private boolean hasMetaDescription() {
+    protected boolean hasMetaDescription() {
         return !driver.findElements(By.name("description")).isEmpty();
     }
 
-    private boolean hasBreadcrumbs() {
+    protected boolean hasBreadcrumbs() {
         return !driver.findElements(By.cssSelector(".breadcrumb")).isEmpty();
+    }
+
+    protected PageData getPageData() {
+        String url = driver.getCurrentUrl();
+        String canonical = "";
+        if (!driver.findElements(By.xpath("//link[@rel='canonical']")).isEmpty()) {
+            canonical = driver.findElement(By.xpath("//link[@rel='canonical']")).getAttribute("href");
+        }
+
+        String title = driver.getTitle();
+        String metaDescription = hasMetaDescription() ?
+                this.metaDescription.getAttribute("content")
+                : "";
+        String breadcrumbsText = hasBreadcrumbs()?
+                breadcrumbs.getText()
+                : "";
+        ArrayList<String> breadcrumbs = new ArrayList<>();
+        if (hasBreadcrumbs()) {
+            for (WebElement breadcrumb : this.breadcrumbs.findElements(By.cssSelector(".link"))) {
+                breadcrumbs.add(breadcrumb.getAttribute("href"));
+            }
+        }
+        return DataFactory.createPage(
+                url, title, canonical,
+                metaDescription,
+                breadcrumbsText, breadcrumbs);
     }
 }

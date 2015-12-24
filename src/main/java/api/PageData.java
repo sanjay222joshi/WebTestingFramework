@@ -5,10 +5,11 @@ import java.util.List;
 /**
  * Created by jorge on 22-12-2015.
  */
-public interface Page {
+public interface PageData {
     String getURL();
+    String getCanonical();
     String getTitle();
     String getMetaDescription();
-    String getBreadCrumbsText();
-    List<String> getBreadCrumbs();
+    String getBreadcrumbsText();
+    List<String> getBreadcrumbs();
 }
