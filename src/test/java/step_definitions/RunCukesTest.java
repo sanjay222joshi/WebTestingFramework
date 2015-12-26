@@ -19,8 +19,9 @@ public class RunCukesTest{
 
 	@BeforeClass
     public static void loadTestData() throws Throwable{
-        SeleniumAction crawler = new CrawlerAction();
-        crawler.execute();
+        SeleniumAction<Integer> crawler = new CrawlerAction();
+        System.out.println("Starting the crawler...");
+        int i = crawler.execute(Hooks.BRAND_LIST_URL);
+        System.out.println(i + " Brands written in the TestData File.");
     }
-
 }

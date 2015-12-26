@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 
 import static api.PageConstants.DESCRIPTION_CSS;
 import static api.PageConstants.HEADER1_CSS;
+import static api.PageConstants.LOGO_CSS;
 
 /**
  * Created by jorge on 21-12-2015.
@@ -18,6 +19,8 @@ public class BrandPage extends BasePage {
     private WebElement header1;
     @FindBy(css = DESCRIPTION_CSS)
     private WebElement description;
+    @FindBy(css = LOGO_CSS)
+    private WebElement logo;
 
     public BrandPage(WebDriver driver) {
         super(driver);
@@ -39,6 +42,14 @@ public class BrandPage extends BasePage {
         }
     }
 
+    public WebElement getLogo() {
+        if(hasLogo()) {
+            return logo;
+        } else {
+            return null;
+        }
+    }
+
     public BrandPageData getBrandData() {
         String header1 = hasHeader1() ?
                 this.header1.getText()
@@ -55,5 +66,9 @@ public class BrandPage extends BasePage {
 
     public boolean hasDescription() {
         return !findElementsByCss(driver, DESCRIPTION_CSS).isEmpty();
+    }
+
+    public boolean hasLogo() {
+        return !findElementsByCss(driver, LOGO_CSS).isEmpty();
     }
 }

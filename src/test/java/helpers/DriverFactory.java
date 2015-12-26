@@ -6,10 +6,14 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 /**
  * Created by jorge on 24-12-2015.
  */
-public class DriverFactory {
+public final class DriverFactory {
 
     private DriverFactory() {
         // not called
+    }
+
+    public static WebDriver createDefaultDriver(final String url){
+        return createSilentDriver(url);
     }
 
     public static WebDriver createSilentDriver(final String url) {

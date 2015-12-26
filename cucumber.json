@@ -3,10 +3,97 @@
     "line": 1,
     "elements": [
       {
+        "line": 3,
+        "name": "",
+        "description": "",
+        "type": "background",
+        "keyword": "Background",
+        "steps": [
+          {
+            "result": {
+              "duration": 143152737,
+              "status": "passed"
+            },
+            "line": 4,
+            "name": "I select the url from the TestData",
+            "match": {
+              "location": "PageContentSteps.i_select_the_url_from_the_TestData()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 330148174,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "I navigate to the brand page",
+            "match": {
+              "location": "PageContentSteps.i_navigate_to_the_brand_page()"
+            },
+            "keyword": "When "
+          }
+        ]
+      },
+      {
         "before": [
           {
             "result": {
-              "duration": 125217,
+              "duration": 112489,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Hooks.openBrowser()"
+            }
+          }
+        ],
+        "line": 7,
+        "name": "Check Brand Logo",
+        "description": "",
+        "id": "the-brand-page-content-must-follow-a-set-of-rules;check-brand-logo",
+        "after": [
+          {
+            "result": {
+              "duration": 81698,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Hooks.embedScreenshot(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 81246387,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "the logo should load and be visible",
+            "match": {
+              "location": "PageContentSteps.the_logo_should_load_and_be_visible()"
+            },
+            "keyword": "Then "
+          }
+        ]
+      }
+    ],
+    "name": "The Brand Page content must follow a set of rules",
+    "description": "",
+    "id": "the-brand-page-content-must-follow-a-set-of-rules",
+    "keyword": "Feature",
+    "uri": "features/PageContent.feature"
+  },
+  {
+    "line": 1,
+    "elements": [
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 27096,
               "status": "passed"
             },
             "match": {
@@ -21,7 +108,7 @@
         "after": [
           {
             "result": {
-              "duration": 65277,
+              "duration": 18064,
               "status": "passed"
             },
             "match": {
@@ -34,7 +121,7 @@
         "steps": [
           {
             "result": {
-              "duration": 158404139,
+              "duration": 100994,
               "status": "passed"
             },
             "line": 3,
@@ -46,7 +133,7 @@
           },
           {
             "result": {
-              "duration": 51318,
+              "duration": 52139,
               "status": "passed"
             },
             "line": 4,
@@ -58,7 +145,7 @@
           },
           {
             "result": {
-              "duration": 50908,
+              "duration": 65687,
               "status": "passed"
             },
             "line": 5,

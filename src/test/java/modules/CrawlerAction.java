@@ -18,17 +18,15 @@ import java.util.logging.Logger;
 /**
  * Created by jorge on 26-12-2015.
  */
-public class CrawlerAction implements SeleniumAction {
+public class CrawlerAction implements SeleniumAction<Integer> {
 
-    private static final String BRAND_LIST_URL  = "https://www.famous-smoke.com/brand-list";
-    private static final int    MAXIMUM_BRANDS  = 10;
-
+    private static final int MAXIMUM_BRANDS = 10;
 
     @Override
-    public void execute() throws Throwable {
+    public Integer execute(final Object param) throws Throwable {
         shutOffLogger();
-        System.out.println("Starting the crawler...");
-        WebDriver driver = DriverFactory.createSilentDriver(BRAND_LIST_URL);
+        String url = param.toString();
+        WebDriver driver = DriverFactory.createSilentDriver(url);
         CategoriesPage categories = new CategoriesPage(driver);
         categories.initializeElements();
         CategoriesPageData categoriesData = categories.getCategoriesData();
@@ -45,7 +43,7 @@ public class CrawlerAction implements SeleniumAction {
         }
         DataWorkbook workbook = DataWorkbook.getDefaultWorkbook();
         workbook.writeBrandPages(brandsData);
-        System.out.println(i + " Brands written in the TestData File.");
+        return i;
     }
 
     private static void shutOffLogger(){

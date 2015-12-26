@@ -16,7 +16,7 @@ import java.util.Collection;
 /**
  * Created by jorge on 22-12-2015.
  */
-public class DataWorkbook {
+public final class DataWorkbook {
 
     private static final int URL_COLUMN              = 0;
     private static final int CANONICAL_COLUMN        = 1;

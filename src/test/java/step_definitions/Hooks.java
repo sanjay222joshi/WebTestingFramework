@@ -11,12 +11,10 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 
 public class Hooks{
+    public static final String BRAND_LIST_URL  = "https://www.famous-smoke.com/brand-list";
     public static WebDriver driver;
-
-    
     @Before
     public void openBrowser() throws Throwable {
-
     }
 
      
