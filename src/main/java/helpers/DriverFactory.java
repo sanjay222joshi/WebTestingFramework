@@ -6,9 +6,9 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 /**
  * Created by jorge on 24-12-2015.
  */
-public class WebDriverFactory {
+public class DriverFactory {
 
-    private WebDriverFactory() {
+    private DriverFactory() {
         // not called
     }
 
