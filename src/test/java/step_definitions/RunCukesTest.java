@@ -1,5 +1,8 @@
 package step_definitions;
 
+import api.SeleniumAction;
+import modules.CrawlerAction;
+import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 
 import cucumber.api.CucumberOptions;
@@ -13,5 +16,11 @@ import cucumber.api.junit.Cucumber;
 		tags = {}
 		)
 public class RunCukesTest{
-	
+
+	@BeforeClass
+    public static void loadTestData() throws Throwable{
+        SeleniumAction crawler = new CrawlerAction();
+        crawler.execute();
+    }
+
 }

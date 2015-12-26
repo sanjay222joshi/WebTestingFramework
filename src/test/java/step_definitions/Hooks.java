@@ -1,13 +1,10 @@
 package step_definitions;
 
-import java.net.MalformedURLException;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -18,15 +15,8 @@ public class Hooks{
 
     
     @Before
-    /**
-     * Delete all cookies at the start of each scenario to avoid
-     * shared state between tests
-     */
-    public void openBrowser() throws MalformedURLException {
-    	System.out.println("Called openBrowser");
-    	driver = new FirefoxDriver();
-    	driver.manage().deleteAllCookies();
-    	driver.manage().window().maximize();
+    public void openBrowser() throws Throwable {
+
     }
 
      
@@ -47,7 +37,7 @@ public class Hooks{
         }
         
         }
-        driver.quit();
+        //driver.quit();
         
     }
     

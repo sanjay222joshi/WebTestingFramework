@@ -2,23 +2,23 @@ package pageobjects;
 
 import api.CategoriesPageData;
 import helpers.DataFactory;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
-import org.openqa.selenium.support.PageFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static api.PageConstants.ATTRIBUTE_HREF;
+import static api.PageConstants.BRANDS_CSS;
 
 /**
  * Created by jorge on 21-12-2015.
  */
 public class CategoriesPage extends BasePage {
 
-    @FindBy(css = ".brand")
+    @FindBy(css = BRANDS_CSS)
     private List<WebElement> brands;
 
     public CategoriesPage(WebDriver driver) {
@@ -36,16 +36,16 @@ public class CategoriesPage extends BasePage {
     public CategoriesPageData getCategoriesData() {
         ArrayList<String> links = new ArrayList<>();
         if (hasBrands()) {
-            for (WebElement brand : brands) {
-                links.add(brand.getAttribute("href"));
-            }
+            links.addAll(brands
+                    .stream()
+                    .map(brand -> brand.getAttribute(ATTRIBUTE_HREF))
+                    .collect(Collectors.toList())
+            );
         }
         return DataFactory.createCategories(getPageData(), links);
     }
 
-    private boolean hasBrands() {
-        return !driver.findElements(
-                By.cssSelector(".brand")
-        ).isEmpty();
+    public boolean hasBrands() {
+        return !findElementsByCss(driver, BRANDS_CSS).isEmpty();
     }
 }

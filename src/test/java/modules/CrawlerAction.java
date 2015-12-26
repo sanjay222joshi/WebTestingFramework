@@ -10,7 +10,6 @@ import org.openqa.selenium.WebDriver;
 import pageobjects.BrandPage;
 import pageobjects.CategoriesPage;
 
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -19,7 +18,7 @@ import java.util.logging.Logger;
 /**
  * Created by jorge on 26-12-2015.
  */
-public class BrandCrawler  implements SeleniumAction {
+public class CrawlerAction implements SeleniumAction {
 
     private static final String BRAND_LIST_URL  = "https://www.famous-smoke.com/brand-list";
     private static final int    MAXIMUM_BRANDS  = 10;
@@ -33,6 +32,7 @@ public class BrandCrawler  implements SeleniumAction {
         CategoriesPage categories = new CategoriesPage(driver);
         categories.initializeElements();
         CategoriesPageData categoriesData = categories.getCategoriesData();
+        driver.quit();
         List<BrandPageData> brandsData = new ArrayList<>();
         int i = 0;
         for (String link : categoriesData.getBrandsLinks()) {
@@ -61,7 +61,9 @@ public class BrandCrawler  implements SeleniumAction {
         WebDriver driver = DriverFactory.createSilentDriver(url);
         BrandPage page = new BrandPage(driver);
         page.initializeElements();
-        return page.getBrandData();
+        BrandPageData data = page.getBrandData();
+        driver.quit();
+        return data;
     }
 
 }

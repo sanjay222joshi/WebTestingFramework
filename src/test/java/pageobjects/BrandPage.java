@@ -2,22 +2,21 @@ package pageobjects;
 
 import api.BrandPageData;
 import helpers.DataFactory;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.ArrayList;
-import java.util.List;
+import static api.PageConstants.DESCRIPTION_CSS;
+import static api.PageConstants.HEADER1_CSS;
 
 /**
  * Created by jorge on 21-12-2015.
  */
 public class BrandPage extends BasePage {
 
-    @FindBy(css = ".title.oswald")
+    @FindBy(css = HEADER1_CSS)
     private WebElement header1;
-    @FindBy(css = ".justify")
+    @FindBy(css = DESCRIPTION_CSS)
     private WebElement description;
 
     public BrandPage(WebDriver driver) {
@@ -50,11 +49,11 @@ public class BrandPage extends BasePage {
         return DataFactory.createBrand(getPageData(), header1, description);
     }
 
-    private boolean hasHeader1() {
-        return !driver.findElements(By.cssSelector(".title.oswald")).isEmpty();
+    public boolean hasHeader1() {
+        return !findElementsByCss(driver, HEADER1_CSS).isEmpty();
     }
 
-    private boolean hasDescription() {
-        return !driver.findElements(By.cssSelector(".justify")).isEmpty();
+    public boolean hasDescription() {
+        return !findElementsByCss(driver, DESCRIPTION_CSS).isEmpty();
     }
 }
