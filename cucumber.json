@@ -6,7 +6,7 @@
         "before": [
           {
             "result": {
-              "duration": 121932,
+              "duration": 108795,
               "status": "passed"
             },
             "match": {
@@ -21,7 +21,7 @@
         "after": [
           {
             "result": {
-              "duration": 75130,
+              "duration": 89499,
               "status": "passed"
             },
             "match": {
@@ -34,7 +34,7 @@
         "steps": [
           {
             "result": {
-              "duration": 312458124,
+              "duration": 314662350,
               "status": "passed"
             },
             "line": 6,
@@ -55,7 +55,7 @@
           },
           {
             "result": {
-              "duration": 3243349552,
+              "duration": 3052438730,
               "status": "passed"
             },
             "line": 7,
@@ -67,7 +67,7 @@
           },
           {
             "result": {
-              "duration": 26686,
+              "duration": 26275,
               "status": "passed"
             },
             "line": 8,
@@ -79,7 +79,7 @@
           },
           {
             "result": {
-              "duration": 17654,
+              "duration": 18475,
               "status": "passed"
             },
             "line": 9,
@@ -91,7 +91,7 @@
           },
           {
             "result": {
-              "duration": 17243,
+              "duration": 18064,
               "status": "passed"
             },
             "line": 10,
@@ -103,7 +103,7 @@
           },
           {
             "result": {
-              "duration": 1004197,
+              "duration": 956163,
               "status": "passed"
             },
             "line": 11,
@@ -121,7 +121,7 @@
           },
           {
             "result": {
-              "duration": 25043,
+              "duration": 18064,
               "status": "passed"
             },
             "line": 12,
@@ -133,7 +133,7 @@
           },
           {
             "result": {
-              "duration": 19706,
+              "duration": 26685,
               "status": "passed"
             },
             "line": 13,
@@ -145,7 +145,7 @@
           },
           {
             "result": {
-              "duration": 18475,
+              "duration": 25454,
               "status": "passed"
             },
             "line": 14,
@@ -161,7 +161,7 @@
         "before": [
           {
             "result": {
-              "duration": 26275,
+              "duration": 21759,
               "status": "passed"
             },
             "match": {
@@ -176,7 +176,7 @@
         "after": [
           {
             "result": {
-              "duration": 22170,
+              "duration": 27507,
               "status": "passed"
             },
             "match": {
@@ -189,7 +189,7 @@
         "steps": [
           {
             "result": {
-              "duration": 97710,
+              "duration": 61993,
               "status": "passed"
             },
             "line": 6,
@@ -210,7 +210,7 @@
           },
           {
             "result": {
-              "duration": 601693259,
+              "duration": 510566243,
               "status": "passed"
             },
             "line": 7,
@@ -222,7 +222,7 @@
           },
           {
             "result": {
-              "duration": 22580,
+              "duration": 21759,
               "status": "passed"
             },
             "line": 8,
@@ -234,7 +234,7 @@
           },
           {
             "result": {
-              "duration": 22169,
+              "duration": 22580,
               "status": "passed"
             },
             "line": 9,
@@ -246,7 +246,7 @@
           },
           {
             "result": {
-              "duration": 17653,
+              "duration": 38592,
               "status": "passed"
             },
             "line": 10,
@@ -258,7 +258,7 @@
           },
           {
             "result": {
-              "duration": 107153,
+              "duration": 99352,
               "status": "passed"
             },
             "line": 11,
@@ -276,7 +276,7 @@
           },
           {
             "result": {
-              "duration": 22169,
+              "duration": 18064,
               "status": "passed"
             },
             "line": 12,
@@ -288,7 +288,7 @@
           },
           {
             "result": {
-              "duration": 20117,
+              "duration": 22580,
               "status": "passed"
             },
             "line": 13,
@@ -300,7 +300,7 @@
           },
           {
             "result": {
-              "duration": 19296,
+              "duration": 23401,
               "status": "passed"
             },
             "line": 14,
@@ -316,7 +316,7 @@
         "before": [
           {
             "result": {
-              "duration": 42287,
+              "duration": 31202,
               "status": "passed"
             },
             "match": {
@@ -331,7 +331,7 @@
         "after": [
           {
             "result": {
-              "duration": 32023,
+              "duration": 28738,
               "status": "passed"
             },
             "match": {
@@ -344,7 +344,7 @@
         "steps": [
           {
             "result": {
-              "duration": 71845,
+              "duration": 61582,
               "status": "passed"
             },
             "line": 6,
@@ -365,7 +365,7 @@
           },
           {
             "result": {
-              "duration": 517733568,
+              "duration": 608870848,
               "status": "passed"
             },
             "line": 7,
@@ -377,7 +377,7 @@
           },
           {
             "result": {
-              "duration": 23401,
+              "duration": 18064,
               "status": "passed"
             },
             "line": 8,
@@ -389,7 +389,7 @@
           },
           {
             "result": {
-              "duration": 22169,
+              "duration": 17243,
               "status": "passed"
             },
             "line": 9,
@@ -401,7 +401,7 @@
           },
           {
             "result": {
-              "duration": 22169,
+              "duration": 15601,
               "status": "passed"
             },
             "line": 10,
@@ -413,7 +413,7 @@
           },
           {
             "result": {
-              "duration": 87447,
+              "duration": 105921,
               "status": "passed"
             },
             "line": 11,
@@ -431,7 +431,7 @@
           },
           {
             "result": {
-              "duration": 22580,
+              "duration": 22169,
               "status": "passed"
             },
             "line": 12,
@@ -443,7 +443,7 @@
           },
           {
             "result": {
-              "duration": 22170,
+              "duration": 23811,
               "status": "passed"
             },
             "line": 13,
@@ -455,7 +455,627 @@
           },
           {
             "result": {
-              "duration": 18475,
+              "duration": 21759,
+              "status": "passed"
+            },
+            "line": 14,
+            "name": "the breadcrumbs links should match the TestData",
+            "match": {
+              "location": "PageContentSteps.the_breadcrumbs_links_should_match_the_TestData()"
+            },
+            "keyword": "And "
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 20938,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Hooks.openBrowser()"
+            }
+          }
+        ],
+        "line": 21,
+        "name": "",
+        "description": "",
+        "id": "the-brand-page-content-must-follow-a-set-of-rules;;;5",
+        "after": [
+          {
+            "result": {
+              "duration": 24633,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Hooks.embedScreenshot(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 54192,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "I select the url \"https://www.famous-smoke.com/brand/1502+emerald+cigars\" from the TestData",
+            "match": {
+              "arguments": [
+                {
+                  "val": "https://www.famous-smoke.com/brand/1502+emerald+cigars",
+                  "offset": 18
+                }
+              ],
+              "location": "PageContentSteps.i_select_the_url_from_the_TestData(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 436777848,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "I navigate to the brand page",
+            "match": {
+              "location": "PageContentSteps.i_navigate_to_the_brand_page()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 17653,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "the title should match the TestData",
+            "match": {
+              "location": "PageContentSteps.the_title_should_match_the_TestData()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 24633,
+              "status": "passed"
+            },
+            "line": 9,
+            "name": "the canonical url should match the TestData",
+            "match": {
+              "location": "PageContentSteps.the_canonical_url_should_match_the_TestData()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 24222,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "the meta description should match the TestData",
+            "match": {
+              "location": "PageContentSteps.the_meta_description_should_match_the_TestData()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 162987,
+              "status": "passed"
+            },
+            "line": 11,
+            "name": "the h1 should be should match the TestData",
+            "match": {
+              "arguments": [
+                {
+                  "val": "1",
+                  "offset": 5
+                }
+              ],
+              "location": "PageContentSteps.the_h_should_be_should_match_the_TestData(int)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 26275,
+              "status": "passed"
+            },
+            "line": 12,
+            "name": "the description should match the TestData",
+            "match": {
+              "location": "PageContentSteps.the_description_should_match_the_TestData()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 22580,
+              "status": "passed"
+            },
+            "line": 13,
+            "name": "the breadcrumbs should match the TestData",
+            "match": {
+              "location": "PageContentSteps.the_breadcrumbs_should_match_the_TestData()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 17243,
+              "status": "passed"
+            },
+            "line": 14,
+            "name": "the breadcrumbs links should match the TestData",
+            "match": {
+              "location": "PageContentSteps.the_breadcrumbs_links_should_match_the_TestData()"
+            },
+            "keyword": "And "
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 43108,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Hooks.openBrowser()"
+            }
+          }
+        ],
+        "line": 22,
+        "name": "",
+        "description": "",
+        "id": "the-brand-page-content-must-follow-a-set-of-rules;;;6",
+        "after": [
+          {
+            "result": {
+              "duration": 26685,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Hooks.embedScreenshot(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 59529,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "I select the url \"https://www.famous-smoke.com/brand/1502+nicaragua+cigars\" from the TestData",
+            "match": {
+              "arguments": [
+                {
+                  "val": "https://www.famous-smoke.com/brand/1502+nicaragua+cigars",
+                  "offset": 18
+                }
+              ],
+              "location": "PageContentSteps.i_select_the_url_from_the_TestData(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 367019792,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "I navigate to the brand page",
+            "match": {
+              "location": "PageContentSteps.i_navigate_to_the_brand_page()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 20117,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "the title should match the TestData",
+            "match": {
+              "location": "PageContentSteps.the_title_should_match_the_TestData()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 22580,
+              "status": "passed"
+            },
+            "line": 9,
+            "name": "the canonical url should match the TestData",
+            "match": {
+              "location": "PageContentSteps.the_canonical_url_should_match_the_TestData()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 19706,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "the meta description should match the TestData",
+            "match": {
+              "location": "PageContentSteps.the_meta_description_should_match_the_TestData()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 91552,
+              "status": "passed"
+            },
+            "line": 11,
+            "name": "the h1 should be should match the TestData",
+            "match": {
+              "arguments": [
+                {
+                  "val": "1",
+                  "offset": 5
+                }
+              ],
+              "location": "PageContentSteps.the_h_should_be_should_match_the_TestData(int)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 22170,
+              "status": "passed"
+            },
+            "line": 12,
+            "name": "the description should match the TestData",
+            "match": {
+              "location": "PageContentSteps.the_description_should_match_the_TestData()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 57476,
+              "status": "passed"
+            },
+            "line": 13,
+            "name": "the breadcrumbs should match the TestData",
+            "match": {
+              "location": "PageContentSteps.the_breadcrumbs_should_match_the_TestData()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 25865,
+              "status": "passed"
+            },
+            "line": 14,
+            "name": "the breadcrumbs links should match the TestData",
+            "match": {
+              "location": "PageContentSteps.the_breadcrumbs_links_should_match_the_TestData()"
+            },
+            "keyword": "And "
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 16832,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Hooks.openBrowser()"
+            }
+          }
+        ],
+        "line": 23,
+        "name": "",
+        "description": "",
+        "id": "the-brand-page-content-must-follow-a-set-of-rules;;;7",
+        "after": [
+          {
+            "result": {
+              "duration": 26275,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Hooks.embedScreenshot(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 58708,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "I select the url \"https://www.famous-smoke.com/brand/1502+ruby+cigars\" from the TestData",
+            "match": {
+              "arguments": [
+                {
+                  "val": "https://www.famous-smoke.com/brand/1502+ruby+cigars",
+                  "offset": 18
+                }
+              ],
+              "location": "PageContentSteps.i_select_the_url_from_the_TestData(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 409694487,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "I navigate to the brand page",
+            "match": {
+              "location": "PageContentSteps.i_navigate_to_the_brand_page()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 21348,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "the title should match the TestData",
+            "match": {
+              "location": "PageContentSteps.the_title_should_match_the_TestData()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 21759,
+              "status": "passed"
+            },
+            "line": 9,
+            "name": "the canonical url should match the TestData",
+            "match": {
+              "location": "PageContentSteps.the_canonical_url_should_match_the_TestData()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 20527,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "the meta description should match the TestData",
+            "match": {
+              "location": "PageContentSteps.the_meta_description_should_match_the_TestData()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 102637,
+              "status": "passed"
+            },
+            "line": 11,
+            "name": "the h1 should be should match the TestData",
+            "match": {
+              "arguments": [
+                {
+                  "val": "1",
+                  "offset": 5
+                }
+              ],
+              "location": "PageContentSteps.the_h_should_be_should_match_the_TestData(int)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 16833,
+              "status": "passed"
+            },
+            "line": 12,
+            "name": "the description should match the TestData",
+            "match": {
+              "location": "PageContentSteps.the_description_should_match_the_TestData()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 17653,
+              "status": "passed"
+            },
+            "line": 13,
+            "name": "the breadcrumbs should match the TestData",
+            "match": {
+              "location": "PageContentSteps.the_breadcrumbs_should_match_the_TestData()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 20117,
+              "status": "passed"
+            },
+            "line": 14,
+            "name": "the breadcrumbs links should match the TestData",
+            "match": {
+              "location": "PageContentSteps.the_breadcrumbs_links_should_match_the_TestData()"
+            },
+            "keyword": "And "
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 29149,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Hooks.openBrowser()"
+            }
+          }
+        ],
+        "line": 24,
+        "name": "",
+        "description": "",
+        "id": "the-brand-page-content-must-follow-a-set-of-rules;;;8",
+        "after": [
+          {
+            "result": {
+              "duration": 29148,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Hooks.embedScreenshot(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 64045,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "I select the url \"https://www.famous-smoke.com/brand/1994+by+la+flor+dominicana+cigars\" from the TestData",
+            "match": {
+              "arguments": [
+                {
+                  "val": "https://www.famous-smoke.com/brand/1994+by+la+flor+dominicana+cigars",
+                  "offset": 18
+                }
+              ],
+              "location": "PageContentSteps.i_select_the_url_from_the_TestData(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 434355212,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "I navigate to the brand page",
+            "match": {
+              "location": "PageContentSteps.i_navigate_to_the_brand_page()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 21348,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "the title should match the TestData",
+            "match": {
+              "location": "PageContentSteps.the_title_should_match_the_TestData()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 18064,
+              "status": "passed"
+            },
+            "line": 9,
+            "name": "the canonical url should match the TestData",
+            "match": {
+              "location": "PageContentSteps.the_canonical_url_should_match_the_TestData()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 20527,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "the meta description should match the TestData",
+            "match": {
+              "location": "PageContentSteps.the_meta_description_should_match_the_TestData()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 78004,
+              "status": "passed"
+            },
+            "line": 11,
+            "name": "the h1 should be should match the TestData",
+            "match": {
+              "arguments": [
+                {
+                  "val": "1",
+                  "offset": 5
+                }
+              ],
+              "location": "PageContentSteps.the_h_should_be_should_match_the_TestData(int)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 21349,
+              "status": "passed"
+            },
+            "line": 12,
+            "name": "the description should match the TestData",
+            "match": {
+              "location": "PageContentSteps.the_description_should_match_the_TestData()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 20527,
+              "status": "passed"
+            },
+            "line": 13,
+            "name": "the breadcrumbs should match the TestData",
+            "match": {
+              "location": "PageContentSteps.the_breadcrumbs_should_match_the_TestData()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 20527,
               "status": "passed"
             },
             "line": 14,
@@ -479,626 +1099,6 @@
             }
           }
         ],
-        "line": 21,
-        "name": "",
-        "description": "",
-        "id": "the-brand-page-content-must-follow-a-set-of-rules;;;5",
-        "after": [
-          {
-            "result": {
-              "duration": 26275,
-              "status": "passed"
-            },
-            "match": {
-              "location": "Hooks.embedScreenshot(Scenario)"
-            }
-          }
-        ],
-        "type": "scenario",
-        "keyword": "Scenario Outline",
-        "steps": [
-          {
-            "result": {
-              "duration": 53371,
-              "status": "passed"
-            },
-            "line": 6,
-            "name": "I select the url \"https://www.famous-smoke.com/brand/1502+emerald+cigars\" from the TestData",
-            "match": {
-              "arguments": [
-                {
-                  "val": "https://www.famous-smoke.com/brand/1502+emerald+cigars",
-                  "offset": 18
-                }
-              ],
-              "location": "PageContentSteps.i_select_the_url_from_the_TestData(String)"
-            },
-            "matchedColumns": [
-              0
-            ],
-            "keyword": "Given "
-          },
-          {
-            "result": {
-              "duration": 472760632,
-              "status": "passed"
-            },
-            "line": 7,
-            "name": "I navigate to the brand page",
-            "match": {
-              "location": "PageContentSteps.i_navigate_to_the_brand_page()"
-            },
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "duration": 19706,
-              "status": "passed"
-            },
-            "line": 8,
-            "name": "the title should match the TestData",
-            "match": {
-              "location": "PageContentSteps.the_title_should_match_the_TestData()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 14780,
-              "status": "passed"
-            },
-            "line": 9,
-            "name": "the canonical url should match the TestData",
-            "match": {
-              "location": "PageContentSteps.the_canonical_url_should_match_the_TestData()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 18064,
-              "status": "passed"
-            },
-            "line": 10,
-            "name": "the meta description should match the TestData",
-            "match": {
-              "location": "PageContentSteps.the_meta_description_should_match_the_TestData()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 85393,
-              "status": "passed"
-            },
-            "line": 11,
-            "name": "the h1 should be should match the TestData",
-            "match": {
-              "arguments": [
-                {
-                  "val": "1",
-                  "offset": 5
-                }
-              ],
-              "location": "PageContentSteps.the_h_should_be_should_match_the_TestData(int)"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 23401,
-              "status": "passed"
-            },
-            "line": 12,
-            "name": "the description should match the TestData",
-            "match": {
-              "location": "PageContentSteps.the_description_should_match_the_TestData()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 16011,
-              "status": "passed"
-            },
-            "line": 13,
-            "name": "the breadcrumbs should match the TestData",
-            "match": {
-              "location": "PageContentSteps.the_breadcrumbs_should_match_the_TestData()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 14780,
-              "status": "passed"
-            },
-            "line": 14,
-            "name": "the breadcrumbs links should match the TestData",
-            "match": {
-              "location": "PageContentSteps.the_breadcrumbs_links_should_match_the_TestData()"
-            },
-            "keyword": "And "
-          }
-        ]
-      },
-      {
-        "before": [
-          {
-            "result": {
-              "duration": 28738,
-              "status": "passed"
-            },
-            "match": {
-              "location": "Hooks.openBrowser()"
-            }
-          }
-        ],
-        "line": 22,
-        "name": "",
-        "description": "",
-        "id": "the-brand-page-content-must-follow-a-set-of-rules;;;6",
-        "after": [
-          {
-            "result": {
-              "duration": 16832,
-              "status": "passed"
-            },
-            "match": {
-              "location": "Hooks.embedScreenshot(Scenario)"
-            }
-          }
-        ],
-        "type": "scenario",
-        "keyword": "Scenario Outline",
-        "steps": [
-          {
-            "result": {
-              "duration": 84573,
-              "status": "passed"
-            },
-            "line": 6,
-            "name": "I select the url \"https://www.famous-smoke.com/brand/1502+nicaragua+cigars\" from the TestData",
-            "match": {
-              "arguments": [
-                {
-                  "val": "https://www.famous-smoke.com/brand/1502+nicaragua+cigars",
-                  "offset": 18
-                }
-              ],
-              "location": "PageContentSteps.i_select_the_url_from_the_TestData(String)"
-            },
-            "matchedColumns": [
-              0
-            ],
-            "keyword": "Given "
-          },
-          {
-            "result": {
-              "duration": 480056047,
-              "status": "passed"
-            },
-            "line": 7,
-            "name": "I navigate to the brand page",
-            "match": {
-              "location": "PageContentSteps.i_navigate_to_the_brand_page()"
-            },
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "duration": 15601,
-              "status": "passed"
-            },
-            "line": 8,
-            "name": "the title should match the TestData",
-            "match": {
-              "location": "PageContentSteps.the_title_should_match_the_TestData()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 14780,
-              "status": "passed"
-            },
-            "line": 9,
-            "name": "the canonical url should match the TestData",
-            "match": {
-              "location": "PageContentSteps.the_canonical_url_should_match_the_TestData()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 14369,
-              "status": "passed"
-            },
-            "line": 10,
-            "name": "the meta description should match the TestData",
-            "match": {
-              "location": "PageContentSteps.the_meta_description_should_match_the_TestData()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 78414,
-              "status": "passed"
-            },
-            "line": 11,
-            "name": "the h1 should be should match the TestData",
-            "match": {
-              "arguments": [
-                {
-                  "val": "1",
-                  "offset": 5
-                }
-              ],
-              "location": "PageContentSteps.the_h_should_be_should_match_the_TestData(int)"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 13959,
-              "status": "passed"
-            },
-            "line": 12,
-            "name": "the description should match the TestData",
-            "match": {
-              "location": "PageContentSteps.the_description_should_match_the_TestData()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 11906,
-              "status": "passed"
-            },
-            "line": 13,
-            "name": "the breadcrumbs should match the TestData",
-            "match": {
-              "location": "PageContentSteps.the_breadcrumbs_should_match_the_TestData()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 15190,
-              "status": "passed"
-            },
-            "line": 14,
-            "name": "the breadcrumbs links should match the TestData",
-            "match": {
-              "location": "PageContentSteps.the_breadcrumbs_links_should_match_the_TestData()"
-            },
-            "keyword": "And "
-          }
-        ]
-      },
-      {
-        "before": [
-          {
-            "result": {
-              "duration": 16422,
-              "status": "passed"
-            },
-            "match": {
-              "location": "Hooks.openBrowser()"
-            }
-          }
-        ],
-        "line": 23,
-        "name": "",
-        "description": "",
-        "id": "the-brand-page-content-must-follow-a-set-of-rules;;;7",
-        "after": [
-          {
-            "result": {
-              "duration": 19706,
-              "status": "passed"
-            },
-            "match": {
-              "location": "Hooks.embedScreenshot(Scenario)"
-            }
-          }
-        ],
-        "type": "scenario",
-        "keyword": "Scenario Outline",
-        "steps": [
-          {
-            "result": {
-              "duration": 63224,
-              "status": "passed"
-            },
-            "line": 6,
-            "name": "I select the url \"https://www.famous-smoke.com/brand/1502+ruby+cigars\" from the TestData",
-            "match": {
-              "arguments": [
-                {
-                  "val": "https://www.famous-smoke.com/brand/1502+ruby+cigars",
-                  "offset": 18
-                }
-              ],
-              "location": "PageContentSteps.i_select_the_url_from_the_TestData(String)"
-            },
-            "matchedColumns": [
-              0
-            ],
-            "keyword": "Given "
-          },
-          {
-            "result": {
-              "duration": 452629470,
-              "status": "passed"
-            },
-            "line": 7,
-            "name": "I navigate to the brand page",
-            "match": {
-              "location": "PageContentSteps.i_navigate_to_the_brand_page()"
-            },
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "duration": 24633,
-              "status": "passed"
-            },
-            "line": 8,
-            "name": "the title should match the TestData",
-            "match": {
-              "location": "PageContentSteps.the_title_should_match_the_TestData()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 17243,
-              "status": "passed"
-            },
-            "line": 9,
-            "name": "the canonical url should match the TestData",
-            "match": {
-              "location": "PageContentSteps.the_canonical_url_should_match_the_TestData()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 15601,
-              "status": "passed"
-            },
-            "line": 10,
-            "name": "the meta description should match the TestData",
-            "match": {
-              "location": "PageContentSteps.the_meta_description_should_match_the_TestData()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 95658,
-              "status": "passed"
-            },
-            "line": 11,
-            "name": "the h1 should be should match the TestData",
-            "match": {
-              "arguments": [
-                {
-                  "val": "1",
-                  "offset": 5
-                }
-              ],
-              "location": "PageContentSteps.the_h_should_be_should_match_the_TestData(int)"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 20527,
-              "status": "passed"
-            },
-            "line": 12,
-            "name": "the description should match the TestData",
-            "match": {
-              "location": "PageContentSteps.the_description_should_match_the_TestData()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 21349,
-              "status": "passed"
-            },
-            "line": 13,
-            "name": "the breadcrumbs should match the TestData",
-            "match": {
-              "location": "PageContentSteps.the_breadcrumbs_should_match_the_TestData()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 18886,
-              "status": "passed"
-            },
-            "line": 14,
-            "name": "the breadcrumbs links should match the TestData",
-            "match": {
-              "location": "PageContentSteps.the_breadcrumbs_links_should_match_the_TestData()"
-            },
-            "keyword": "And "
-          }
-        ]
-      },
-      {
-        "before": [
-          {
-            "result": {
-              "duration": 34897,
-              "status": "passed"
-            },
-            "match": {
-              "location": "Hooks.openBrowser()"
-            }
-          }
-        ],
-        "line": 24,
-        "name": "",
-        "description": "",
-        "id": "the-brand-page-content-must-follow-a-set-of-rules;;;8",
-        "after": [
-          {
-            "result": {
-              "duration": 24632,
-              "status": "passed"
-            },
-            "match": {
-              "location": "Hooks.embedScreenshot(Scenario)"
-            }
-          }
-        ],
-        "type": "scenario",
-        "keyword": "Scenario Outline",
-        "steps": [
-          {
-            "result": {
-              "duration": 83752,
-              "status": "passed"
-            },
-            "line": 6,
-            "name": "I select the url \"https://www.famous-smoke.com/brand/1994+by+la+flor+dominicana+cigars\" from the TestData",
-            "match": {
-              "arguments": [
-                {
-                  "val": "https://www.famous-smoke.com/brand/1994+by+la+flor+dominicana+cigars",
-                  "offset": 18
-                }
-              ],
-              "location": "PageContentSteps.i_select_the_url_from_the_TestData(String)"
-            },
-            "matchedColumns": [
-              0
-            ],
-            "keyword": "Given "
-          },
-          {
-            "result": {
-              "duration": 548655131,
-              "status": "passed"
-            },
-            "line": 7,
-            "name": "I navigate to the brand page",
-            "match": {
-              "location": "PageContentSteps.i_navigate_to_the_brand_page()"
-            },
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "duration": 16422,
-              "status": "passed"
-            },
-            "line": 8,
-            "name": "the title should match the TestData",
-            "match": {
-              "location": "PageContentSteps.the_title_should_match_the_TestData()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 16011,
-              "status": "passed"
-            },
-            "line": 9,
-            "name": "the canonical url should match the TestData",
-            "match": {
-              "location": "PageContentSteps.the_canonical_url_should_match_the_TestData()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 14780,
-              "status": "passed"
-            },
-            "line": 10,
-            "name": "the meta description should match the TestData",
-            "match": {
-              "location": "PageContentSteps.the_meta_description_should_match_the_TestData()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 82930,
-              "status": "passed"
-            },
-            "line": 11,
-            "name": "the h1 should be should match the TestData",
-            "match": {
-              "arguments": [
-                {
-                  "val": "1",
-                  "offset": 5
-                }
-              ],
-              "location": "PageContentSteps.the_h_should_be_should_match_the_TestData(int)"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 17653,
-              "status": "passed"
-            },
-            "line": 12,
-            "name": "the description should match the TestData",
-            "match": {
-              "location": "PageContentSteps.the_description_should_match_the_TestData()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 17654,
-              "status": "passed"
-            },
-            "line": 13,
-            "name": "the breadcrumbs should match the TestData",
-            "match": {
-              "location": "PageContentSteps.the_breadcrumbs_should_match_the_TestData()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 19706,
-              "status": "passed"
-            },
-            "line": 14,
-            "name": "the breadcrumbs links should match the TestData",
-            "match": {
-              "location": "PageContentSteps.the_breadcrumbs_links_should_match_the_TestData()"
-            },
-            "keyword": "And "
-          }
-        ]
-      },
-      {
-        "before": [
-          {
-            "result": {
-              "duration": 18475,
-              "status": "passed"
-            },
-            "match": {
-              "location": "Hooks.openBrowser()"
-            }
-          }
-        ],
         "line": 25,
         "name": "",
         "description": "",
@@ -1106,7 +1106,7 @@
         "after": [
           {
             "result": {
-              "duration": 19706,
+              "duration": 18064,
               "status": "passed"
             },
             "match": {
@@ -1119,7 +1119,7 @@
         "steps": [
           {
             "result": {
-              "duration": 53782,
+              "duration": 47624,
               "status": "passed"
             },
             "line": 6,
@@ -1140,7 +1140,7 @@
           },
           {
             "result": {
-              "duration": 527176965,
+              "duration": 474689380,
               "status": "passed"
             },
             "line": 7,
@@ -1152,7 +1152,7 @@
           },
           {
             "result": {
-              "duration": 25454,
+              "duration": 15600,
               "status": "passed"
             },
             "line": 8,
@@ -1164,7 +1164,7 @@
           },
           {
             "result": {
-              "duration": 27917,
+              "duration": 15601,
               "status": "passed"
             },
             "line": 9,
@@ -1176,7 +1176,7 @@
           },
           {
             "result": {
-              "duration": 21759,
+              "duration": 18065,
               "status": "passed"
             },
             "line": 10,
@@ -1188,7 +1188,7 @@
           },
           {
             "result": {
-              "duration": 92784,
+              "duration": 106332,
               "status": "passed"
             },
             "line": 11,
@@ -1206,7 +1206,7 @@
           },
           {
             "result": {
-              "duration": 26685,
+              "duration": 15601,
               "status": "passed"
             },
             "line": 12,
@@ -1218,7 +1218,7 @@
           },
           {
             "result": {
-              "duration": 27918,
+              "duration": 12727,
               "status": "passed"
             },
             "line": 13,
@@ -1230,7 +1230,7 @@
           },
           {
             "result": {
-              "duration": 16011,
+              "duration": 13548,
               "status": "passed"
             },
             "line": 14,
@@ -1246,7 +1246,7 @@
         "before": [
           {
             "result": {
-              "duration": 18064,
+              "duration": 19296,
               "status": "passed"
             },
             "match": {
@@ -1261,7 +1261,7 @@
         "after": [
           {
             "result": {
-              "duration": 20527,
+              "duration": 22580,
               "status": "passed"
             },
             "match": {
@@ -1274,7 +1274,7 @@
         "steps": [
           {
             "result": {
-              "duration": 68561,
+              "duration": 65687,
               "status": "passed"
             },
             "line": 6,
@@ -1295,7 +1295,7 @@
           },
           {
             "result": {
-              "duration": 446623170,
+              "duration": 438564137,
               "status": "passed"
             },
             "line": 7,
@@ -1307,7 +1307,7 @@
           },
           {
             "result": {
-              "duration": 14780,
+              "duration": 17653,
               "status": "passed"
             },
             "line": 8,
@@ -1319,7 +1319,7 @@
           },
           {
             "result": {
-              "duration": 10264,
+              "duration": 27096,
               "status": "passed"
             },
             "line": 9,
@@ -1331,7 +1331,7 @@
           },
           {
             "result": {
-              "duration": 11495,
+              "duration": 14370,
               "status": "passed"
             },
             "line": 10,
@@ -1343,7 +1343,7 @@
           },
           {
             "result": {
-              "duration": 65688,
+              "duration": 73488,
               "status": "passed"
             },
             "line": 11,
@@ -1361,7 +1361,7 @@
           },
           {
             "result": {
-              "duration": 12727,
+              "duration": 16012,
               "status": "passed"
             },
             "line": 12,
@@ -1373,7 +1373,7 @@
           },
           {
             "result": {
-              "duration": 12317,
+              "duration": 16422,
               "status": "passed"
             },
             "line": 13,
@@ -1385,7 +1385,7 @@
           },
           {
             "result": {
-              "duration": 11495,
+              "duration": 18064,
               "status": "passed"
             },
             "line": 14,
@@ -1401,7 +1401,7 @@
         "before": [
           {
             "result": {
-              "duration": 16011,
+              "duration": 23811,
               "status": "passed"
             },
             "match": {
@@ -1429,7 +1429,7 @@
         "steps": [
           {
             "result": {
-              "duration": 48034,
+              "duration": 68562,
               "status": "passed"
             },
             "line": 6,
@@ -1450,7 +1450,7 @@
           },
           {
             "result": {
-              "duration": 485604177,
+              "duration": 389273891,
               "status": "passed"
             },
             "line": 7,
@@ -1462,7 +1462,7 @@
           },
           {
             "result": {
-              "duration": 19296,
+              "duration": 17243,
               "status": "passed"
             },
             "line": 8,
@@ -1474,7 +1474,7 @@
           },
           {
             "result": {
-              "duration": 17654,
+              "duration": 18064,
               "status": "passed"
             },
             "line": 9,
@@ -1486,7 +1486,7 @@
           },
           {
             "result": {
-              "duration": 43518,
+              "duration": 19706,
               "status": "passed"
             },
             "line": 10,
@@ -1498,7 +1498,7 @@
           },
           {
             "result": {
-              "duration": 97299,
+              "duration": 83341,
               "status": "passed"
             },
             "line": 11,
@@ -1516,7 +1516,7 @@
           },
           {
             "result": {
-              "duration": 12316,
+              "duration": 16011,
               "status": "passed"
             },
             "line": 12,
@@ -1528,7 +1528,7 @@
           },
           {
             "result": {
-              "duration": 13137,
+              "duration": 14369,
               "status": "passed"
             },
             "line": 13,
@@ -1540,7 +1540,7 @@
           },
           {
             "result": {
-              "duration": 14369,
+              "duration": 20117,
               "status": "passed"
             },
             "line": 14,
@@ -1566,7 +1566,7 @@
         "before": [
           {
             "result": {
-              "duration": 22170,
+              "duration": 24223,
               "status": "passed"
             },
             "match": {
@@ -1581,7 +1581,7 @@
         "after": [
           {
             "result": {
-              "duration": 25454,
+              "duration": 22169,
               "status": "passed"
             },
             "match": {
@@ -1594,7 +1594,7 @@
         "steps": [
           {
             "result": {
-              "duration": 103868,
+              "duration": 89088,
               "status": "passed"
             },
             "line": 3,
@@ -1606,7 +1606,7 @@
           },
           {
             "result": {
-              "duration": 12588245800,
+              "duration": 12491512356,
               "status": "passed"
             },
             "line": 4,
@@ -1618,7 +1618,7 @@
           },
           {
             "result": {
-              "duration": 3119728990,
+              "duration": 2875564502,
               "status": "passed"
             },
             "line": 5,

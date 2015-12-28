@@ -1,10 +1,8 @@
 package modules;
 
-import api.PageConstants;
 import api.SeleniumAction;
 import helpers.DriverFactory;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import pageobjects.BrandPage;
 
 import static api.PageConstants.ATTRIBUTE_SRC;

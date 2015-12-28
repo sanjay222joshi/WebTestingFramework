@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  */
 public class CrawlerAction implements SeleniumAction<List<BrandPageData>> {
 
-    private static final int MAXIMUM_BRANDS = 10;
+    private static final int MAXIMUM_BRANDS = 1000000;
 
     @Override
     public List<BrandPageData> execute(final Object param) throws Throwable {
