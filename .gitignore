@@ -209,3 +209,6 @@ hs_err_pid*
 /.nb-gradle/
 /_devs/jorgeejgonzalez/p2p_projects/.nb-gradle/
 #*.iml
+
+# The processed features are generated on runtime so they should not be added to the git
+features-processed/

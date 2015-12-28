@@ -1,8 +1,26 @@
 Feature: The Brand Page content must follow a set of rules
 
-  Background:
-    Given I select the url from the TestData
-    When I navigate to the brand page
+  Scenario: Validating data against the TestData table
 
-  Scenario: Check Brand Logo
-    Then the logo should load and be visible
+  Scenario Outline:
+    Given I select the url "<URL>" from the TestData
+    When I navigate to the brand page
+    Then the title should match the TestData
+    And the canonical url should match the TestData
+    And the meta description should match the TestData
+    And the h1 should be should match the TestData
+    And the description should match the TestData
+    And the breadcrumbs should match the TestData
+    And the breadcrumbs links should match the TestData
+
+    Examples:
+    | URL |
+  <LOADURLS>
+
+
+
+
+
+
+
+

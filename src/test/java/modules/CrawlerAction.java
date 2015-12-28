@@ -2,6 +2,7 @@ package modules;
 
 import api.BrandPageData;
 import api.CategoriesPageData;
+import api.PageData;
 import api.SeleniumAction;
 import helpers.DataWorkbook;
 import helpers.DriverFactory;
@@ -18,12 +19,12 @@ import java.util.logging.Logger;
 /**
  * Created by jorge on 26-12-2015.
  */
-public class CrawlerAction implements SeleniumAction<Integer> {
+public class CrawlerAction implements SeleniumAction<List<BrandPageData>> {
 
     private static final int MAXIMUM_BRANDS = 10;
 
     @Override
-    public Integer execute(final Object param) throws Throwable {
+    public List<BrandPageData> execute(final Object param) throws Throwable {
         shutOffLogger();
         String url = param.toString();
         WebDriver driver = DriverFactory.createSilentDriver(url);
@@ -41,9 +42,7 @@ public class CrawlerAction implements SeleniumAction<Integer> {
                 break;
             }
         }
-        DataWorkbook workbook = DataWorkbook.getDefaultWorkbook();
-        workbook.writeBrandPages(brandsData);
-        return i;
+        return brandsData;
     }
 
     private static void shutOffLogger(){

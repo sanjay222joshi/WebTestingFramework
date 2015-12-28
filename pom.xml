@@ -1,35 +1,35 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.famous-smoke</groupId>
-	<artifactId>web-testing-framework</artifactId>
-	<version>0.0.1</version>
-	<packaging>jar</packaging>
-	<name>Web Testing Framework</name>
+    <groupId>com.famous-smoke</groupId>
+    <artifactId>web-testing-framework</artifactId>
+    <version>0.0.1</version>
+    <packaging>jar</packaging>
+    <name>Web Testing Framework</name>
 
-	<properties>
-		<cucumber.version>1.2.4</cucumber.version>
-		<picocontainer.version>2.15</picocontainer.version>
-        <allure.version>2.4</allure.version>
-        <aspectj.version>1.8.5</aspectj.version>
-		<phantomdriver.version>1.2.1</phantomdriver.version>
+    <properties>
+        <cucumber.version>1.2.4</cucumber.version>
+        <picocontainer.version>2.15</picocontainer.version>
+        <allure.version>2.5</allure.version>
+        <aspectj.version>1.8.7</aspectj.version>
+        <phantomdriver.version>1.2.1</phantomdriver.version>
         <selenium.version>2.48.2</selenium.version>
-	</properties>
+    </properties>
 
-	<dependencies>
+    <dependencies>
 
-		<dependency>
-			<groupId>com.codeborne</groupId>
-			<artifactId>phantomjsdriver</artifactId>
-			<version>${phantomdriver.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>phantomjsdriver</artifactId>
+            <version>${phantomdriver.version}</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
-			<version>${selenium.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-server</artifactId>
@@ -55,11 +55,17 @@
         </dependency>
 
         <dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
+            <groupId>ru.yandex.qatools.allure</groupId>
+            <artifactId>allure-cucumber-jvm-adaptor</artifactId>
+            <version>1.5.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
             <scope>test</scope>
-		</dependency>
+        </dependency>
         <dependency>
             <groupId>org.easytesting</groupId>
             <artifactId>fest-assert-core</artifactId>
@@ -78,34 +84,28 @@
             <version>${cucumber.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>ru.yandex.qatools.allure</groupId>
-            <artifactId>allure-cucumber-jvm-adaptor</artifactId>
-            <version>1.5.1</version>
-        </dependency>
 
+    </dependencies>
 
-	</dependencies>
-
-	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.19</version>
-					<dependencies>
-						<dependency>
-							<groupId>org.apache.maven.surefire</groupId>
-							<artifactId>surefire-junit47</artifactId>
-							<version>2.19</version>
-						</dependency>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.19</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.apache.maven.surefire</groupId>
+                            <artifactId>surefire-junit47</artifactId>
+                            <version>2.19</version>
+                        </dependency>
                         <dependency>
                             <groupId>org.aspectj</groupId>
                             <artifactId>aspectjweaver</artifactId>
                             <version>${aspectj.version}</version>
                         </dependency>
-					</dependencies>
+                    </dependencies>
 
                     <configuration>
                         <testFailureIgnore>false</testFailureIgnore>
@@ -121,13 +121,13 @@
                     </configuration>
                 </plugin>
 
-				<plugin>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<configuration>
-						<source>1.8</source>
-						<target>1.8</target>
-					</configuration>
-				</plugin>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                    </configuration>
+                </plugin>
 
                 <plugin>
                     <groupId>org.eclipse.jetty</groupId>
@@ -140,9 +140,9 @@
                     </configuration>
                 </plugin>
 
-			</plugins>
-		</pluginManagement>
-	</build>
+            </plugins>
+        </pluginManagement>
+    </build>
 
     <reporting>
         <excludeDefaults>true</excludeDefaults>
@@ -150,16 +150,13 @@
             <plugin>
                 <groupId>ru.yandex.qatools.allure</groupId>
                 <artifactId>allure-maven-plugin</artifactId>
-                <version>2.0</version>
+                <version>${allure.version}</version>
                 <configuration>
-                <resultPattern>**/allure-results</resultPattern>
-                <reportVersion>1.4.19</reportVersion>
-
+                    <resultPattern>**/allure-results</resultPattern>
+                    <reportVersion>1.4.19</reportVersion>
                 </configuration>
             </plugin>
         </plugins>
     </reporting>
-
-
 
 </project>
