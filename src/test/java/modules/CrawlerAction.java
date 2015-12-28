@@ -45,6 +45,4 @@ public class CrawlerAction implements SeleniumAction<List<BrandPageData>> {
         return brandsData;
     }
 
-
-
 }
