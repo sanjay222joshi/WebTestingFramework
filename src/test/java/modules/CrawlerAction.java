@@ -6,8 +6,10 @@ import api.PageData;
 import api.SeleniumAction;
 import helpers.DataWorkbook;
 import helpers.DriverFactory;
+import helpers.PageLoader;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import pageobjects.BrandPage;
 import pageobjects.CategoriesPage;
 
@@ -21,46 +23,28 @@ import java.util.logging.Logger;
  */
 public class CrawlerAction implements SeleniumAction<List<BrandPageData>> {
 
-    private static final int MAXIMUM_BRANDS = 1000000;
+    private static final int MAXIMUM_BRANDS = 2000;
 
     @Override
     public List<BrandPageData> execute(final Object param) throws Throwable {
-        shutOffLogger();
         String url = param.toString();
         WebDriver driver = DriverFactory.createSilentDriver(url);
-        CategoriesPage categories = new CategoriesPage(driver);
-        categories.initializeElements();
-        CategoriesPageData categoriesData = categories.getCategoriesData();
-        driver.quit();
+        CategoriesPage categories = PageLoader.loadCategories(driver);
         List<BrandPageData> brandsData = new ArrayList<>();
-        int i = 0;
-        for (String link : categoriesData.getBrandsLinks()) {
-            System.out.println(link);
-            brandsData.add(navigate(link));
-            ++i;
+        int linkCount = categories.getBrandsLinks().size();
+        for (int i = 0; i < linkCount; ++i) {
+            categories.getBrandsLinks().get(i).click();
+            BrandPage brand = PageLoader.loadBrand(driver);
+            brandsData.add(brand.getBrandData());
+            driver.navigate().back();
             if (i == MAXIMUM_BRANDS) {
                 break;
             }
         }
+        driver.quit();
         return brandsData;
     }
 
-    private static void shutOffLogger(){
-        LogFactory.
-                getFactory().
-                setAttribute("org.apache.commons.logging.Log",
-                        "org.apache.commons.logging.impl.NoOpLog");
-        Logger.getLogger("com.gargoylesoftware.htmlunit").setLevel(Level.OFF);
-        Logger.getLogger("org.apache.commons.httpclient").setLevel(Level.OFF);
-    }
 
-    private static BrandPageData navigate(final String url) {
-        WebDriver driver = DriverFactory.createSilentDriver(url);
-        BrandPage page = new BrandPage(driver);
-        page.initializeElements();
-        BrandPageData data = page.getBrandData();
-        driver.quit();
-        return data;
-    }
 
 }

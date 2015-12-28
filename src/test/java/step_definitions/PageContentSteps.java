@@ -26,8 +26,7 @@ public class PageContentSteps {
 
     @When("^I navigate to the brand page$")
     public void i_navigate_to_the_brand_page() throws Throwable {
-        this.brandPage = PageLoader.loadBrand(url);
-        this.brandPage.initializeElements();
+        brandPage = PageLoader.loadBrand(url);
     }
 
     @Then("^the title should match the TestData$")
