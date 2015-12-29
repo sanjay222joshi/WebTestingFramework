@@ -1,6 +1,7 @@
 package helpers;
 
 import api.PageData;
+import validators.UrlValidators;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -12,12 +13,14 @@ import java.util.List;
  */
 public class FeaturesProcessor {
 
-    private static final String FEATURES_EXTENSION = ".feature";
-    private static final String FEATURES_FOLDER    = "src/test/resources/features/";
-    private static final String PROCESSED_FOLDER   = "src/test/resources/features-processed/";
-    private static final String LOADURLS_KEYWORD   = "<LOADURLS>";
-    private static final String SETUP_FEATURE      = "SetupData.feature";
-    private static final String LINE_BREAKER       = "\n";
+    private static final String FEATURES_EXTENSION        = ".feature";
+    private static final String FEATURES_FOLDER           = "src/test/resources/features/";
+    private static final String PROCESSED_FOLDER          = "src/test/resources/features-processed/";
+    private static final String LOAD_URLS_KEYWORD         = "<LOAD_URLS>";
+    private static final String LOAD_BRAND_URLS_KEYWORD   = "<LOAD_BRAND_URLS>";
+    private static final String LOAD_GROUP_URLS_KEYWORD   = "<LOAD_BRAND_GROUP_URLS>";
+    private static final String SETUP_FEATURE             = "SetupData.feature";
+    private static final String LINE_BREAKER              = "\n";
 
     private FeaturesProcessor() {
         //not called
@@ -29,7 +32,7 @@ public class FeaturesProcessor {
             if (feature.getName().equals(SETUP_FEATURE)) {
                 continue;
             }
-            File processed = createProcessedFile(feature, retrieveUrls(datas));
+            File processed = createProcessedFile(feature, datas);
             System.out.println("Feature " + processed.getName() + " processed." );
         }
     }
@@ -39,23 +42,40 @@ public class FeaturesProcessor {
         return Arrays.asList(featuresFolder.listFiles(new FeaturesFilter()));
     }
 
-    private static String retrieveUrls(final List<PageData> datas) {
-        return datas.stream()
-                .map(PageData::getURL)
-                .reduce("", (urls, url) -> urls + "| " + url + " |" + LINE_BREAKER);
-    }
-
     private static File createProcessedFile(final File feature,
-                                            final String urls)
+                                            final List<PageData> datas)
             throws IOException {
         File processedFolder = retrieveProcessedFolder();
         File processed = new File(processedFolder.toString() + "/" + feature.getName());
         processed.createNewFile();
         writeProcessedContent(
                 processed,
-                readFeatureContent(feature).replace(LOADURLS_KEYWORD, urls)
+                readFeatureContent(feature)
+                        .replace(LOAD_URLS_KEYWORD, retrieveUrls(datas))
+                        .replace(LOAD_BRAND_URLS_KEYWORD, retrieveBrandsUrls(datas))
+                        .replace(LOAD_GROUP_URLS_KEYWORD, retrieveBrandGroupsUrls(datas))
         );
         return processed;
+    }
+
+    private static String retrieveUrls(final List<PageData> datas) {
+        return datas.stream()
+                .map(PageData::getURL)
+                .reduce("", (urls, url) -> urls + "| " + url + " |" + LINE_BREAKER);
+    }
+
+    private static String retrieveBrandsUrls(final List<PageData> datas) {
+        return datas.stream()
+                .map(PageData::getURL)
+                .filter(UrlValidators::isBrandPage)
+                .reduce("", (urls, url) -> urls + "| " + url + " |" + LINE_BREAKER);
+    }
+
+    private static String retrieveBrandGroupsUrls(final List<PageData> datas) {
+        return datas.stream()
+                .map(PageData::getURL)
+                .filter(UrlValidators::isBrandGroupPage)
+                .reduce("", (urls, url) -> urls + "| " + url + " |" + LINE_BREAKER);
     }
 
     private static File retrieveProcessedFolder() throws IOException {

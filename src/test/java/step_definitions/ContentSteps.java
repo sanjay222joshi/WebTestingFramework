@@ -1,37 +1,45 @@
 package step_definitions;
 
 import api.BrandPageData;
-import api.SeleniumAction;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import helpers.PageLoader;
-import modules.CheckLogoAction;
 import pageobjects.BrandPage;
+import validators.UrlValidators;
 
 import java.util.List;
-import java.util.Map;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 
 /**
  * Created by jorge on 26-12-2015.
  */
-public class PageContentSteps {
+public class ContentSteps {
 
-    private String url;
-    private BrandPage brandPage;
-    private BrandPageData testData;
+    protected String url;
+    protected BrandPage brandPage;
+    protected BrandPageData testData;
 
-    @Given("^I select the url \"([^\"]*)\" from the TestData$")
+    @Given("^I want to the check the content of the url \"([^\"]*)\"$")
     public void i_select_the_url_from_the_TestData(String url) throws Throwable {
         this.url = url;
         testData = Hooks.createTestDataMap().get(url);
     }
 
-    @When("^I navigate to the brand page$")
+    @And("^the url is from a brand page$")
+    public void the_url_is_from_a_brand_page() throws Throwable {
+        assertThat(UrlValidators.isBrandPage(url)).isTrue();
+    }
+
+    @And("^the url is from a brand group page$")
+    public void theUrlIsFromABrandGroupPage() throws Throwable {
+        assertThat(UrlValidators.isBrandGroupPage(url)).isTrue();
+    }
+
+    @When("^I navigate to the page$")
     public void i_navigate_to_the_brand_page() throws Throwable {
         brandPage = PageLoader.loadBrand(url);
     }
@@ -119,5 +127,9 @@ public class PageContentSteps {
         assertThat(breadcrumbs).containsAll(testData.getBreadcrumbs());
     }
 
+    @Then("^the brand logo should be visible$")
+    public void theBrandLogoShouldBeVisible() throws Throwable {
+        assertThat(brandPage.hasLogo()).isTrue();
+    }
 
 }
