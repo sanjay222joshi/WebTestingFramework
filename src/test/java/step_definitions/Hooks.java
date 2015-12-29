@@ -1,6 +1,8 @@
 package step_definitions;
 
 
+import api.BrandPageData;
+import helpers.DataWorkbook;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -11,12 +13,18 @@ import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 
+import java.io.IOException;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Hooks{
     public static final String BRAND_LIST_URL  = "https://www.famous-smoke.com/brand-list";
     public static WebDriver driver;
+
     @Before
     public void shutOffLogger() throws Throwable {
         LogFactory.getFactory().setAttribute(
@@ -45,7 +53,13 @@ public class Hooks{
 
         }
         //driver.quit();
-        
+    }
+
+    public static Map<String, BrandPageData> createTestDataMap() throws IOException {
+        Collection<BrandPageData> brands = DataWorkbook.getDefaultWorkbook().readBrands();
+        ConcurrentHashMap<String, BrandPageData> map = new ConcurrentHashMap<>();
+        brands.stream().forEach(brand -> map.putIfAbsent(brand.getURL(), brand));
+        return map;
     }
     
 }

@@ -1,6 +1,7 @@
 package helpers;
 
 import api.BrandPageData;
+import api.PageData;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -11,6 +12,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+
+import static api.PageData.BREADCRUMBS_SEPARATOR;
 
 
 /**
@@ -26,9 +29,6 @@ public final class DataWorkbook {
     private static final int DESCRIPTION_COLUMN      = 5;
     private static final int BREADCRUMBS_TEXT_COLUMN = 6;
     private static final int BREADCRUMBS_COLUMN      = 7;
-
-    private static final String BREADCRUMBS_SEPARATOR = ",";
-
 
     private final String location;
 
@@ -95,7 +95,7 @@ public final class DataWorkbook {
             String header1 = getCellValue(dataRow, HEADER1_COLUMN);
             String description = getCellValue(dataRow, DESCRIPTION_COLUMN);
             String breadcrumbsText = getCellValue(dataRow, BREADCRUMBS_TEXT_COLUMN);
-            String[] breadcrumbs = getCellValue(dataRow, BREADCRUMBS_COLUMN).split(",");
+            String[] breadcrumbs = getCellValue(dataRow, BREADCRUMBS_COLUMN).split(BREADCRUMBS_SEPARATOR);
 
             brands.add(DataFactory.createBrand(
                     DataFactory.createPage(
