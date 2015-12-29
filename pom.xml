@@ -9,9 +9,11 @@
     <name>Web Testing Framework</name>
 
     <properties>
+        <apache.poi.version>3.13</apache.poi.version>
         <cucumber.version>1.2.4</cucumber.version>
         <picocontainer.version>2.15</picocontainer.version>
-        <allure.version>2.5</allure.version>
+        <allure.version>1.4.19</allure.version>
+        <allure.adaptor.version>1.5.1</allure.adaptor.version>
         <aspectj.version>1.8.7</aspectj.version>
         <phantomdriver.version>1.2.1</phantomdriver.version>
         <selenium.version>2.48.2</selenium.version>
@@ -45,19 +47,19 @@
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
-            <version>3.13</version>
+            <version>${apache.poi.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
-            <version>3.13</version>
+            <version>${apache.poi.version}</version>
         </dependency>
 
         <dependency>
             <groupId>ru.yandex.qatools.allure</groupId>
             <artifactId>allure-cucumber-jvm-adaptor</artifactId>
-            <version>1.5.1</version>
+            <version>${allure.adaptor.version}</version>
         </dependency>
 
         <dependency>
@@ -108,7 +110,7 @@
                     </dependencies>
 
                     <configuration>
-                        <testFailureIgnore>false</testFailureIgnore>
+                        <testFailureIgnore>true</testFailureIgnore>
                         <argLine>
                             -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
                         </argLine>
@@ -150,11 +152,7 @@
             <plugin>
                 <groupId>ru.yandex.qatools.allure</groupId>
                 <artifactId>allure-maven-plugin</artifactId>
-                <version>${allure.version}</version>
-                <configuration>
-                    <resultPattern>**/allure-results</resultPattern>
-                    <reportVersion>1.4.19</reportVersion>
-                </configuration>
+                <version>2.0</version>
             </plugin>
         </plugins>
     </reporting>
