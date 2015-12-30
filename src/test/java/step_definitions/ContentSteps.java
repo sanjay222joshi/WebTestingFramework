@@ -19,9 +19,9 @@ import static org.fest.assertions.api.Assertions.assertThat;
  */
 public class ContentSteps {
 
-    protected String url;
-    protected BrandPage brandPage;
-    protected BrandPageData testData;
+    private String url;
+    private BrandPage brandPage;
+    private BrandPageData testData;
 
     @Given("^I want to the check the content of the url \"([^\"]*)\"$")
     public void i_select_the_url_from_the_TestData(String url) throws Throwable {
@@ -131,5 +131,12 @@ public class ContentSteps {
     public void theBrandLogoShouldBeVisible() throws Throwable {
         assertThat(brandPage.hasLogo()).isTrue();
     }
+
+    @Given("^I want to check the breadcrumbs of <URL>$")
+    public void iWantToCheckTheBreadcrumbsOfURL() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
 
 }

@@ -14,7 +14,10 @@ import java.util.List;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		features = {"classpath:features/SetupData.feature", "classpath:features-processed"},
+		features = {
+				"classpath:features/SetupData.feature",
+				"classpath:features-processed"
+		},
 		plugin = {"pretty", "html:target/cucumber-html-report","json:cucumber.json"},
 		tags = {}
 		)
