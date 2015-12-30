@@ -19,22 +19,29 @@ public class SetupDataSteps {
 
     private SeleniumAction<List<BrandPageData>> crawler;
     private List<BrandPageData> data;
+    private boolean check;
 
     @Given("^I need cucumber to Setup the Urls and TestData$")
     public void i_need_cucumber_to_Setup_the_Urls_and_TestData() throws Throwable {
-        crawler = new CrawlerAction();
-
+        check = FeaturesProcessor.needToProcess();
+        if (check) {
+            crawler = new CrawlerAction();
+        }
     }
 
     @When("^I first run the test$")
     public void i_first_run_the_test() throws Throwable {
-        data = crawler.execute(Hooks.BRAND_LIST_URL);
+        if (check) {
+            data = crawler.execute(Hooks.BRAND_LIST_URL);
+        }
     }
 
     @Then("^I should process the features$")
     public void i_should_process_the_features() throws Throwable {
-        DataWorkbook workbook = DataWorkbook.getDefaultWorkbook();
-        workbook.writeBrandPages(data);
-        FeaturesProcessor.processFeatures(new ArrayList<>(data));
+        if (check) {
+            DataWorkbook workbook = DataWorkbook.getDefaultWorkbook();
+            workbook.writeBrandPages(data);
+            FeaturesProcessor.processFeatures(new ArrayList<>(data));
+        }
     }
 }

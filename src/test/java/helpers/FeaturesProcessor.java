@@ -37,9 +37,18 @@ public class FeaturesProcessor {
         }
     }
 
+    public static boolean needToProcess() throws IOException {
+        return listProcessedFiles().isEmpty();
+    }
+
     private static List<File> listFeatureFiles() throws IOException {
         File featuresFolder = new File(FEATURES_FOLDER);
         return Arrays.asList(featuresFolder.listFiles(new FeaturesFilter()));
+    }
+
+    private static List<File> listProcessedFiles() throws IOException {
+        File processedFolder = new File(PROCESSED_FOLDER);
+        return Arrays.asList(processedFolder.listFiles(new FeaturesFilter()));
     }
 
     private static File createProcessedFile(final File feature,

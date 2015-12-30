@@ -1,4 +1,4 @@
-Feature: In every Page, all breadcrumbs go to correct links
+Feature: In every Page all breadcrumbs must go to correct links
 
   Scenario Outline: I will validate the navigation of the breadcrumbs
     Given I want to check the breadcrumbs of "<URL>"
