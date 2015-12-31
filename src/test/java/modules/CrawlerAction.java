@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class CrawlerAction implements SeleniumAction<List<BrandPageData>> {
 
-    private static final int MAXIMUM_CRAWLS = 10;
+    private static final int MAXIMUM_CRAWLS = 2000;
 
     @Override
     public List<BrandPageData> execute(final Object param) throws Throwable {
