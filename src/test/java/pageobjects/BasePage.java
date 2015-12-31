@@ -51,7 +51,7 @@ public abstract class BasePage {
     public List<WebElement> getBreadcrumbs() {
         ArrayList<WebElement> list = new ArrayList<>();
         if (hasBreadcrumbs()) {
-            list.addAll(findElementsByCss( breadcrumbs,BREADCRUMBS_LINKS_CSS));
+            list.addAll(findElementsByCss(breadcrumbs,BREADCRUMBS_LINKS_CSS));
         }
         return list;
     }
