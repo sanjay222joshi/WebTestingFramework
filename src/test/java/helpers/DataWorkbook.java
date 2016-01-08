@@ -1,7 +1,7 @@
 package helpers;
 
 import api.BrandPageData;
-import api.PageData;
+import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import static api.PageData.BREADCRUMBS_SEPARATOR;
 
@@ -21,14 +23,26 @@ import static api.PageData.BREADCRUMBS_SEPARATOR;
  */
 public final class DataWorkbook {
 
-    private static final int URL_COLUMN              = 0;
-    private static final int CANONICAL_COLUMN        = 1;
-    private static final int TITLE_COLUMN            = 2;
-    private static final int META_DESCRIPTION_COLUMN = 3;
-    private static final int HEADER1_COLUMN          = 4;
-    private static final int DESCRIPTION_COLUMN      = 5;
-    private static final int BREADCRUMBS_TEXT_COLUMN = 6;
-    private static final int BREADCRUMBS_COLUMN      = 7;
+    private static final String DEFAULT_WORKBOOK_FOLDER  = "src/test/resources/testData/";
+    private static final String DEFAULT_WORKBOOK_NAME    = "TestData-seleniumframework.xlsx";
+    private static final String DATA_SHEET_NAME          = "TestData";
+    private static final int    HEADER_ROW               = 0;
+    private static final String URL_HEADER               = "URL";
+    private static final String CANONICAL_HEADER         = "CANONICAL";
+    private static final String TITLE_HEADER             = "TITLE";
+    private static final String META_DESCRIPTION_HEADER  = "META DESCRIPTION";
+    private static final String HEADER1_HEADER           = "HEADER1";
+    private static final String DESCRIPTION_HEADER       = "DESCRIPTION";
+    private static final String BREADCRUMBS_TEXT_HEADER  = "BREADCRUMBS TEXT";
+    private static final String BREADCRUMBS_LINKS_HEADER = "BREADCRUMBS LINKS";
+    private static final int    URL_COLUMN               = 0;
+    private static final int    CANONICAL_COLUMN         = 1;
+    private static final int    TITLE_COLUMN             = 2;
+    private static final int    META_DESCRIPTION_COLUMN  = 3;
+    private static final int    HEADER1_COLUMN           = 4;
+    private static final int    DESCRIPTION_COLUMN       = 5;
+    private static final int    BREADCRUMBS_TEXT_COLUMN  = 6;
+    private static final int    BREADCRUMBS_LINKS_COLUMN = 7;
 
     private final String location;
 
@@ -37,38 +51,24 @@ public final class DataWorkbook {
     }
 
     public static DataWorkbook getDefaultWorkbook() {
-        return new DataWorkbook("src/test/resources/testData/TestData-seleniumframework.xlsx");
+        return new DataWorkbook(DEFAULT_WORKBOOK_FOLDER + DEFAULT_WORKBOOK_NAME);
     }
 
     public DataWorkbook writeBrandPages(final Collection<BrandPageData> datas) throws IOException {
         Workbook workbook = openWorkBook(location);
-        Sheet sheet = workbook.getSheet("TestData");
+        Sheet sheet = createDataSheet(workbook);
 
         int row = 1;
         for (BrandPageData data : datas) {
-            Row brandRow = sheet.getRow(row);
-            if(brandRow == null) {
-                brandRow = sheet.createRow(row);
-            }
+            Row brandRow = sheet.createRow(row);
 
             CellStyle dataStyle = createDataStyle(workbook);
-            Cell urlCell = createCell(brandRow, URL_COLUMN, dataStyle);
-            Cell canonicalCell = createCell(brandRow, CANONICAL_COLUMN, dataStyle);
-            Cell titleCell = createCell(brandRow, TITLE_COLUMN, dataStyle);
-            Cell metaDescriptionCell = createCell(brandRow, META_DESCRIPTION_COLUMN, dataStyle);
-            Cell header1Cell = createCell(brandRow, HEADER1_COLUMN, dataStyle);
-            Cell descriptionCell = createCell(brandRow, DESCRIPTION_COLUMN, dataStyle);
-            Cell breadcrumbsTextCell = createCell(brandRow, BREADCRUMBS_TEXT_COLUMN, dataStyle);
-            Cell breadrumbsCell = createCell(brandRow, BREADCRUMBS_COLUMN, dataStyle);
+            getDataMap(data).forEach((column, value) -> {
+                Cell cell = createCell(brandRow, column, dataStyle);
+                cell.setCellValue(value);
+                sheet.autoSizeColumn(cell.getColumnIndex());
+            });
 
-            urlCell.setCellValue(data.getURL());
-            canonicalCell.setCellValue(data.getCanonical());
-            titleCell.setCellValue(data.getTitle());
-            metaDescriptionCell.setCellValue(data.getMetaDescription());
-            header1Cell.setCellValue(data.getHeader1());
-            descriptionCell.setCellValue(data.getDescription());
-            breadcrumbsTextCell.setCellValue(data.getBreadcrumbsText());
-            breadrumbsCell.setCellValue(getBreadcrumbs(data.getBreadcrumbs()));
             ++row;
         }
 
@@ -77,14 +77,12 @@ public final class DataWorkbook {
         return this;
     }
 
-
-
     public Collection<BrandPageData> readBrands() throws IOException {
         ArrayList<BrandPageData> brands = new ArrayList<>();
 
         Workbook workbook = openWorkBook(location);
 
-        Sheet sheet = workbook.getSheet("TestData");
+        Sheet sheet = getDataSheet(workbook);
         for (int row = 1; row <= sheet.getLastRowNum(); ++row) {
             Row dataRow = sheet.getRow(row);
 
@@ -95,7 +93,7 @@ public final class DataWorkbook {
             String header1 = getCellValue(dataRow, HEADER1_COLUMN);
             String description = getCellValue(dataRow, DESCRIPTION_COLUMN);
             String breadcrumbsText = getCellValue(dataRow, BREADCRUMBS_TEXT_COLUMN);
-            String[] breadcrumbs = getCellValue(dataRow, BREADCRUMBS_COLUMN).split(BREADCRUMBS_SEPARATOR);
+            String[] breadcrumbs = getCellValue(dataRow, BREADCRUMBS_LINKS_COLUMN).split(BREADCRUMBS_SEPARATOR);
 
             brands.add(DataFactory.createBrand(
                     DataFactory.createPage(
@@ -121,6 +119,70 @@ public final class DataWorkbook {
         FileOutputStream outputStream = new FileOutputStream(dataFile);
         workbook.write(outputStream);
         return workbook;
+    }
+
+    private Sheet getDataSheet(final Workbook workbook) {
+        return workbook.getSheet(DATA_SHEET_NAME);
+    }
+
+    private Sheet createDataSheet(final Workbook workbook) {
+        if (getDataSheet(workbook) != null) {
+            deleteSheet(workbook, getDataSheet(workbook));
+        }
+        Sheet sheet = workbook.createSheet(DATA_SHEET_NAME);
+        Row header = sheet.createRow(HEADER_ROW);
+        CellStyle style = createHeaderStyle(workbook);
+
+        getHeaderMap().forEach((column, value) -> {
+            Cell cell = createCell(header, column, style);
+            cell.setCellValue(value);
+            sheet.autoSizeColumn(cell.getColumnIndex());
+        });
+
+        return sheet;
+    }
+
+    private Map<Integer, String> getHeaderMap() {
+        return Arrays.stream(new Object[][] {
+                {URL_COLUMN, URL_HEADER},
+                {CANONICAL_COLUMN, CANONICAL_HEADER},
+                {TITLE_COLUMN, TITLE_HEADER},
+                {META_DESCRIPTION_COLUMN, META_DESCRIPTION_HEADER},
+                {HEADER1_COLUMN, HEADER1_HEADER},
+                {DESCRIPTION_COLUMN, DESCRIPTION_HEADER},
+                {BREADCRUMBS_TEXT_COLUMN, BREADCRUMBS_TEXT_HEADER},
+                {BREADCRUMBS_LINKS_COLUMN, BREADCRUMBS_LINKS_HEADER}
+        }).collect(Collectors.toMap(kv -> (Integer) kv[0], kv -> (String) kv[1]));
+    }
+
+    private Map<Integer, String> getDataMap(final BrandPageData data) {
+        return Arrays.stream(new Object[][] {
+                {URL_COLUMN, data.getURL()},
+                {CANONICAL_COLUMN, data.getCanonical()},
+                {TITLE_COLUMN, data.getTitle()},
+                {META_DESCRIPTION_COLUMN, data.getMetaDescription()},
+                {HEADER1_COLUMN, data.getHeader1()},
+                {DESCRIPTION_COLUMN, data.getDescription()},
+                {BREADCRUMBS_TEXT_COLUMN, data.getBreadcrumbsText()},
+                {BREADCRUMBS_LINKS_COLUMN, getBreadcrumbs(data.getBreadcrumbs())}
+        }).collect(Collectors.toMap(kv -> (Integer) kv[0], kv -> (String) kv[1]));
+    }
+
+    private void deleteSheet(final Workbook workbook,
+                             final Sheet sheet) {
+        workbook.removeSheetAt(workbook.getSheetIndex(sheet));
+    }
+
+    private CellStyle createHeaderStyle(final Workbook workbook) {
+        CellStyle style = workbook.createCellStyle();
+        style.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+        style.setAlignment(CellStyle.ALIGN_CENTER);
+        style.setFillForegroundColor(HSSFColor.AQUA.index);
+        style.setBorderBottom(CellStyle.BORDER_THIN);
+        style.setBorderLeft(CellStyle.BORDER_THIN);
+        style.setBorderTop(CellStyle.BORDER_THIN);
+        style.setBorderRight(CellStyle.BORDER_THIN);
+        return style;
     }
 
     private CellStyle createDataStyle(final Workbook workbook) {

@@ -23,6 +23,8 @@ import java.util.logging.Logger;
 
 public class Hooks{
     public static final String BRAND_LIST_URL  = "https://www.famous-smoke.com/brand-list";
+    public static final Map<String, BrandPageData> TEST_DATA_MAP = createTestDataMap();
+
     public static WebDriver driver;
 
     @Before
@@ -55,11 +57,15 @@ public class Hooks{
         //driver.quit();
     }
 
-    public static Map<String, BrandPageData> createTestDataMap() throws IOException {
-        Collection<BrandPageData> brands = DataWorkbook.getDefaultWorkbook().readBrands();
-        ConcurrentHashMap<String, BrandPageData> map = new ConcurrentHashMap<>();
-        brands.stream().forEach(brand -> map.putIfAbsent(brand.getURL(), brand));
-        return map;
+    private static Map<String, BrandPageData> createTestDataMap() {
+        try {
+            Collection<BrandPageData> brands = DataWorkbook.getDefaultWorkbook().readBrands();
+            ConcurrentHashMap<String, BrandPageData> map = new ConcurrentHashMap<>();
+            brands.stream().forEach(brand -> map.putIfAbsent(brand.getURL(), brand));
+            return map;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     
 }

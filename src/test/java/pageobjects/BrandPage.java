@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import static api.PageConstants.DESCRIPTION_CSS;
 import static api.PageConstants.HEADER1_CSS;
 import static api.PageConstants.LOGO_CSS;
+import static validators.SeleniumValidators.findElementsByCss;
 
 /**
  * Created by jorge on 21-12-2015.

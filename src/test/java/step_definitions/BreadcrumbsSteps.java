@@ -33,6 +33,7 @@ public class BreadcrumbsSteps {
     @Then("^the navigation must be valid$")
     public void the_navigation_must_be_valid() throws Throwable {
         assertThat(brandPage).isNotNull();
+        brandPage.getDriver().close();
     }
 
 }

@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 import static api.PageConstants.ATTRIBUTE_HREF;
 import static api.PageConstants.BRANDS_CSS;
+import static validators.SeleniumValidators.findElementsByCss;
 
 /**
  * Created by jorge on 21-12-2015.

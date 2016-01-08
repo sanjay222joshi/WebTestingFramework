@@ -2,6 +2,7 @@ package step_definitions;
 
 import api.BrandPageData;
 import cucumber.api.PendingException;
+import cucumber.api.java.After;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -26,7 +27,7 @@ public class ContentSteps {
     @Given("^I want to the check the content of the url \"([^\"]*)\"$")
     public void i_select_the_url_from_the_TestData(String url) throws Throwable {
         this.url = url;
-        testData = Hooks.createTestDataMap().get(url);
+        testData = Hooks.TEST_DATA_MAP.get(url);
     }
 
     @And("^the url is from a brand page$")
@@ -132,11 +133,11 @@ public class ContentSteps {
         assertThat(brandPage.hasLogo()).isTrue();
     }
 
-    @Given("^I want to check the breadcrumbs of <URL>$")
-    public void iWantToCheckTheBreadcrumbsOfURL() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    @After
+    public void closeDriver() {
+        if (brandPage != null) {
+            brandPage.getDriver().close();
+        }
     }
-
 
 }

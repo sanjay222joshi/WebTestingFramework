@@ -14,14 +14,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static api.PageConstants.*;
+import static validators.SeleniumValidators.*;
 
 /**
  * Created by jorge on 21-12-2015.
  */
-public abstract class BasePage {
+public class BasePage {
 
     protected final WebDriver driver;
 
+    @FindBy(xpath = CANONICAL_XPATH)
+    protected WebElement canonical;
     @FindBy(name = META_DESCRIPTION_NAME)
     protected WebElement metaDescription;
     @FindBy(css = BREADCRUMBS_CSS)
@@ -35,17 +38,25 @@ public abstract class BasePage {
         return driver;
     }
 
+    public BasePage initializeElements() {
+        PageFactory.initElements(driver, this);
+        return this;
+    }
+
+    public WebElement getCanonical() {
+        if (hasCanonical()) {
+            return canonical;
+        } else {
+            return null;
+        }
+    }
+
     public WebElement getMetaDescription() {
         if (hasMetaDescription()) {
             return metaDescription;
         } else {
             return null;
         }
-    }
-
-    public BasePage initializeElements() {
-        PageFactory.initElements(driver, this);
-        return this;
     }
 
     public List<WebElement> getBreadcrumbs() {
@@ -56,6 +67,10 @@ public abstract class BasePage {
         return list;
     }
 
+    public boolean hasCanonical() {
+        return !findElementsByXpath(driver, CANONICAL_XPATH).isEmpty();
+    }
+
     public boolean hasMetaDescription() {
         return !findElementsByName(driver, META_DESCRIPTION_NAME).isEmpty();
     }
@@ -64,14 +79,12 @@ public abstract class BasePage {
         return !findElementsByCss(driver, BREADCRUMBS_CSS).isEmpty();
     }
 
-    protected PageData getPageData() {
+    public PageData getPageData() {
         String url = driver.getCurrentUrl();
-        String canonical = "";
-        if (!findElementsByXpath(driver, CANONICAL_XPATH).isEmpty()) {
-            canonical = findElementByXpath(driver,CANONICAL_XPATH).getAttribute(ATTRIBUTE_HREF);
-        }
-
         String title = driver.getTitle();
+        String canonical = hasCanonical() ?
+                this.canonical.getAttribute(ATTRIBUTE_HREF)
+                : "";
         String metaDescription = hasMetaDescription() ?
                 this.metaDescription.getAttribute(ATTRIBUTE_CONTENT)
                 : "";
@@ -93,44 +106,6 @@ public abstract class BasePage {
                 breadcrumbsText, breadcrumbs);
     }
 
-    protected static WebElement findElementByCss(final SearchContext context,
-                                                   final String css) {
-        return findElement(context, By.cssSelector(css));
-    }
 
-    protected static List<WebElement> findElementsByCss(final SearchContext context,
-                                                 final String css) {
-        return findElements(context, By.cssSelector(css));
-    }
-
-    protected static WebElement findElementByName(final SearchContext context,
-                                                   final String name) {
-        return findElement(context, By.name(name));
-    }
-
-    protected static List<WebElement> findElementsByName(final SearchContext context,
-                                                  final String name) {
-        return findElements(context, By.name(name));
-    }
-
-    protected static WebElement findElementByXpath(final SearchContext context,
-                                                   final String xpath) {
-        return findElement(context, By.xpath(xpath));
-    }
-
-    protected static List<WebElement> findElementsByXpath(final SearchContext context,
-                                                   final String xpath) {
-        return findElements(context, By.xpath(xpath));
-    }
-
-    private static WebElement findElement(final SearchContext context,
-                                          final By by){
-        return context.findElement(by);
-    }
-
-    private static List<WebElement> findElements(final SearchContext context,
-                                          final By by){
-        return context.findElements(by);
-    }
 
 }
