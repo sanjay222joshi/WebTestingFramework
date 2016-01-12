@@ -12,6 +12,7 @@ import org.openqa.selenium.WebDriverException;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import pageobjects.BrandPage;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -25,7 +26,9 @@ public class Hooks{
     public static final String BRAND_LIST_URL  = "https://www.famous-smoke.com/brand-list";
     public static final Map<String, BrandPageData> TEST_DATA_MAP = createTestDataMap();
 
-    public static WebDriver driver;
+    public static String url;
+    public static BrandPage testBrandPage;
+    public static BrandPageData testBrandPageData;
 
     @Before
     public void shutOffLogger() throws Throwable {
@@ -37,24 +40,21 @@ public class Hooks{
         Logger.getLogger("org.apache.commons.httpclient").setLevel(Level.OFF);
     }
 
-     
-    @After
     /**
      * Embed a screenshot in test report if test is marked as failed
      */
+    @After
     public void embedScreenshot(Scenario scenario) {
-
-        if(scenario.isFailed()) {
-        try {
-            //scenario.write("Current Page URL is " + driver.getCurrentUrl());
-            //byte[] screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
-            //scenario.embed(screenshot, "image/png");
-        } catch (WebDriverException somePlatformsDontSupportScreenshots) {
-            System.err.println(somePlatformsDontSupportScreenshots.getMessage());
+        WebDriver driver = testBrandPage.getDriver();
+        if (scenario.isFailed()) {
+            try {
+                scenario.write("Current Page URL is " + driver.getCurrentUrl());
+                scenario.embed(takeScreenshot(driver), "image/png");
+            } catch (WebDriverException somePlatformsDontSupportScreenshots) {
+                System.err.println(somePlatformsDontSupportScreenshots.getMessage());
+            }
         }
-
-        }
-        //driver.quit();
+        driver.quit();
     }
 
     private static Map<String, BrandPageData> createTestDataMap() {
@@ -66,6 +66,10 @@ public class Hooks{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private static byte[] takeScreenshot(final WebDriver driver) {
+        return ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
     }
     
 }

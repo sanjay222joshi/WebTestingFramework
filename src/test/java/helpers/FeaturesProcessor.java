@@ -5,22 +5,27 @@ import validators.UrlValidators;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by jorge on 27-12-2015.
  */
 public class FeaturesProcessor {
 
-    private static final String FEATURES_EXTENSION        = ".feature";
-    private static final String FEATURES_FOLDER           = "src/test/resources/features/";
-    private static final String PROCESSED_FOLDER          = "src/test/resources/features-processed/";
-    private static final String LOAD_URLS_KEYWORD         = "<LOAD_URLS>";
-    private static final String LOAD_BRAND_URLS_KEYWORD   = "<LOAD_BRAND_URLS>";
-    private static final String LOAD_GROUP_URLS_KEYWORD   = "<LOAD_BRAND_GROUP_URLS>";
-    private static final String SETUP_FEATURE             = "SetupData.feature";
-    private static final String LINE_BREAKER              = "\n";
+    private static final String FEATURES_EXTENSION               = ".feature";
+    private static final String FEATURES_FOLDER                  = "src/test/resources/features/";
+    private static final String SEO_FEATURES_FOLDER              = FEATURES_FOLDER + "seo/";
+    private static final String VALIDATION_FEATURES_FOLDER       = FEATURES_FOLDER + "validation/";
+    private static final String ACTIONVALIDATION_FEATURES_FOLDER = FEATURES_FOLDER + "actionvalidation/";
+    private static final String PROCESSED_FOLDER                 = "src/test/resources/features-processed/";
+    private static final String LOAD_URLS_KEYWORD                = "<LOAD_URLS>";
+    private static final String LOAD_BRAND_URLS_KEYWORD          = "<LOAD_BRAND_URLS>";
+    private static final String LOAD_GROUP_URLS_KEYWORD          = "<LOAD_BRAND_GROUP_URLS>";
+    private static final String SETUP_FEATURE                    = "SetupData.feature";
+    private static final String LINE_BREAKER                     = "\n";
 
     private FeaturesProcessor() {
         //not called
@@ -42,8 +47,19 @@ public class FeaturesProcessor {
     }
 
     private static List<File> listFeatureFiles() throws IOException {
-        File featuresFolder = new File(FEATURES_FOLDER);
-        return Arrays.asList(featuresFolder.listFiles(new FeaturesFilter()));
+        ArrayList<File> features = new ArrayList<>();
+        Arrays.stream(new String[]{
+                SEO_FEATURES_FOLDER,
+                VALIDATION_FEATURES_FOLDER,
+                ACTIONVALIDATION_FEATURES_FOLDER
+        }).forEach(folder -> features.addAll(listFeatureFiles(folder)));
+        return features;
+    }
+
+    private static List<File> listFeatureFiles(final String folderPath) {
+        File folder = new File(folderPath);
+        File[] features = folder.listFiles(new FeaturesFilter());
+        return Arrays.asList(features);
     }
 
     private static List<File> listProcessedFiles() throws IOException {

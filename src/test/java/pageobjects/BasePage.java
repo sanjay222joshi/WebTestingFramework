@@ -1,27 +1,23 @@
 package pageobjects;
 
 import api.PageData;
-import helpers.DataFactory;
-import org.openqa.selenium.By;
-import org.openqa.selenium.SearchContext;
+import factory.DataFactory;
+import factory.SectionFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static api.PageConstants.*;
-import static validators.SeleniumValidators.*;
+import static pageobjects.PageConstants.*;
+import static helpers.SeleniumFinder.*;
 
 /**
  * Created by jorge on 21-12-2015.
  */
-public class BasePage {
-
-    protected final WebDriver driver;
+public class BasePage extends PageObject {
 
     @FindBy(xpath = CANONICAL_XPATH)
     protected WebElement canonical;
@@ -30,17 +26,15 @@ public class BasePage {
     @FindBy(css = BREADCRUMBS_CSS)
     protected WebElement breadcrumbs;
 
+    private final HeaderSection headerSection;
+
     public BasePage(final WebDriver driver) {
-        this.driver = driver;
+        super(driver);
+        headerSection = SectionFactory.createHeader(driver, PAGE_HEADER_CSS);
     }
 
-    public WebDriver getDriver() {
-        return driver;
-    }
-
-    public BasePage initializeElements() {
-        PageFactory.initElements(driver, this);
-        return this;
+    public HeaderSection getHeaderSection(){
+        return headerSection;
     }
 
     public WebElement getCanonical() {

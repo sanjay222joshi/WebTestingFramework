@@ -1,4 +1,4 @@
-package validators;
+package helpers;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.SearchContext;
@@ -9,9 +9,9 @@ import java.util.List;
 /**
  * Created by jorge on 07-01-2016.
  */
-public class SeleniumValidators {
+public class SeleniumFinder {
 
-    private SeleniumValidators() {
+    private SeleniumFinder() {
         //not called
     }
 

@@ -1,7 +1,7 @@
 package pageobjects;
 
 import api.CategoriesPageData;
-import helpers.DataFactory;
+import factory.DataFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static api.PageConstants.ATTRIBUTE_HREF;
-import static api.PageConstants.BRANDS_CSS;
-import static validators.SeleniumValidators.findElementsByCss;
+import static pageobjects.PageConstants.ATTRIBUTE_HREF;
+import static pageobjects.PageConstants.BRANDS_CSS;
+import static helpers.SeleniumFinder.findElementsByCss;
 
 /**
  * Created by jorge on 21-12-2015.

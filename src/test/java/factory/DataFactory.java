@@ -1,4 +1,4 @@
-package helpers;
+package factory;
 
 import api.BrandPageData;
 import api.CategoriesPageData;

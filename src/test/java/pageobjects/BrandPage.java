@@ -1,15 +1,15 @@
 package pageobjects;
 
 import api.BrandPageData;
-import helpers.DataFactory;
+import factory.DataFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static api.PageConstants.DESCRIPTION_CSS;
-import static api.PageConstants.HEADER1_CSS;
-import static api.PageConstants.LOGO_CSS;
-import static validators.SeleniumValidators.findElementsByCss;
+import static pageobjects.PageConstants.DESCRIPTION_CSS;
+import static pageobjects.PageConstants.HEADER1_CSS;
+import static pageobjects.PageConstants.LOGO_CSS;
+import static helpers.SeleniumFinder.findElementsByCss;
 
 /**
  * Created by jorge on 21-12-2015.

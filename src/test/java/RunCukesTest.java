@@ -22,8 +22,4 @@ import java.util.List;
 		tags = {}
 		)
 public class RunCukesTest {
-    @BeforeClass
-    public static void loadTestData() throws Throwable{
-
-    }
 }
