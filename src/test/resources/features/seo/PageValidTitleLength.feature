@@ -1,0 +1,21 @@
+Feature: The Title length of all Pages should be in a rage
+
+  Scenario Outline: I will validate the length of the Page Title
+    Given I want to the check the content of the url "<URL>"
+    When I navigate to the page
+    Then the title should be  under 70 characters
+    Examples:
+      | URL |
+  <LOAD_URLS>
+
+
+
+
+
+
+
+
+
+
+
+
