@@ -1,8 +1,9 @@
 package com.famous_smoke.automation;
 
 import com.famous_smoke.automation.api.BrandPageData;
+import com.famous_smoke.automation.factory.DriverFactory;
 import com.famous_smoke.automation.helpers.DataWorkbook;
-import com.famous_smoke.automation.pageobjects.BrandPage;
+import com.famous_smoke.automation.helpers.Navigator;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -15,6 +16,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
@@ -24,9 +26,10 @@ public class Hooks {
     public static final String BRAND_LIST_URL  = "https://www.famous-smoke.com/brand-list";
     public static final Map<String, BrandPageData> TEST_DATA_MAP = createTestDataMap();
 
-    public static String url;
-    public static BrandPage testBrandPage;
+    public static String testUrl;
+    public static BrandPageData extractedBrandPageData;
     public static BrandPageData testBrandPageData;
+    public static List<BrandPageData> testBrandPagesData;
 
     @Before
     public void shutOffLogger() throws Throwable {
@@ -38,35 +41,33 @@ public class Hooks {
         Logger.getLogger("org.apache.commons.httpclient").setLevel(Level.OFF);
     }
 
+    @Before
+    public void createDriver() {
+        Navigator.driver = DriverFactory.createDefaultDriver();
+        Navigator.driver.manage().window().maximize();
+    }
+
     /**
      * Embed a screenshot in test report if test is marked as failed
      */
     @After
     public void cleanUp(final Scenario scenario) {
-        if (testBrandPage == null) {
-            return;
-        }
         if (scenario.isFailed()) {
-            embedScreenshot(scenario, testBrandPage.getDriver());
+            embedScreenshot(scenario, Navigator.driver);
         }
-        quitDriver(testBrandPage.getDriver());
+        Navigator.driver.quit();
     }
 
     private void embedScreenshot(final Scenario scenario,
                                  final WebDriver driver) {
         try {
-            if(driver.getClass().isAssignableFrom(HtmlUnitDriver.class)){
-                throw new WebDriverException("HTMLUnitDriver doesn't support screenshot");
+            if (Navigator.driver.getClass().isAssignableFrom(TakesScreenshot.class)) {
+                scenario.write("Current Page URL is " + driver.getCurrentUrl());
+                scenario.embed(takeScreenshot(driver), "image/png");
             }
-            scenario.write("Current Page URL is " + driver.getCurrentUrl());
-            scenario.embed(takeScreenshot(driver), "image/png");
         } catch (WebDriverException somePlatformsDontSupportScreenshots) {
             System.err.println(somePlatformsDontSupportScreenshots.getMessage());
         }
-    }
-
-    private void quitDriver(final WebDriver driver) {
-        driver.quit();
     }
 
     private static Map<String, BrandPageData> createTestDataMap() {

@@ -2,6 +2,7 @@ package com.famous_smoke.automation.pageobjects;
 
 import com.famous_smoke.automation.api.BrandPageData;
 import com.famous_smoke.automation.factory.DataFactory;
+import com.famous_smoke.automation.helpers.Navigator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,59 +15,31 @@ import static com.famous_smoke.automation.helpers.SeleniumFinder.findElementsByC
 public class BrandPage extends BasePage {
 
     @FindBy(css = PageConstants.HEADER1_CSS)
-    private WebElement header1;
+    private static WebElement header1;
     @FindBy(css = PageConstants.DESCRIPTION_CSS)
-    private WebElement description;
+    private static WebElement description;
     @FindBy(css = PageConstants.LOGO_CSS)
-    private WebElement logo;
+    private static WebElement logo;
 
-    public BrandPage(WebDriver driver) {
-        super(driver);
-    }
-
-    public WebElement getHeader1() {
-        if (hasHeader1()) {
-            return header1;
-        } else {
-            return null;
-        }
-    }
-
-    public WebElement getDescription() {
-        if (hasDescription()) {
-            return description;
-        } else {
-            return null;
-        }
-    }
-
-    public WebElement getLogo() {
-        if(hasLogo()) {
-            return logo;
-        } else {
-            return null;
-        }
-    }
-
-    public BrandPageData getBrandData() {
-        String header1 = hasHeader1() ?
-                this.header1.getText()
+    public static BrandPageData getBrandData() {
+        String header1Text = hasHeader1() ?
+                header1.getText()
                 : "";
-        String description = hasDescription() ?
-                this.description.getText()
+        String descriptionText = hasDescription() ?
+                description.getText()
                 : "";
-        return DataFactory.createBrand(getPageData(), header1, description);
+        return DataFactory.createBrand(getPageData(), header1Text, descriptionText);
     }
 
-    public boolean hasHeader1() {
-        return !findElementsByCss(driver, PageConstants.HEADER1_CSS).isEmpty();
+    public static boolean hasHeader1() {
+        return !findElementsByCss(Navigator.driver, PageConstants.HEADER1_CSS).isEmpty();
     }
 
-    public boolean hasDescription() {
-        return !findElementsByCss(driver, PageConstants.DESCRIPTION_CSS).isEmpty();
+    public static boolean hasDescription() {
+        return !findElementsByCss(Navigator.driver, PageConstants.DESCRIPTION_CSS).isEmpty();
     }
 
-    public boolean hasLogo() {
-        return !findElementsByCss(driver, PageConstants.LOGO_CSS).isEmpty();
+    public static boolean hasLogo() {
+        return !findElementsByCss(Navigator.driver, PageConstants.LOGO_CSS).isEmpty();
     }
 }

@@ -2,13 +2,11 @@ package com.famous_smoke.automation.pageobjects;
 
 import com.famous_smoke.automation.api.PageData;
 import com.famous_smoke.automation.factory.DataFactory;
-import com.famous_smoke.automation.factory.SectionFactory;
-import org.openqa.selenium.WebDriver;
+import com.famous_smoke.automation.helpers.Navigator;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.famous_smoke.automation.helpers.SeleniumFinder.findElementsByCss;
@@ -21,86 +19,72 @@ import static com.famous_smoke.automation.helpers.SeleniumFinder.findElementsByX
 public class BasePage extends PageObject {
 
     @FindBy(xpath = PageConstants.CANONICAL_XPATH)
-    protected WebElement canonical;
+    private static WebElement canonical;
     @FindBy(name = PageConstants.META_DESCRIPTION_NAME)
-    protected WebElement metaDescription;
+    private static WebElement metaDescription;
     @FindBy(css = PageConstants.BREADCRUMBS_CSS)
-    protected WebElement breadcrumbs;
+    private static WebElement breadcrumbs;
+    @FindBy(name = PageConstants.PROMO_FORM_NAME)
+    private static WebElement promoForm;
+    @FindBy(css = PageConstants.PROMO_CLOSE_LINK_CSS)
+    private static WebElement promoCloseLink;
 
-    private final HeaderSection headerSection;
-
-    public BasePage(final WebDriver driver) {
-        super(driver);
-        headerSection = SectionFactory.createHeader(driver, PageConstants.PAGE_HEADER_CSS);
+    public static Integer getBreadcrumbsCount(){
+        return findElementsByCss(breadcrumbs, PageConstants.BREADCRUMBS_LINKS_CSS).size();
     }
 
-    public HeaderSection getHeaderSection(){
-        return headerSection;
+    public static void clickBreadcrumb(final Integer breadcrumbIndex){
+        findElementsByCss(breadcrumbs, PageConstants.BREADCRUMBS_LINKS_CSS)
+                .get(breadcrumbIndex)
+                .click();
     }
 
-    public WebElement getCanonical() {
-        if (hasCanonical()) {
-            return canonical;
-        } else {
-            return null;
-        }
+    public static void closePromo() {
+        promoCloseLink.click();
     }
 
-    public WebElement getMetaDescription() {
-        if (hasMetaDescription()) {
-            return metaDescription;
-        } else {
-            return null;
-        }
+    public static boolean hasCanonical() {
+        return !findElementsByXpath(Navigator.driver, PageConstants.CANONICAL_XPATH).isEmpty();
     }
 
-    public List<WebElement> getBreadcrumbs() {
-        ArrayList<WebElement> list = new ArrayList<>();
-        if (hasBreadcrumbs()) {
-            list.addAll(findElementsByCss(breadcrumbs,PageConstants.BREADCRUMBS_LINKS_CSS));
-        }
-        return list;
+    public static boolean hasMetaDescription() {
+        return !findElementsByName(Navigator.driver, PageConstants.META_DESCRIPTION_NAME).isEmpty();
     }
 
-    public boolean hasCanonical() {
-        return !findElementsByXpath(driver, PageConstants.CANONICAL_XPATH).isEmpty();
+    public static boolean hasBreadcrumbs() {
+        return !findElementsByCss(Navigator.driver, PageConstants.BREADCRUMBS_CSS).isEmpty();
     }
 
-    public boolean hasMetaDescription() {
-        return !findElementsByName(driver, PageConstants.META_DESCRIPTION_NAME).isEmpty();
+    public static boolean hasPromo() {
+        return !findElementsByName(Navigator.driver, PageConstants.PROMO_FORM_NAME).isEmpty()
+                && promoForm.isDisplayed();
     }
 
-    public boolean hasBreadcrumbs() {
-        return !findElementsByCss(driver, PageConstants.BREADCRUMBS_CSS).isEmpty();
-    }
-
-    public PageData getPageData() {
-        String url = driver.getCurrentUrl();
-        String title = driver.getTitle();
-        String canonical = hasCanonical() ?
-                this.canonical.getAttribute(PageConstants.ATTRIBUTE_HREF)
+    public static PageData getPageData() {
+        String url = Navigator.driver.getCurrentUrl();
+        String title = Navigator.driver.getTitle();
+        String canonicalText = hasCanonical() ?
+                canonical.getAttribute(PageConstants.ATTRIBUTE_HREF)
                 : "";
-        String metaDescription = hasMetaDescription() ?
-                this.metaDescription.getAttribute(PageConstants.ATTRIBUTE_CONTENT)
+        String metaDescriptionText = hasMetaDescription() ?
+                metaDescription.getAttribute(PageConstants.ATTRIBUTE_CONTENT)
                 : "";
         String breadcrumbsText = hasBreadcrumbs()?
                 breadcrumbs.getText()
                 : "";
-        ArrayList<String> breadcrumbs = new ArrayList<>();
+        ArrayList<String> breadcrumbsLinks = new ArrayList<>();
         if (hasBreadcrumbs()) {
-            breadcrumbs.addAll(
-                    findElementsByCss(this.breadcrumbs, PageConstants.BREADCRUMBS_LINKS_CSS)
+            breadcrumbsLinks.addAll(
+                    findElementsByCss(breadcrumbs, PageConstants.BREADCRUMBS_LINKS_CSS)
                             .stream()
                             .map(breadcrumb -> breadcrumb.getAttribute(PageConstants.ATTRIBUTE_HREF))
                             .collect(Collectors.toList())
                     );
         }
         return DataFactory.createPage(
-                url, title, canonical,
-                metaDescription,
-                breadcrumbsText, breadcrumbs);
+                url, title, canonicalText,
+                metaDescriptionText,
+                breadcrumbsText, breadcrumbsLinks);
     }
-
-
 
 }

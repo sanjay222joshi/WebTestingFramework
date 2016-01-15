@@ -1,9 +1,10 @@
 package com.famous_smoke.automation.step_definitions.validation;
 
-import com.famous_smoke.automation.factory.PageFactory;
+import com.famous_smoke.automation.Hooks;
+import com.famous_smoke.automation.modules.NavigateToBrandPageAction;
+import com.famous_smoke.automation.pageobjects.BrandPage;
 import cucumber.api.java.en.Given;
 
-import static com.famous_smoke.automation.Hooks.testBrandPage;
 import static org.fest.assertions.api.Assertions.assertThat;
 
 /**
@@ -13,7 +14,8 @@ public class GivenSteps {
 
     @Given("^I want to check the breadcrumbs of \"([^\"]*)\"$")
     public void i_want_to_check_the_breadcrumbs_of(final String url) throws Throwable {
-        testBrandPage = PageFactory.createBrand(url);
-        assertThat(testBrandPage.hasBreadcrumbs()).isTrue();
+        Hooks.testUrl = url;
+        NavigateToBrandPageAction.execute();
+        assertThat(BrandPage.hasBreadcrumbs()).isTrue();
     }
 }

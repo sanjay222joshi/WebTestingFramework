@@ -23,7 +23,7 @@ public class FeaturesProcessor {
     private static final String LOAD_URLS_KEYWORD                = "<LOAD_URLS>";
     private static final String LOAD_BRAND_URLS_KEYWORD          = "<LOAD_BRAND_URLS>";
     private static final String LOAD_GROUP_URLS_KEYWORD          = "<LOAD_BRAND_GROUP_URLS>";
-    private static final String SETUP_FEATURE                    = "SetupData.feature";
+    private static final String SETUP_FEATURE                    = "ExtractBrandPagesData.feature";
     private static final String LINE_BREAKER                     = "\n";
 
     private FeaturesProcessor() {

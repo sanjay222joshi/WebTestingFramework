@@ -2,6 +2,7 @@ package com.famous_smoke.automation.pageobjects;
 
 import com.famous_smoke.automation.api.CategoriesPageData;
 import com.famous_smoke.automation.factory.DataFactory;
+import com.famous_smoke.automation.helpers.Navigator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,33 +19,14 @@ import static com.famous_smoke.automation.helpers.SeleniumFinder.findElementsByC
 public class CategoriesPage extends BasePage {
 
     @FindBy(css = PageConstants.BRANDS_CSS)
-    private List<WebElement> brands;
+    private static List<WebElement> brands;
 
-    public CategoriesPage(WebDriver driver) {
-        super(driver);
+    public static Integer getBrandsLinksCount() {
+        return brands.size();
     }
 
-    public List<WebElement> getBrandsLinks() {
-        ArrayList<WebElement> links = new ArrayList<>();
-        if (hasBrands()) {
-            links.addAll(brands);
-        }
-        return links;
+    public static void clickBrandLink(final Integer brandIndex) {
+        brands.get(brandIndex).click();
     }
 
-    public CategoriesPageData getCategoriesData() {
-        ArrayList<String> links = new ArrayList<>();
-        if (hasBrands()) {
-            links.addAll(brands
-                    .stream()
-                    .map(brand -> brand.getAttribute(PageConstants.ATTRIBUTE_HREF))
-                    .collect(Collectors.toList())
-            );
-        }
-        return DataFactory.createCategories(getPageData(), links);
-    }
-
-    public boolean hasBrands() {
-        return !findElementsByCss(driver, PageConstants.BRANDS_CSS).isEmpty();
-    }
 }

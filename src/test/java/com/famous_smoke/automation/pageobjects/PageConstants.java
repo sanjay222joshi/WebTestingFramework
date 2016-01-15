@@ -11,6 +11,8 @@ public final class PageConstants {
 
     public static final String META_DESCRIPTION_NAME = "description";
     public static final String BREADCRUMBS_CSS       = ".breadcrumb";
+    public static final String PROMO_FORM_NAME       = "emailcollection";
+    public static final String PROMO_CLOSE_LINK_CSS  = ".closebutton.trackEvent";
     public static final String BREADCRUMBS_LINKS_CSS = ".link";
     public static final String CANONICAL_XPATH       = "//link[@rel='canonical']";
     public static final String HEADER1_CSS           = ".title.oswald";

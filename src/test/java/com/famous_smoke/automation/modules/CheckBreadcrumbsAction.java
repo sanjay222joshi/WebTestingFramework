@@ -1,9 +1,10 @@
 package com.famous_smoke.automation.modules;
 
 
+import com.famous_smoke.automation.api.BrandPageData;
+import com.famous_smoke.automation.helpers.Navigator;
+import com.famous_smoke.automation.pageobjects.BasePage;
 import com.famous_smoke.automation.pageobjects.BrandPage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import static com.famous_smoke.automation.validators.SourceValidators.isInternalError;
 import static com.famous_smoke.automation.validators.SourceValidators.isNotFound;
@@ -13,23 +14,20 @@ import static com.famous_smoke.automation.validators.SourceValidators.isNotFound
  */
 public class CheckBreadcrumbsAction {
 
-    public static BrandPage execute(final BrandPage page) throws Throwable {
-
-        WebDriver driver = page.getDriver();
-        String url = driver.getCurrentUrl();
-        int breadcrumbs = page.getBreadcrumbs().size();
+    public static BrandPageData execute() throws Throwable {
+        int breadcrumbs = BrandPage.getBreadcrumbsCount();
         for (int i = 0; i < breadcrumbs; ++i) {
-            WebElement breadcrumb = page.getBreadcrumbs().get(i);
-            breadcrumb.click();
-            String source = driver.getPageSource();
+            if (BasePage.hasPromo()) {
+                BasePage.closePromo();
+            }
+            BrandPage.clickBreadcrumb(i);
+            String source = Navigator.getPageSource();
+            Navigator.goBack();
             if (isNotFound(source) || isInternalError(source)) {
                 return null;
             }
-            if (!url.equals(driver.getCurrentUrl())) {
-                driver.navigate().back();
-            }
         }
-        return page;
+        return BrandPage.getBrandData();
     }
 
 
