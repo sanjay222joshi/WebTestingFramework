@@ -15,7 +15,6 @@ import static com.famous_smoke.automation.helpers.SeleniumFinder.findElementsByX
  */
 public class HeaderSection extends PageSection {
 
-
     public HeaderSection(final SearchContext context,
                          final String selector) {
         super(context, selector);

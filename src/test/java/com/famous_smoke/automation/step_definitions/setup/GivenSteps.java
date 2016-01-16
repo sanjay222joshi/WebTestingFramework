@@ -1,9 +1,8 @@
 package com.famous_smoke.automation.step_definitions.setup;
 
 import com.famous_smoke.automation.Hooks;
-import com.famous_smoke.automation.factory.DriverFactory;
 import com.famous_smoke.automation.helpers.FeaturesProcessor;
-import com.famous_smoke.automation.helpers.Navigator;
+import com.famous_smoke.automation.helpers.TestConfigReader;
 import com.famous_smoke.automation.modules.CrawlThroughBrandsAction;
 import com.famous_smoke.automation.modules.NavigateToBrandPageAction;
 import cucumber.api.java.en.Given;
@@ -23,6 +22,7 @@ public class GivenSteps {
     @Given("^I navigate to the page \"([^\"]*)\"$")
     public void i_navigate_to_the_page(final String url) throws Throwable {
         Hooks.testUrl = url;
+        Hooks.testMaximumCrawls = TestConfigReader.getMaximumCrawls();
         NavigateToBrandPageAction.execute();
     }
 
