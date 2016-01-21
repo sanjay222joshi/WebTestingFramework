@@ -30,6 +30,7 @@ public class Hooks {
     public static BrandPageData extractedBrandPageData;
     public static BrandPageData testBrandPageData;
     public static List<BrandPageData> testBrandPagesData;
+    public static boolean testSetupNeeded;
 
 
     private static Map<String, BrandPageData> createTestDataMap() {

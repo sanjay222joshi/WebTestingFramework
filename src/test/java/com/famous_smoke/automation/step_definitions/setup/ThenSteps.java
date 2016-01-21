@@ -12,7 +12,9 @@ public class ThenSteps {
 
     @Then("^I should process the features$")
     public void i_should_process_the_features() throws Throwable {
-        FeaturesProcessor.processFeatures(new ArrayList<>(Hooks.testBrandPagesData));
+        if (Hooks.testSetupNeeded) {
+            FeaturesProcessor.processFeatures(new ArrayList<>(Hooks.testBrandPagesData));
+        }
     }
 
 }

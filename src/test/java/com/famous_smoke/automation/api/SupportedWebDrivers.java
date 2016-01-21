@@ -6,5 +6,7 @@ package com.famous_smoke.automation.api;
 public enum SupportedWebDrivers {
     LOCAL_CHROME,
     LOCAL_FIREFOX,
-    LOCAL_HTMLUNIT;
+    LOCAL_HTMLUNIT,
+    REMOTE_CHROME,
+    REMOTE_FIREFOX;
 }
