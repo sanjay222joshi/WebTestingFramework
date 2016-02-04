@@ -13,7 +13,7 @@
         <cucumber.version>1.2.4</cucumber.version>
         <picocontainer.version>2.15</picocontainer.version>
         <allure.version>1.4.15</allure.version>
-        <allure.adaptor.version>1.6-SNAPSHOT</allure.adaptor.version>
+        <allure.adaptor.version>1.5.1</allure.adaptor.version>
         <aspectj.version>1.8.7</aspectj.version>
         <phantomdriver.version>1.2.1</phantomdriver.version>
         <selenium.version>2.49.0</selenium.version>
