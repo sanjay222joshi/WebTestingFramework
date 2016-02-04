@@ -4,7 +4,7 @@
 
     <groupId>com.famous-smoke</groupId>
     <artifactId>web-testing-framework</artifactId>
-    <version>1.2.2</version>
+    <version>1.4.0</version>
     <packaging>jar</packaging>
     <name>Web Testing Framework</name>
 
@@ -12,8 +12,8 @@
         <apache.poi.version>3.13</apache.poi.version>
         <cucumber.version>1.2.4</cucumber.version>
         <picocontainer.version>2.15</picocontainer.version>
-        <allure.version>1.4.19</allure.version>
-        <allure.adaptor.version>1.5.1</allure.adaptor.version>
+        <allure.version>1.4.15</allure.version>
+        <allure.adaptor.version>1.6-SNAPSHOT</allure.adaptor.version>
         <aspectj.version>1.8.7</aspectj.version>
         <phantomdriver.version>1.2.1</phantomdriver.version>
         <selenium.version>2.49.0</selenium.version>
@@ -68,27 +68,9 @@
         </dependency>
 
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.easytesting</groupId>
             <artifactId>fest-assert-core</artifactId>
             <version>2.0M10</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-java</artifactId>
-            <version>${cucumber.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-junit</artifactId>
-            <version>${cucumber.version}</version>
             <scope>test</scope>
         </dependency>
 

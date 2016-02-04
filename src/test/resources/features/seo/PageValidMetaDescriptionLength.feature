@@ -1,3 +1,4 @@
+@seo
 Feature: The MetaDescription length of all Pages is in a range
 
   Scenario Outline: I will validate the length of the Page MetaDescription

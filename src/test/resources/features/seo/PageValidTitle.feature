@@ -1,3 +1,4 @@
+@seo
 Feature: The Title of all the Pages match the Test Data
 
   Scenario Outline: I will validate the Page Title

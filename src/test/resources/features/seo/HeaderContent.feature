@@ -1,3 +1,4 @@
+@seo
 Feature: We are going to check the header
 
   Scenario Outline: This is just checking the objects are there

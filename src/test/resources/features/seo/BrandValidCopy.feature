@@ -1,3 +1,4 @@
+@seo
 Feature: The Brand Pages have a Description matching the extracted Data
 
   Scenario Outline: I will validate the Brand Description

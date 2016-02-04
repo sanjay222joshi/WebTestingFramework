@@ -5,9 +5,12 @@ import com.famous_smoke.automation.validators.UrlValidators;
 
 import java.io.*;
 import java.nio.file.Files;
-import java.util.ArrayList;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by jorge on 27-12-2015.
@@ -30,56 +33,59 @@ public class FeaturesProcessor {
         //not called
     }
 
-    public static void processFeatures(List<PageData> datas) throws IOException {
-        List<File> features = listFeatureFiles();
-        for (File feature : features) {
-            if (feature.getName().equals(SETUP_FEATURE)) {
-                continue;
-            }
-            File processed = createProcessedFile(feature, datas);
-            System.out.println("Feature " + processed.getName() + " processed." );
-        }
+    public static void processFeatures(final List<PageData> datas) {
+        listFeatureFiles()
+                .stream()
+                .forEach(feature -> createProcessedFile(feature, datas));
     }
 
     public static boolean needToProcess() throws IOException {
         return listProcessedFiles().isEmpty();
     }
 
-    private static List<File> listFeatureFiles() throws IOException {
-        ArrayList<File> features = new ArrayList<>();
-        Arrays.stream(new String[]{
-                SEO_FEATURES_FOLDER,
-                VALIDATION_FEATURES_FOLDER,
-                ACTIONVALIDATION_FEATURES_FOLDER
-        }).forEach(folder -> features.addAll(listFeatureFiles(folder)));
-        return features;
+    private static List<Path> listFeatureFiles() {
+        return Arrays.stream(new String[]{
+                        SEO_FEATURES_FOLDER,
+                        VALIDATION_FEATURES_FOLDER,
+                        ACTIONVALIDATION_FEATURES_FOLDER})
+                .map(FeaturesProcessor::listFeatureFilesFolder)
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
     }
 
-    private static List<File> listFeatureFiles(final String folderPath) {
-        File folder = new File(folderPath);
-        File[] features = folder.listFiles(new FeaturesFilter());
-        return Arrays.asList(features);
+    private static List<Path> listFeatureFilesFolder(final String folderPath) {
+        try {
+            return Files.list(Paths.get(folderPath))
+                    .collect(Collectors.toList());
+        } catch(IOException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
-    private static List<File> listProcessedFiles() throws IOException {
-        File processedFolder = new File(PROCESSED_FOLDER);
-        return Arrays.asList(processedFolder.listFiles(new FeaturesFilter()));
+    private static List<Path> listProcessedFiles() {
+        try {
+            return Files
+                    .list(Paths.get(PROCESSED_FOLDER))
+                    .filter(path -> path.endsWith(FEATURES_EXTENSION))
+                    .collect(Collectors.toList());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    private static File createProcessedFile(final File feature,
-                                            final List<PageData> datas)
-            throws IOException {
-        File processedFolder = retrieveProcessedFolder();
-        File processed = new File(processedFolder.toString() + "/" + feature.getName());
-        processed.createNewFile();
-        writeProcessedContent(
-                processed,
-                readFeatureContent(feature)
-                        .replace(LOAD_URLS_KEYWORD, retrieveUrls(datas))
-                        .replace(LOAD_BRAND_URLS_KEYWORD, retrieveBrandsUrls(datas))
-                        .replace(LOAD_GROUP_URLS_KEYWORD, retrieveBrandGroupsUrls(datas))
-        );
-        return processed;
+    private static Path createProcessedFile(final Path feature,
+                                            final List<PageData> datas) {
+        try {
+            return writeProcessedContent(
+                    PROCESSED_FOLDER + feature.getFileName(),
+                    readFeatureContent(feature)
+                            .replace(LOAD_URLS_KEYWORD, retrieveUrls(datas))
+                            .replace(LOAD_BRAND_URLS_KEYWORD, retrieveBrandsUrls(datas))
+                            .replace(LOAD_GROUP_URLS_KEYWORD, retrieveBrandGroupsUrls(datas))
+            );
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private static String retrieveUrls(final List<PageData> datas) {
@@ -102,28 +108,15 @@ public class FeaturesProcessor {
                 .reduce("", (urls, url) -> urls + "| " + url + " |" + LINE_BREAKER);
     }
 
-    private static File retrieveProcessedFolder() throws IOException {
-        File processedFolder = new File(PROCESSED_FOLDER);
-        processedFolder.createNewFile();
-        return processedFolder;
-    }
-
-    private static String readFeatureContent(final File feature) throws IOException {
-        return Files.lines(feature.toPath())
+    private static String readFeatureContent(final Path feature) throws IOException {
+        return Files.lines(feature)
                 .reduce("", (lines, line) -> lines + line + LINE_BREAKER);
     }
 
-    private static void writeProcessedContent(final File processed,
-                                                final String content)
+    private static Path writeProcessedContent(final String fileName,
+                                              final String content)
         throws IOException {
-        Files.write(processed.toPath(), Arrays.asList(content.split(LINE_BREAKER)));
-    }
-
-    private static class FeaturesFilter implements FileFilter {
-        @Override
-        public boolean accept(File pathname) {
-            return pathname.getName().endsWith(FEATURES_EXTENSION);
-        }
+        return Files.write(Paths.get(fileName), Arrays.asList(content.split(LINE_BREAKER)));
     }
 
 }

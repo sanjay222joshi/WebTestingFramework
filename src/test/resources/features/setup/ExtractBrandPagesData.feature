@@ -1,3 +1,4 @@
+@setup
 Feature: We need to extract the Brand Page Data
   Scenario: Extracting data from famous smoke
     Given I need to Setup the Features

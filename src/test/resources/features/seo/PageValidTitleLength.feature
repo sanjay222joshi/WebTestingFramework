@@ -1,3 +1,4 @@
+@seo
 Feature: The Title length of all Pages should be in a rage
 
   Scenario Outline: I will validate the length of the Page Title

@@ -1,3 +1,4 @@
+@seo
 Feature: The Brand Pages have a visible Logo
 
   Scenario Outline: I will check the Brand Logo

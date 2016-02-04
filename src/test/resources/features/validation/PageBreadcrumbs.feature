@@ -1,3 +1,4 @@
+@validation
 Feature: In every Page all breadcrumbs must go to correct links
 
   Scenario Outline: I will validate the navigation of the breadcrumbs

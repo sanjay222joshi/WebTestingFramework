@@ -1,3 +1,4 @@
+@seo
 Feature: The MetaDescription of all the Pages match the Test Data
 
   Scenario Outline: I will validate Page MetaDescription

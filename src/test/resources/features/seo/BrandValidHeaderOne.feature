@@ -1,3 +1,4 @@
+@seo
 Feature: The Brand Pages have a Header One matching the extracted Data
 
   Scenario Outline: I will validate the Brand Header One

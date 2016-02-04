@@ -1,3 +1,4 @@
+@seo
 Feature: The Canonical URL of all the Pages should match the Test Data
 
   Scenario Outline: I will validate the Page Canonical URL

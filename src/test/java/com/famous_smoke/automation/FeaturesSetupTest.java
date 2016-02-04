@@ -1,19 +1,14 @@
 package com.famous_smoke.automation;
 
-import org.junit.runner.RunWith;
-
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
+import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		strict = false,
-		features = {
-				"classpath:features/setup",
-				"classpath:features-processed"
-		},
+		features = {"classpath:features/setup"},
 		plugin = {"pretty", "html:target/site/cucumber-pretty","json:target/cucumber.json"},
-		tags = {}
-		)
-public class RunCukesTest {
+        tags = "@setup"
+)
+public class FeaturesSetupTest {
 }
