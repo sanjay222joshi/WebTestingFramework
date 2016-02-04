@@ -40,7 +40,7 @@ public class FeaturesProcessor {
     }
 
     public static boolean needToProcess() throws IOException {
-        return listProcessedFiles().isEmpty();
+        return listProcessedFiles().size() < 2;
     }
 
     private static List<Path> listFeatureFiles() {
