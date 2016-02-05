@@ -33,7 +33,7 @@ public class FeaturesProcessor {
         //not called
     }
 
-    public static void processFeatures(final List<PageData> datas) {
+    public static void processFeatures(final Collection<PageData> datas) {
         listTemplateFiles()
                 .stream()
                 .forEach(template -> createProcessedFeatureFile(template, datas));
@@ -75,7 +75,7 @@ public class FeaturesProcessor {
     }
 
     private static Path createProcessedFeatureFile(final Path template,
-                                                   final List<PageData> datas) {
+                                                   final Collection<PageData> datas) {
         try {
             final String fileName = PROCESSED_FOLDER + template
                     .getFileName()
@@ -93,20 +93,20 @@ public class FeaturesProcessor {
         }
     }
 
-    private static String retrieveUrls(final List<PageData> datas) {
+    private static String retrieveUrls(final Collection<PageData> datas) {
         return datas.stream()
                 .map(PageData::getURL)
                 .reduce("", (urls, url) -> urls + "| " + url + " |" + LINE_BREAKER);
     }
 
-    private static String retrieveBrandsUrls(final List<PageData> datas) {
+    private static String retrieveBrandsUrls(final Collection<PageData> datas) {
         return datas.stream()
                 .map(PageData::getURL)
                 .filter(UrlValidators::isBrandPage)
                 .reduce("", (urls, url) -> urls + "| " + url + " |" + LINE_BREAKER);
     }
 
-    private static String retrieveBrandGroupsUrls(final List<PageData> datas) {
+    private static String retrieveBrandGroupsUrls(final Collection<PageData> datas) {
         return datas.stream()
                 .map(PageData::getURL)
                 .filter(UrlValidators::isBrandGroupPage)

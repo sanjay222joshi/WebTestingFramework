@@ -10,10 +10,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.famous_smoke.automation.api.PageData.BREADCRUMBS_SEPARATOR;
@@ -79,7 +76,7 @@ public final class DataWorkbook {
     }
 
     public Collection<BrandPageData> readBrands() throws IOException {
-        ArrayList<BrandPageData> brands = new ArrayList<>();
+        HashSet<BrandPageData> brands = new HashSet<>();
 
         Workbook workbook = openWorkBook(location);
 

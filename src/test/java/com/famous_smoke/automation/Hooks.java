@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,7 +30,7 @@ public class Hooks {
     public static Integer testMaximumCrawls;
     public static BrandPageData extractedBrandPageData;
     public static BrandPageData testBrandPageData;
-    public static List<BrandPageData> testBrandPagesData;
+    public static Collection<BrandPageData> testBrandPagesData;
     public static boolean testSetupNeeded;
 
 

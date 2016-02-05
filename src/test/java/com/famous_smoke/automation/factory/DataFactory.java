@@ -104,6 +104,15 @@ public final class DataFactory {
         public List<String> getBreadcrumbs() {
             return breadcumbs;
         }
+
+        @Override
+        public boolean equals(final Object o) {
+            if (o.getClass().isAssignableFrom(PageData.class)) {
+                PageData comparable = (PageData) o;
+                return this.url.equals(comparable.getURL());
+            }
+            return false;
+        }
     }
 
     private static class BrandDataImpl
