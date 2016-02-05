@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
 		features = {"classpath:features/processed"},
-		plugin = {"pretty", "html:target/site/cucumber-pretty","json:target/cucumber-seo.json"},
+		plugin = {"pretty", "html:target/site/cucumber-seo-pretty","json:target/cucumber-seo.json"},
 		tags = "@seo"
 )
 public class SEOTest {
