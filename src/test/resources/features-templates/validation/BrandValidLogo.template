@@ -7,5 +7,5 @@ Feature: The Brand Pages should have a visible Logo
     When I navigate to the page
     Then the brand logo should be visible
     Examples:
-      | URL |
+      | URL | SCENARIO-ID |
   <LOAD_BRAND_URLS>

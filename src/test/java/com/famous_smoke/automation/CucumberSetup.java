@@ -1,6 +1,5 @@
 package com.famous_smoke.automation;
 
-import com.famous_smoke.automation.api.SupportedWebDrivers;
 import com.famous_smoke.automation.factory.DriverFactory;
 import com.famous_smoke.automation.helpers.Navigator;
 import com.famous_smoke.automation.helpers.TestConfigReader;

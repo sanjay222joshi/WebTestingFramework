@@ -7,7 +7,7 @@ Feature: The MetaDescription length of all Pages is in a range
     Then the meta description should be over 145 characters
     And the meta description should be under 165 characters
     Examples:
-      | URL |
+      | URL | SCENARIO-ID |
   <LOAD_URLS>
 
 

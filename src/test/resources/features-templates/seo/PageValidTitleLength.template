@@ -6,7 +6,7 @@ Feature: The Title length of all Pages should be in a rage
     When I navigate to the page
     Then the title should be  under 70 characters
     Examples:
-      | URL |
+      | URL | SCENARIO-ID |
   <LOAD_URLS>
 
 

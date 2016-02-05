@@ -6,5 +6,5 @@ Feature: In every Page all breadcrumbs must go to correct links
     When I check all the breadcrumbs
     Then the navigation must be valid
     Examples:
-    | URL |
+    | URL | SCENARIO-ID |
     <LOAD_URLS>

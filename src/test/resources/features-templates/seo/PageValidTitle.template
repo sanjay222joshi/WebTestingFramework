@@ -6,7 +6,7 @@ Feature: The Title of all the Pages should match the Test Data
     When I navigate to the page
     Then the title should match the Test Data
     Examples:
-      | URL |
+      | URL | SCENARIO-ID |
   <LOAD_URLS>
 
 

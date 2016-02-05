@@ -8,5 +8,5 @@ Feature: The Brand Pages have a Header One matching the extracted Data
     Then the header one should not be empty
     And the header one should match the TestData
     Examples:
-      | URL |
+      | URL | SCENARIO-ID |
   <LOAD_BRAND_URLS>

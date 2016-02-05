@@ -8,7 +8,7 @@ Feature: The breadcrumbs of all the Pages should match the Test Data
     And the breadcrumbs text should match the Test Data
     And the breadcrumbs links should match the Test Data
     Examples:
-      | URL |
+      | URL | SCENARIO-ID |
       <LOAD_URLS>
 
 

@@ -10,7 +10,9 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by jorge on 27-12-2015.
@@ -94,23 +96,27 @@ public class FeaturesProcessor {
     }
 
     private static String retrieveUrls(final Collection<PageData> datas) {
-        return datas.stream()
-                .map(PageData::getURL)
-                .reduce("", (urls, url) -> urls + "| " + url + " |" + LINE_BREAKER);
+        return reduceUrls(datas.stream()
+                .map(PageData::getURL));
     }
 
     private static String retrieveBrandsUrls(final Collection<PageData> datas) {
-        return datas.stream()
+        return reduceUrls(datas.stream()
                 .map(PageData::getURL)
-                .filter(UrlValidators::isBrandPage)
-                .reduce("", (urls, url) -> urls + "| " + url + " |" + LINE_BREAKER);
+                .filter(UrlValidators::isBrandPage));
     }
 
     private static String retrieveBrandGroupsUrls(final Collection<PageData> datas) {
-        return datas.stream()
+        return reduceUrls(datas.stream()
                 .map(PageData::getURL)
-                .filter(UrlValidators::isBrandGroupPage)
-                .reduce("", (urls, url) -> urls + "| " + url + " |" + LINE_BREAKER);
+                .filter(UrlValidators::isBrandGroupPage));
+    }
+
+    private static String reduceUrls(final Stream<String> urls) {
+        return urls
+                .reduce("", (urlAccumulator, url) ->
+                        urlAccumulator + "| " + url + " | " + UUID.randomUUID().toString() + " |" + LINE_BREAKER);
+
     }
 
     private static String readFeatureContent(final Path feature) throws IOException {

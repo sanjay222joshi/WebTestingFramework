@@ -8,5 +8,5 @@ Feature: The Brand Group Pages have a Description matching the extracted Data
     Then the description should not be empty
     And the description should match the TestData
     Examples:
-      | URL |
+      | URL | SCENARIO-ID |
   <LOAD_BRAND_GROUP_URLS>
