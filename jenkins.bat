@@ -1,3 +1,3 @@
 @ECHO OFF
-del /F src\test\resources\features-processed\*.feature
+del /F src\test\resources\features\processed\*.feature
 mvn clean test

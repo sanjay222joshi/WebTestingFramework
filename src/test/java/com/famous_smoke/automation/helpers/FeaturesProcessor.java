@@ -56,6 +56,7 @@ public class FeaturesProcessor {
     private static List<Path> listTemplateFolder(final String folderPath) {
         try {
             return Files.list(Paths.get(folderPath))
+                    .filter(template -> template.getFileName().toString().endsWith(TEMPLATES_EXTENSION))
                     .collect(Collectors.toList());
         } catch(IOException ex) {
             throw new RuntimeException(ex);
@@ -66,7 +67,7 @@ public class FeaturesProcessor {
         try {
             return Files
                     .list(Paths.get(PROCESSED_FOLDER))
-                    .filter(path -> path.endsWith(FEATURES_EXTENSION))
+                    .filter(feature -> feature.getFileName().toString().endsWith(FEATURES_EXTENSION))
                     .collect(Collectors.toList());
         } catch (IOException e) {
             throw new RuntimeException(e);
