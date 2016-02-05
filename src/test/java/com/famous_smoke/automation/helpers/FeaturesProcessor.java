@@ -17,43 +17,43 @@ import java.util.stream.Collectors;
  */
 public class FeaturesProcessor {
 
-    private static final String FEATURES_EXTENSION               = ".feature";
-    private static final String FEATURES_FOLDER                  = "src/test/resources/features/";
-    private static final String SEO_FEATURES_FOLDER              = FEATURES_FOLDER + "seo/";
-    private static final String VALIDATION_FEATURES_FOLDER       = FEATURES_FOLDER + "validation/";
-    private static final String ACTIONVALIDATION_FEATURES_FOLDER = FEATURES_FOLDER + "actionvalidation/";
-    private static final String PROCESSED_FOLDER                 = "src/test/resources/features-processed/";
-    private static final String LOAD_URLS_KEYWORD                = "<LOAD_URLS>";
-    private static final String LOAD_BRAND_URLS_KEYWORD          = "<LOAD_BRAND_URLS>";
-    private static final String LOAD_GROUP_URLS_KEYWORD          = "<LOAD_BRAND_GROUP_URLS>";
-    private static final String SETUP_FEATURE                    = "ExtractBrandPagesData.feature";
-    private static final String LINE_BREAKER                     = "\n";
+    private static final String FEATURES_EXTENSION                = ".feature";
+    private static final String TEMPLATES_EXTENSION               = ".template";
+    private static final String FEATURES_TEMPLATES_FOLDER         = "src/test/resources/features-templates/";
+    private static final String SEO_TEMPLATES_FOLDER              = FEATURES_TEMPLATES_FOLDER + "seo/";
+    private static final String VALIDATION_TEMPLATES_FOLDER       = FEATURES_TEMPLATES_FOLDER + "validation/";
+    private static final String ACTIONVALIDATION_TEMPLATES_FOLDER = FEATURES_TEMPLATES_FOLDER + "actionvalidation/";
+    private static final String PROCESSED_FOLDER                  = "src/test/resources/features/processed/";
+    private static final String LOAD_URLS_KEYWORD                 = "<LOAD_URLS>";
+    private static final String LOAD_BRAND_URLS_KEYWORD           = "<LOAD_BRAND_URLS>";
+    private static final String LOAD_GROUP_URLS_KEYWORD           = "<LOAD_BRAND_GROUP_URLS>";
+    private static final String LINE_BREAKER                      = "\n";
 
     private FeaturesProcessor() {
         //not called
     }
 
     public static void processFeatures(final List<PageData> datas) {
-        listFeatureFiles()
+        listTemplateFiles()
                 .stream()
-                .forEach(feature -> createProcessedFile(feature, datas));
+                .forEach(template -> createProcessedFeatureFile(template, datas));
     }
 
     public static boolean needToProcess() throws IOException {
-        return listProcessedFiles().size() < 2;
+        return listProcessedFiles().isEmpty();
     }
 
-    private static List<Path> listFeatureFiles() {
+    private static List<Path> listTemplateFiles() {
         return Arrays.stream(new String[]{
-                        SEO_FEATURES_FOLDER,
-                        VALIDATION_FEATURES_FOLDER,
-                        ACTIONVALIDATION_FEATURES_FOLDER})
-                .map(FeaturesProcessor::listFeatureFilesFolder)
+                SEO_TEMPLATES_FOLDER,
+                VALIDATION_TEMPLATES_FOLDER,
+                ACTIONVALIDATION_TEMPLATES_FOLDER})
+                .map(FeaturesProcessor::listTemplateFolder)
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
     }
 
-    private static List<Path> listFeatureFilesFolder(final String folderPath) {
+    private static List<Path> listTemplateFolder(final String folderPath) {
         try {
             return Files.list(Paths.get(folderPath))
                     .collect(Collectors.toList());
@@ -73,12 +73,16 @@ public class FeaturesProcessor {
         }
     }
 
-    private static Path createProcessedFile(final Path feature,
-                                            final List<PageData> datas) {
+    private static Path createProcessedFeatureFile(final Path template,
+                                                   final List<PageData> datas) {
         try {
+            final String fileName = PROCESSED_FOLDER + template
+                    .getFileName()
+                    .toString()
+                    .replace(TEMPLATES_EXTENSION, FEATURES_EXTENSION);
             return writeProcessedContent(
-                    PROCESSED_FOLDER + feature.getFileName(),
-                    readFeatureContent(feature)
+                    fileName,
+                    readFeatureContent(template)
                             .replace(LOAD_URLS_KEYWORD, retrieveUrls(datas))
                             .replace(LOAD_BRAND_URLS_KEYWORD, retrieveBrandsUrls(datas))
                             .replace(LOAD_GROUP_URLS_KEYWORD, retrieveBrandGroupsUrls(datas))

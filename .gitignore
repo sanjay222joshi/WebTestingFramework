@@ -211,7 +211,7 @@ hs_err_pid*
 #*.iml
 
 # The processed features are generated on runtime so they should not be added to the git
-features-processed/
+**/processed/*.feature
 
 # The json results for the cucumber-jvm tests
 cucumber.json
