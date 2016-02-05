@@ -1,5 +1,5 @@
 @seo
-Feature: The Title of all the Pages match the Test Data
+Feature: The Title of all the Pages should match the Test Data
 
   Scenario Outline: I will validate the Page Title
     Given I want to the check the content of the url "<URL>"

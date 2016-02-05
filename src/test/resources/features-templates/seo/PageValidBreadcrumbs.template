@@ -1,7 +1,7 @@
 @seo
-Feature: The breadcrumbs of all the Pages match the Test Data
+Feature: The breadcrumbs of all the Pages should match the Test Data
 
-  Scenario Outline: I will check the Page Breadcrumbs
+  Scenario Outline: I will validate the Page Breadcrumbs
     Given I want to the check the content of the url "<URL>"
     When I navigate to the page
     Then the breadcrumbs should not be empty
