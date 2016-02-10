@@ -4,7 +4,7 @@ import com.famous_smoke.automation.Hooks;
 import com.famous_smoke.automation.helpers.FeaturesProcessor;
 import com.famous_smoke.automation.helpers.TestConfigReader;
 import com.famous_smoke.automation.modules.CrawlThroughBrandsAction;
-import com.famous_smoke.automation.modules.NavigateToBrandPageAction;
+import com.famous_smoke.automation.modules.NavigateToPageAction;
 import cucumber.api.java.en.Given;
 
 import static org.fest.assertions.api.Assertions.assertThat;
@@ -24,7 +24,7 @@ public class GivenSteps {
         if (Hooks.testSetupNeeded) {
             Hooks.testUrl = url;
             Hooks.testMaximumCrawls = TestConfigReader.getMaximumCrawls();
-            NavigateToBrandPageAction.execute();
+            NavigateToPageAction.execute();
         }
     }
 

@@ -20,6 +20,8 @@ public class BrandPage extends BasePage {
     private static WebElement description;
     @FindBy(css = PageConstants.LOGO_CSS)
     private static WebElement logo;
+    @FindBy(css = PageConstants.VIDEO_CSS)
+    private static WebElement video;
 
     public static BrandPageData getBrandData() {
         String header1Text = hasHeader1() ?
@@ -41,5 +43,9 @@ public class BrandPage extends BasePage {
 
     public static boolean hasLogo() {
         return !findElementsByCss(Navigator.driver, PageConstants.LOGO_CSS).isEmpty();
+    }
+
+    public static boolean hasVideo() {
+        return !findElementsByCss(Navigator.driver, PageConstants.VIDEO_CSS).isEmpty();
     }
 }

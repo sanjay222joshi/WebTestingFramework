@@ -9,7 +9,7 @@ import com.famous_smoke.automation.pageobjects.BrandPage;
 /**
  * Created by jorge on 14-01-2016.
  */
-public class NavigateToBrandPageAction {
+public class NavigateToPageAction {
 
     public static BrandPageData execute() {
         Navigator.goUrl(Hooks.testUrl);

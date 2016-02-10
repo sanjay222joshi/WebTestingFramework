@@ -18,9 +18,11 @@ public final class PageConstants {
     public static final String HEADER1_CSS           = ".title.oswald";
     public static final String DESCRIPTION_CSS       = ".justify";
     public static final String LOGO_CSS              = ".full.nopad";
+    public static final String VIDEO_CSS             = ".minivideo";
     public static final String BRANDS_CSS            = ".brand";
 
     public static final String PAGE_HEADER_CSS       = ".pagebar";
+
 
     private PageConstants() {
         //not called
