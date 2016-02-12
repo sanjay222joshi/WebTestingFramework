@@ -4,16 +4,16 @@ import com.famous_smoke.automation.validators.UrlValidators;
 import org.fest.assertions.api.Assertions;
 
 /**
- * Created by jorge on 09-02-2016.
+ * <p>We create our own StringAssert class to add
+ * two URL validations.</p>
+ *
+ * <p>If we need additional validations of pure
+ * String values, we must add it to this class.</p>
  */
 public class StringAssert extends org.fest.assertions.api.StringAssert {
 
     public StringAssert(final String actual) {
         super(actual);
-    }
-
-    public static StringAssert assertThat(final String actual) {
-        return new StringAssert(actual);
     }
 
     public StringAssert isBrandURL() {

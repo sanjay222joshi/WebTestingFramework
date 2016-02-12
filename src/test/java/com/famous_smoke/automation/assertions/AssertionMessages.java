@@ -1,7 +1,11 @@
 package com.famous_smoke.automation.assertions;
 
 /**
- * Created by jorge on 09-02-2016.
+ *  <p>This class contains the Assertion Messages to
+ *  be used in our custom assertions.</p>
+ *
+ *  <p>All the messages are formatted to receive parameters
+ *  in runtime.</p>
  */
 public class AssertionMessages {
     public static final String URL_NOT_BRAND        = "The URL %s is not of a brand.";
@@ -19,4 +23,8 @@ public class AssertionMessages {
     public static final String FIELD_NOT_MATCHING   = "The field %s in the URL %s doesn't match the scrapped value.\n"
                                                     + "Current value is: %s.\n"
                                                     + "Expected values is: %s.";
+
+    private AssertionMessages() {
+        //not called
+    }
 }
