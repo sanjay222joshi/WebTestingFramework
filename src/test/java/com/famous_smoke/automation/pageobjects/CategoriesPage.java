@@ -6,17 +6,34 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 /**
- * Created by jorge on 21-12-2015.
+ * <p>Represents the page with all the
+ * Brand Links, that we use to scrap the
+ * data of the Brand Pages.</p>
+ *
+ * <p>CategoriesPage extends from BasePage.</p>
  */
 public class CategoriesPage extends BasePage {
 
+    /**
+     * The Brands links.
+     */
     @FindBy(css = PageConstants.BRANDS_CSS)
     private static List<WebElement> brands;
 
+    /**
+     * Measures the size of the Brand Links
+     * WebElements List.
+     * @return
+     */
     public static Integer getBrandsLinksCount() {
         return brands.size();
     }
 
+    /**
+     * Clicks on a brand link in the WebElements List
+     * represented by the index parameter.
+     * @param brandIndex the brand position in the List.
+     */
     public static void clickBrandLink(final Integer brandIndex) {
         brands.get(brandIndex).click();
     }

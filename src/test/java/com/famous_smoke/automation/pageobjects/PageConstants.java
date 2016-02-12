@@ -1,7 +1,8 @@
 package com.famous_smoke.automation.pageobjects;
 
 /**
- * Created by jorge on 26-12-2015.
+ * <p>Contains the filter values that the Page
+ * Objects use to find the WebElements.</p>
  */
 public final class PageConstants {
 

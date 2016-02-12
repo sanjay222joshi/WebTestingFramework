@@ -41,8 +41,8 @@ public class CrawlThroughBrandsAction {
         List<BrandPageData> brandsData = new ArrayList<>();
         int linkCount = CategoriesPage.getBrandsLinksCount();
         for (int index = 0; index < linkCount && index < Hooks.testMaximumCrawls; ++index) {
-            if (BasePage.hasPromo()) {
-                BasePage.closePromo();
+            if (CategoriesPage.hasPromo()) {
+                CategoriesPage.closePromo();
             }
             CategoriesPage.clickBrandLink(index);
             BrandPageData data = BrandPage.getBrandData();

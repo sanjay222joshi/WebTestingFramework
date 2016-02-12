@@ -31,8 +31,8 @@ public class CheckBreadcrumbsAction {
     public static BrandPageData execute() throws Throwable {
         int breadcrumbs = BrandPage.getBreadcrumbsCount();
         for (int i = 0; i < breadcrumbs; ++i) {
-            if (BasePage.hasPromo()) {
-                BasePage.closePromo();
+            if (BrandPage.hasPromo()) {
+                BrandPage.closePromo();
             }
             BrandPage.clickBreadcrumb(i);
             String source = Navigator.getPageSource();
