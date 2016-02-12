@@ -12,12 +12,27 @@ import org.fest.assertions.api.Assertions;
  */
 public class StringAssert extends org.fest.assertions.api.StringAssert {
 
+    /**
+     * The constructor that matches the parent class.
+     * @param actual the String to assert.
+     */
     public StringAssert(final String actual) {
         super(actual);
     }
 
+    /**
+     * Evaluates if the String is a Brand
+     * URL.
+     *
+     * It overrides the error message with
+     * the one defined as a constant in
+     * AssertionMessages.
+     * @return the current Assert object; this is done
+     * to allow chain assertions.
+     */
     public StringAssert isBrandURL() {
-        Assertions.assertThat(UrlValidators.isBrandPage(actual))
+        FamousSmokeAssertions
+                .assertThat(UrlValidators.isBrandPage(actual))
                 .overridingErrorMessage(
                         AssertionMessages.URL_NOT_BRAND,
                         actual)
@@ -25,8 +40,19 @@ public class StringAssert extends org.fest.assertions.api.StringAssert {
         return this;
     }
 
+    /**
+     * Evaluates if the String is a Brand
+     * Group URL.
+     *
+     * It overrides the error message with
+     * the one defined as a constant in
+     * AssertionMessages.
+     * @return the current Assert object; this is done
+     * to allow chain assertions.
+     */
     public StringAssert isBrandGroupURL() {
-        Assertions.assertThat(UrlValidators.isBrandGroupPage(actual))
+        FamousSmokeAssertions
+                .assertThat(UrlValidators.isBrandGroupPage(actual))
                 .overridingErrorMessage(
                         AssertionMessages.URL_NOT_BRANDGROUP,
                         actual)

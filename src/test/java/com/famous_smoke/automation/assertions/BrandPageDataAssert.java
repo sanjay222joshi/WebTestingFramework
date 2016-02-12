@@ -6,7 +6,7 @@ import org.fest.assertions.api.AbstractAssert;
 import java.util.List;
 
 /**
- * <p>This is the custom <strong>FEST Assert</strong> class for the
+ * <p>Custom <strong>FEST Assert</strong> class for the
  * BrandPageData objects.</p>
  *
  * <p>We use this class through the FamousSmokeAssertions
@@ -18,7 +18,7 @@ import java.util.List;
 public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, BrandPageData> {
 
     /**
-     * The constructor matching the one requested by
+     * Constructor matching the one requested by
      * AbstractAssert.
      * @param actual the BrandPageData object we are going
      *               to evaluate.
@@ -37,7 +37,7 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
     }
 
     /**
-     * This compares the title field against a String
+     * Compares the title field against a String
      * parameter.
      * @param expected the String we will compare our title agains.
      * @return the current Assert object; this is done
@@ -48,7 +48,7 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
     }
 
     /**
-     * It validates that the title length is less
+     * Validates that the title length is less
      * than the value passed as parameter.
      * @param max the maximum length allowed.
      * @return the current Assert object; this is done
@@ -59,7 +59,7 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
     }
 
     /**
-     * It compares the canonical url against a value
+     * Compares the canonical url against a value
      * passed as parameter.
      * @param expected the value to which we'll compare.
      * @return the current Assert object; this is done
@@ -70,7 +70,7 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
     }
 
     /**
-     * It compares the meta description against a value
+     * Compares the meta description against a value
      * passed as parameter.
      * @param expected the value to which we'll compare.
      * @return the current Assert object; this is done
@@ -81,7 +81,7 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
     }
 
     /**
-     * It validates that the meta description length is
+     * Validates that the meta description length is
      * greater than the value passed as parameter.
      * @param min the minimum length allowed.
      * @return the current Assert object; this is done
@@ -92,7 +92,7 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
     }
 
     /**
-     * It validates that the meta description length is
+     * Validates that the meta description length is
      * less than the value passed as parameter.
      * @param max the minimum length allowed.
      * @return the current Assert object; this is done
@@ -112,7 +112,7 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
     }
 
     /**
-     * It compares the breadcrumbs text against a value
+     * Compares the breadcrumbs text against a value
      * passed as parameter.
      * @param expected the value to which we'll compare.
      * @return the current Assert object; this is done
@@ -132,7 +132,7 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
     }
 
     /**
-     * It compares the breadcrumbs list against another list
+     * Compares the breadcrumbs list against another list
      * passed as parameter.
      *
      * Both lists are converted to Strings for their
@@ -157,7 +157,7 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
     }
 
     /**
-     * It compares the header one against a value
+     * Compares the header one against a value
      * passed as parameter.
      * @param expected the value to which we'll compare.
      * @return the current Assert object; this is done
@@ -177,7 +177,7 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
     }
 
     /**
-     * It compares the description against a value
+     * Compares the description against a value
      * passed as parameter.
      * @param expected the value to which we'll compare.
      * @return the current Assert object; this is done
@@ -201,7 +201,7 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
     }
 
     /**
-     * Perform the FEST Assertion to check
+     * Performs the FEST Assertion to check
      * if the value is not empty.
      *
      * It overrides the error message with
@@ -225,7 +225,7 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
     }
 
     /**
-     * Perform the FEST Assertion to check
+     * Performs the FEST Assertion to check
      * if the list is not empty.
      *
      * It overrides the error message with
@@ -249,7 +249,7 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
     }
 
     /**
-     * Perform the FEST Assertion to check
+     * Performs the FEST Assertion to check
      * if the value is equal to an expected
      * value.
      *
@@ -277,7 +277,7 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
     }
 
     /**
-     * Perform the FEST Assertion to check
+     * Performs the FEST Assertion to check
      * if the field length is greater than the
      * parameter.
      *
@@ -307,7 +307,7 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
     }
 
     /**
-     * Perform the FEST Assertion to check
+     * Performs the FEST Assertion to check
      * if the field length is less than the
      * parameter.
      *
@@ -337,7 +337,7 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
     }
 
     /**
-     * This method convert a list of Strings
+     * Converts a list of Strings
      * to a single string separated by the constant
      * BrandPageData.BREADCRUMBS_SEPARATOR.
      *

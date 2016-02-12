@@ -1,7 +1,8 @@
 package com.famous_smoke.automation.validators;
 
 /**
- * Created by jorge on 29-12-2015.
+ * <p>Provides validators for the HTML source code of a
+ * website.</p>
  */
 public class SourceValidators {
 
@@ -9,6 +10,13 @@ public class SourceValidators {
         //not called
     }
 
+    /**
+     * Determines if the source belongs to a 404
+     * response.
+     * @param source the HTML Source of the webpage.
+     * @return true if the the source matches the 404
+     * pattern.
+     */
     public static boolean isNotFound(final String source) {
         return source.toLowerCase().contains("unknown host")
                 ||
@@ -17,6 +25,13 @@ public class SourceValidators {
                 );
     }
 
+    /**
+     * Determines if the source belongs to a 500
+     * response.
+     * @param source the HTML Source of the webpage.
+     * @return true if the the source matches the 500
+     * pattern.
+     */
     public static boolean isInternalError(final String source) {
         return source.toLowerCase().contains("internal server error");
     }

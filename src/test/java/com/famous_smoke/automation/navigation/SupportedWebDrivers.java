@@ -1,7 +1,11 @@
 package com.famous_smoke.automation.navigation;
 
 /**
- * Created by jorge on 16-01-2016.
+ * <p>The WebDrivers supported by the framework.</p>
+ *
+ * <p>These values are the ones that can be used in the
+ * <strong>TestConfig.properties</strong> file to define
+ * which webdriver will be used to run the tests.</p>
  */
 public enum SupportedWebDrivers {
     LOCAL_CHROME,

@@ -1,7 +1,7 @@
 package com.famous_smoke.automation.assertions;
 
 /**
- *  <p>This class contains the Assertion Messages to
+ *  <p>Contains the Assertion Messages to
  *  be used in our custom assertions.</p>
  *
  *  <p>All the messages are formatted to receive parameters
