@@ -10,10 +10,24 @@ import static com.famous_smoke.automation.validators.SourceValidators.isInternal
 import static com.famous_smoke.automation.validators.SourceValidators.isNotFound;
 
 /**
- * Created by jorge on 29-12-2015.
+ * <p>Navigates to the Diferrent breadcrumbs of a
+ * BrandPage.</p>
  */
 public class CheckBreadcrumbsAction {
 
+    /**
+     * We click on all the breadcrumbs of a
+     * Brand page to check if they are valid.
+     *
+     * Due to the flakiness of the WebElements
+     * we cannot use complex iterations of object
+     * so we must iterate using a FOR cycle.
+     *
+     * @return the BrandPageData of the Brand
+     * page; null if we detect a 404 or 500
+     * in any step of the navigation.
+     * @throws Throwable
+     */
     public static BrandPageData execute() throws Throwable {
         int breadcrumbs = BrandPage.getBreadcrumbsCount();
         for (int i = 0; i < breadcrumbs; ++i) {

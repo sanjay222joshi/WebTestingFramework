@@ -6,10 +6,17 @@ import com.famous_smoke.automation.navigation.Navigator;
 import com.famous_smoke.automation.pageobjects.BrandPage;
 
 /**
- * Created by jorge on 14-01-2016.
+ * <p>Executes the Navigation to a Brand page.</p>
  */
 public class NavigateToBrandPageAction {
 
+    /**
+     * Navigates to the URL setup in the
+     * Hooks class and initializes
+     * the PageObjects.
+     * @return the BrandPageData of the
+     * current page.
+     */
     public static BrandPageData execute() {
         Navigator.goUrl(Hooks.testUrl);
         Navigator.initializePages();
