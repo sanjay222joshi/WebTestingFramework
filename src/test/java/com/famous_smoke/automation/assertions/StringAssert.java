@@ -1,23 +1,22 @@
 package com.famous_smoke.automation.assertions;
 
 import com.famous_smoke.automation.validators.UrlValidators;
-import org.fest.assertions.api.AbstractAssert;
 import org.fest.assertions.api.Assertions;
 
 /**
  * Created by jorge on 09-02-2016.
  */
-public class UrlAssert extends AbstractAssert<UrlAssert, String> {
+public class StringAssert extends org.fest.assertions.api.StringAssert {
 
-    public UrlAssert(final String actual) {
-        super(actual, UrlAssert.class);
+    public StringAssert(final String actual) {
+        super(actual);
     }
 
-    public static UrlAssert assertThat(final String actual) {
-        return new UrlAssert(actual);
+    public static StringAssert assertThat(final String actual) {
+        return new StringAssert(actual);
     }
 
-    public UrlAssert isBrandURL() {
+    public StringAssert isBrandURL() {
         Assertions.assertThat(UrlValidators.isBrandPage(actual))
                 .overridingErrorMessage(
                         AssertionMessages.URL_NOT_BRAND,
@@ -26,7 +25,7 @@ public class UrlAssert extends AbstractAssert<UrlAssert, String> {
         return this;
     }
 
-    public UrlAssert isBrandGroupURL() {
+    public StringAssert isBrandGroupURL() {
         Assertions.assertThat(UrlValidators.isBrandGroupPage(actual))
                 .overridingErrorMessage(
                         AssertionMessages.URL_NOT_BRANDGROUP,

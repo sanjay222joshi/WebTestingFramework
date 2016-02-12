@@ -1,13 +1,11 @@
-package com.famous_smoke.automation.factory;
+package com.famous_smoke.automation.navigation;
 
-import com.famous_smoke.automation.api.SupportedWebDrivers;
-import com.famous_smoke.automation.helpers.TestConfigReader;
+import com.famous_smoke.automation.navigation.SupportedWebDrivers;
+import com.famous_smoke.automation.util.TestConfigReader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -17,9 +15,9 @@ import java.net.URL;
 /**
  * Created by jorge on 24-12-2015.
  */
-public final class DriverFactory {
+public final class WebDriverFactory {
 
-    private DriverFactory() {
+    private WebDriverFactory() {
         // not called
     }
 

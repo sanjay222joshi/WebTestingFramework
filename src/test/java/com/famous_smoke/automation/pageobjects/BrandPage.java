@@ -1,13 +1,12 @@
 package com.famous_smoke.automation.pageobjects;
 
-import com.famous_smoke.automation.api.BrandPageData;
-import com.famous_smoke.automation.factory.DataFactory;
-import com.famous_smoke.automation.helpers.Navigator;
-import org.openqa.selenium.WebDriver;
+import com.famous_smoke.automation.data.BrandPageData;
+import com.famous_smoke.automation.data.PageDataFactory;
+import com.famous_smoke.automation.navigation.Navigator;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.famous_smoke.automation.helpers.SeleniumFinder.findElementsByCss;
+import static com.famous_smoke.automation.util.SeleniumFinder.findElementsByCss;
 
 /**
  * Created by jorge on 21-12-2015.
@@ -30,7 +29,7 @@ public class BrandPage extends BasePage {
         String descriptionText = hasDescription() ?
                 description.getText()
                 : "";
-        return DataFactory.createBrand(getPageData(), header1Text, descriptionText);
+        return PageDataFactory.createBrand(getPageData(), header1Text, descriptionText, isIdentified());
     }
 
     public static boolean hasHeader1() {
@@ -47,5 +46,9 @@ public class BrandPage extends BasePage {
 
     public static boolean hasVideo() {
         return !findElementsByCss(Navigator.driver, PageConstants.VIDEO_CSS).isEmpty();
+    }
+
+    public static boolean isIdentified() {
+        return hasLogo() || hasVideo();
     }
 }

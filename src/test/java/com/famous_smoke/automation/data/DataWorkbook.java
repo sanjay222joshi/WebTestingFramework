@@ -1,7 +1,5 @@
-package com.famous_smoke.automation.helpers;
+package com.famous_smoke.automation.data;
 
-import com.famous_smoke.automation.api.BrandPageData;
-import com.famous_smoke.automation.factory.DataFactory;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -13,7 +11,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.famous_smoke.automation.api.PageData.BREADCRUMBS_SEPARATOR;
+import static com.famous_smoke.automation.data.BasePageData.BREADCRUMBS_SEPARATOR;
 
 
 /**
@@ -25,14 +23,15 @@ public final class DataWorkbook {
     private static final String DEFAULT_WORKBOOK_NAME    = "TestData-seleniumframework.xlsx";
     private static final String DATA_SHEET_NAME          = "TestData";
     private static final int    HEADER_ROW               = 0;
-    private static final String URL_HEADER               = "URL";
-    private static final String CANONICAL_HEADER         = "CANONICAL";
-    private static final String TITLE_HEADER             = "TITLE";
-    private static final String META_DESCRIPTION_HEADER  = "META DESCRIPTION";
-    private static final String HEADER1_HEADER           = "HEADER1";
-    private static final String DESCRIPTION_HEADER       = "DESCRIPTION";
-    private static final String BREADCRUMBS_TEXT_HEADER  = "BREADCRUMBS TEXT";
-    private static final String BREADCRUMBS_LINKS_HEADER = "BREADCRUMBS LINKS";
+    private static final String URL_HEADER               = BrandPageData.URL_FIELD_NAME;
+    private static final String CANONICAL_HEADER         = BrandPageData.CANONICAL_FIELD_NAME;
+    private static final String TITLE_HEADER             = BrandPageData.TITLE_FIELD_NAME;
+    private static final String META_DESCRIPTION_HEADER  = BrandPageData.METADESCRIPTION_FIELD_NAME;
+    private static final String HEADER1_HEADER           = BrandPageData.HEADER1_FIELD_NAME;
+    private static final String DESCRIPTION_HEADER       = BrandPageData.DESCRIPTION_FIELD_NAME;
+    private static final String BREADCRUMBS_TEXT_HEADER  = BrandPageData.BREADCRUMBS_TEXT_FIELD_NAME;
+    private static final String BREADCRUMBS_LINKS_HEADER = BrandPageData.BREADCRUMBS_FIELD_NAME;
+    private static final String IDENTIFIED_HEADER        = BrandPageData.IDENTIFIED_FIELD_NAME;
     private static final int    URL_COLUMN               = 0;
     private static final int    CANONICAL_COLUMN         = 1;
     private static final int    TITLE_COLUMN             = 2;
@@ -41,6 +40,7 @@ public final class DataWorkbook {
     private static final int    DESCRIPTION_COLUMN       = 5;
     private static final int    BREADCRUMBS_TEXT_COLUMN  = 6;
     private static final int    BREADCRUMBS_LINKS_COLUMN = 7;
+    private static final int    IDENTIFIED_COLUMN        = 8;
 
     private final String location;
 
@@ -92,15 +92,16 @@ public final class DataWorkbook {
             String description = getCellValue(dataRow, DESCRIPTION_COLUMN);
             String breadcrumbsText = getCellValue(dataRow, BREADCRUMBS_TEXT_COLUMN);
             String[] breadcrumbs = getCellValue(dataRow, BREADCRUMBS_LINKS_COLUMN).split(BREADCRUMBS_SEPARATOR);
+            String identified = getCellValue(dataRow, IDENTIFIED_COLUMN);
 
-            brands.add(DataFactory.createBrand(
-                    DataFactory.createPage(
+            brands.add(PageDataFactory.createBrand(
+                    PageDataFactory.createPage(
                             url, title, canonical,
                             metaDescription, breadcrumbsText,
                             Arrays.asList(breadcrumbs)),
                     header1,
-                    description
-            ));
+                    description,
+                    Boolean.valueOf(identified)));
         }
         return brands;
     }
@@ -149,7 +150,8 @@ public final class DataWorkbook {
                 {HEADER1_COLUMN, HEADER1_HEADER},
                 {DESCRIPTION_COLUMN, DESCRIPTION_HEADER},
                 {BREADCRUMBS_TEXT_COLUMN, BREADCRUMBS_TEXT_HEADER},
-                {BREADCRUMBS_LINKS_COLUMN, BREADCRUMBS_LINKS_HEADER}
+                {BREADCRUMBS_LINKS_COLUMN, BREADCRUMBS_LINKS_HEADER},
+                {IDENTIFIED_COLUMN, IDENTIFIED_HEADER}
         }).collect(Collectors.toMap(kv -> (Integer) kv[0], kv -> (String) kv[1]));
     }
 
@@ -162,7 +164,8 @@ public final class DataWorkbook {
                 {HEADER1_COLUMN, data.getHeader1()},
                 {DESCRIPTION_COLUMN, data.getDescription()},
                 {BREADCRUMBS_TEXT_COLUMN, data.getBreadcrumbsText()},
-                {BREADCRUMBS_LINKS_COLUMN, getBreadcrumbs(data.getBreadcrumbs())}
+                {BREADCRUMBS_LINKS_COLUMN, getBreadcrumbs(data.getBreadcrumbs())},
+                {IDENTIFIED_COLUMN, data.isIdentified().toString()}
         }).collect(Collectors.toMap(kv -> (Integer) kv[0], kv -> (String) kv[1]));
     }
 

@@ -1,6 +1,7 @@
-package com.famous_smoke.automation.helpers;
+package com.famous_smoke.automation.util;
 
-import com.famous_smoke.automation.api.PageData;
+import com.famous_smoke.automation.data.BasePageData;
+import com.famous_smoke.automation.data.BrandPageData;
 import com.famous_smoke.automation.validators.UrlValidators;
 
 import java.io.*;
@@ -35,7 +36,7 @@ public class FeaturesProcessor {
         //not called
     }
 
-    public static void processFeatures(final Collection<PageData> datas) {
+    public static void processBrandFeatures(final Collection<BrandPageData> datas) {
         listTemplateFiles()
                 .stream()
                 .forEach(template -> createProcessedFeatureFile(template, datas));
@@ -77,7 +78,7 @@ public class FeaturesProcessor {
     }
 
     private static Path createProcessedFeatureFile(final Path template,
-                                                   final Collection<PageData> datas) {
+                                                   final Collection<BrandPageData> datas) {
         try {
             final String fileName = PROCESSED_FOLDER + template
                     .getFileName()
@@ -95,20 +96,20 @@ public class FeaturesProcessor {
         }
     }
 
-    private static String retrieveUrls(final Collection<PageData> datas) {
+    private static String retrieveUrls(final Collection<BrandPageData> datas) {
         return reduceUrls(datas.stream()
-                .map(PageData::getURL));
+                .map(BasePageData::getURL));
     }
 
-    private static String retrieveBrandsUrls(final Collection<PageData> datas) {
+    private static String retrieveBrandsUrls(final Collection<BrandPageData> datas) {
         return reduceUrls(datas.stream()
-                .map(PageData::getURL)
+                .map(BasePageData::getURL)
                 .filter(UrlValidators::isBrandPage));
     }
 
-    private static String retrieveBrandGroupsUrls(final Collection<PageData> datas) {
+    private static String retrieveBrandGroupsUrls(final Collection<BrandPageData> datas) {
         return reduceUrls(datas.stream()
-                .map(PageData::getURL)
+                .map(BasePageData::getURL)
                 .filter(UrlValidators::isBrandGroupPage));
     }
 

@@ -1,4 +1,4 @@
-package com.famous_smoke.automation.api;
+package com.famous_smoke.automation.navigation;
 
 /**
  * Created by jorge on 16-01-2016.

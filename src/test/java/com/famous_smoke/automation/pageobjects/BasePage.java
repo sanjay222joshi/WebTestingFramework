@@ -1,22 +1,22 @@
 package com.famous_smoke.automation.pageobjects;
 
-import com.famous_smoke.automation.api.PageData;
-import com.famous_smoke.automation.factory.DataFactory;
-import com.famous_smoke.automation.helpers.Navigator;
+import com.famous_smoke.automation.data.BasePageData;
+import com.famous_smoke.automation.data.PageDataFactory;
+import com.famous_smoke.automation.navigation.Navigator;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-import static com.famous_smoke.automation.helpers.SeleniumFinder.findElementsByCss;
-import static com.famous_smoke.automation.helpers.SeleniumFinder.findElementsByName;
-import static com.famous_smoke.automation.helpers.SeleniumFinder.findElementsByXpath;
+import static com.famous_smoke.automation.util.SeleniumFinder.findElementsByCss;
+import static com.famous_smoke.automation.util.SeleniumFinder.findElementsByName;
+import static com.famous_smoke.automation.util.SeleniumFinder.findElementsByXpath;
 
 /**
  * Created by jorge on 21-12-2015.
  */
-public class BasePage extends PageObject {
+public class BasePage {
 
     @FindBy(xpath = PageConstants.CANONICAL_XPATH)
     private static WebElement canonical;
@@ -60,7 +60,7 @@ public class BasePage extends PageObject {
                 && promoForm.isDisplayed();
     }
 
-    public static PageData getPageData() {
+    public static BasePageData getPageData() {
         String url = Navigator.driver.getCurrentUrl();
         String title = Navigator.driver.getTitle();
         String canonicalText = hasCanonical() ?
@@ -81,7 +81,7 @@ public class BasePage extends PageObject {
                             .collect(Collectors.toList())
                     );
         }
-        return DataFactory.createPage(
+        return PageDataFactory.createPage(
                 url, title, canonicalText,
                 metaDescriptionText,
                 breadcrumbsText, breadcrumbsLinks);

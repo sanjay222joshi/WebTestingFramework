@@ -1,8 +1,8 @@
 package com.famous_smoke.automation.modules;
 
 
-import com.famous_smoke.automation.api.BrandPageData;
-import com.famous_smoke.automation.helpers.Navigator;
+import com.famous_smoke.automation.data.BrandPageData;
+import com.famous_smoke.automation.navigation.Navigator;
 import com.famous_smoke.automation.pageobjects.BasePage;
 import com.famous_smoke.automation.pageobjects.BrandPage;
 

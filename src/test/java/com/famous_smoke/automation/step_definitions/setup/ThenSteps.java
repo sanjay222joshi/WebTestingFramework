@@ -1,9 +1,9 @@
 package com.famous_smoke.automation.step_definitions.setup;
 
 import com.famous_smoke.automation.Hooks;
-import com.famous_smoke.automation.helpers.FeaturesProcessor;
+import com.famous_smoke.automation.util.FeaturesProcessor;
 import cucumber.api.java.en.Then;
-import java.util.ArrayList;
+
 import java.util.HashSet;
 
 /**
@@ -14,7 +14,7 @@ public class ThenSteps {
     @Then("^I should process the features$")
     public void i_should_process_the_features() throws Throwable {
         if (Hooks.testSetupNeeded) {
-            FeaturesProcessor.processFeatures(new HashSet<>(Hooks.testBrandPagesData));
+            FeaturesProcessor.processBrandFeatures(new HashSet<>(Hooks.testBrandPagesData));
         }
     }
 

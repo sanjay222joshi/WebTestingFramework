@@ -1,7 +1,9 @@
 package com.famous_smoke.automation;
 
+import com.famous_smoke.automation.navigation.Navigator;
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
+import org.junit.AfterClass;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
@@ -11,4 +13,8 @@ import org.junit.runner.RunWith;
 		tags = "@seo"
 )
 public class SEOTest {
+	@AfterClass
+	public static void closeNavigator() {
+		Navigator.closeNavigator();
+	}
 }

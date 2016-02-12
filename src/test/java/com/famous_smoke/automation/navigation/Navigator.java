@@ -1,9 +1,8 @@
-package com.famous_smoke.automation.helpers;
+package com.famous_smoke.automation.navigation;
 
-import com.famous_smoke.automation.factory.DriverFactory;
+import com.famous_smoke.automation.pageobjects.BasePage;
 import com.famous_smoke.automation.pageobjects.BrandPage;
 import com.famous_smoke.automation.pageobjects.CategoriesPage;
-import com.famous_smoke.automation.pageobjects.PageObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
@@ -27,12 +26,18 @@ public class Navigator {
         Navigator.initializePage(BrandPage.class);
     }
 
-    private static void initializePage(final Class<? extends PageObject> page){
-        PageFactory.initElements(driver, page);
-    }
-
     public static String getPageSource() {
         return driver.getPageSource();
     }
+
+    public static void closeNavigator() {
+        driver.quit();
+        driver = null;
+    }
+
+    private static void initializePage(final Class<? extends BasePage> page){
+        PageFactory.initElements(driver, page);
+    }
+
 
 }

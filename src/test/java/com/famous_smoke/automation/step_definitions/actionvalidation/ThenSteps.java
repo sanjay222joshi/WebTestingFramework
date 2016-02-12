@@ -3,7 +3,7 @@ package com.famous_smoke.automation.step_definitions.actionvalidation;
 import cucumber.api.java.en.Then;
 
 import static com.famous_smoke.automation.Hooks.testBrandPageData;
-import static org.fest.assertions.api.Assertions.assertThat;
+import static com.famous_smoke.automation.assertions.FamousSmokeAssertions.assertThat;
 
 /**
  * Created by jorge on 11-01-2016.

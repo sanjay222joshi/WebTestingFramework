@@ -1,7 +1,7 @@
 package com.famous_smoke.automation.step_definitions.setup;
 
 import com.famous_smoke.automation.Hooks;
-import com.famous_smoke.automation.helpers.DataWorkbook;
+import com.famous_smoke.automation.data.DataWorkbook;
 import cucumber.api.java.en.When;
 
 /**
