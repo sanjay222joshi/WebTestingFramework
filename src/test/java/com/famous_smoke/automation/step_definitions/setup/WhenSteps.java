@@ -12,7 +12,7 @@ public class WhenSteps {
     @When("^I store the extracted data$")
     public void i_store_the_extracted_data() throws Throwable {
         if (Hooks.testSetupNeeded) {
-            DataWorkbook workbook = DataWorkbook.getDefaultWorkbook();
+            DataWorkbook workbook = DataWorkbook.getTestDataWorkbook();
             workbook.writeBrandPages(Hooks.testBrandPagesData);
         }
     }

@@ -1,7 +1,7 @@
 package com.famous_smoke.automation.pageobjects;
 
 import com.famous_smoke.automation.data.BasePageData;
-import com.famous_smoke.automation.data.PageDataFactory;
+import com.famous_smoke.automation.data.DataFactory;
 import com.famous_smoke.automation.navigation.Navigator;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -146,7 +146,7 @@ public class BasePage {
                             .collect(Collectors.toList())
                     );
         }
-        return PageDataFactory.createPage(
+        return DataFactory.createBasePage(
                 url, title, canonicalText,
                 metaDescriptionText,
                 breadcrumbsText, breadcrumbsLinks);

@@ -16,37 +16,42 @@ public class TestConfigReader {
     /**
      * The PATH of the Configuration file.
      */
-    private static final String     TESTCONFIG_FILE_PATH          = "src/test/resources/properties/TestConfig.properties";
+    private static final String TESTCONFIG_FILE_PATH = "src/test/resources/properties/TestConfig.properties";
     /**
      * A Properties object containing all
      * the values inside the configuration
      * file.
      */
-    private static final Properties TESTCONFIG_PROPERTIES         = loadProperties();
+    private static final Properties TESTCONFIG_PROPERTIES = loadProperties();
+    /**
+     * The TestData Workbook Property name.
+     */
+    private static final String TESTDATA_WORKBOOK_PATH_PROPERTY = "TESTDATA_WORKBOOK_PATH";
     /**
      * The Maximum Crawls Property name.
      */
-    private static final String     MAXIMUM_CRAWLS_PROPERTY       = "MAXIMUM_CRAWLS";
+    private static final String MAXIMUM_CRAWLS_PROPERTY = "MAXIMUM_CRAWLS";
     /**
      * The Selenium Driver Property name.
      */
-    private static final String     SELENIUM_DRIVER_PROPERTY      = "SELENIUM_DRIVER";
+    private static final String SELENIUM_DRIVER_PROPERTY = "SELENIUM_DRIVER";
     /**
      * The Selenium Server Host Property name.
      */
-    private static final String     SELENIUM_SERVER_HOST_PROPERTY = "SELENIUM_SERVER_HOST";
+    private static final String SELENIUM_SERVER_HOST_PROPERTY = "SELENIUM_SERVER_HOST";
     /**
      * The Selenium Server Port Property name.
      */
-    private static final String     SELENIUM_SERVER_PORT_PROPERTY = "SELENIUM_SERVER_PORT";
+    private static final String SELENIUM_SERVER_PORT_PROPERTY = "SELENIUM_SERVER_PORT";
 
     /**
      * Evaluates the properties and determines
-     * the Selenium Driver configured.
-     * @return the SupportedWebDrivers enumerator.
+     * the TestData Workbook Path configured.
+     * @return the String value with the TestData
+     * Workbook Path.
      */
-    public static SupportedWebDrivers getSeleniumDriver() {
-        return SupportedWebDrivers.valueOf(TESTCONFIG_PROPERTIES.getProperty(SELENIUM_DRIVER_PROPERTY));
+    public static String getTestDataWorkbookPath() {
+        return TESTCONFIG_PROPERTIES.getProperty(TESTDATA_WORKBOOK_PATH_PROPERTY);
     }
 
     /**
@@ -56,6 +61,15 @@ public class TestConfigReader {
      */
     public static Integer getMaximumCrawls() {
         return Integer.valueOf(TESTCONFIG_PROPERTIES.getProperty(MAXIMUM_CRAWLS_PROPERTY));
+    }
+
+    /**
+     * Evaluates the properties and determines
+     * the Selenium Driver configured.
+     * @return the SupportedWebDrivers enumerator.
+     */
+    public static SupportedWebDrivers getSeleniumDriver() {
+        return SupportedWebDrivers.valueOf(TESTCONFIG_PROPERTIES.getProperty(SELENIUM_DRIVER_PROPERTY));
     }
 
     /**

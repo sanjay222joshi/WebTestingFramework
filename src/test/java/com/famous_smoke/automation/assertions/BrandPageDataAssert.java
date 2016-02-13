@@ -128,7 +128,7 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
      * to allow chain assertions.
      */
     public BrandPageDataAssert hasBreadcrumbs() {
-        return isNotEmpty(BrandPageData.BREADCRUMBS_FIELD_NAME, actual.getBreadcrumbs());
+        return isNotEmpty(BrandPageData.BREADCRUMBS_LINKS_FIELD_NAME, actual.getBreadcrumbsLinks());
     }
 
     /**
@@ -142,8 +142,8 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
      * to allow chain assertions
      */
     public BrandPageDataAssert hasBreadcrumbsEqualTo(final List<String> expected){
-        return isEqualTo(BrandPageData.BREADCRUMBS_FIELD_NAME,
-                reduceBreadcrumbsList(actual.getBreadcrumbs()),
+        return isEqualTo(BrandPageData.BREADCRUMBS_LINKS_FIELD_NAME,
+                reduceBreadcrumbsList(actual.getBreadcrumbsLinks()),
                 reduceBreadcrumbsList(expected));
     }
 
@@ -339,7 +339,7 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
     /**
      * Converts a list of Strings
      * to a single string separated by the constant
-     * BrandPageData.BREADCRUMBS_SEPARATOR.
+     * BrandPageData.BREADCRUMBS_LINKS_SEPARATOR.
      *
      * This is done through the Stream API using
      * a reduce operation, which is an accumulative
@@ -352,7 +352,7 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
     private String reduceBreadcrumbsList(final List<String> breadcrumbs) {
         return breadcrumbs
                 .stream()
-                .reduce("", (a, b) -> a + BrandPageData.BREADCRUMBS_SEPARATOR + b);
+                .reduce("", (a, b) -> a + BrandPageData.BREADCRUMBS_LINKS_SEPARATOR + b);
     }
 
 }

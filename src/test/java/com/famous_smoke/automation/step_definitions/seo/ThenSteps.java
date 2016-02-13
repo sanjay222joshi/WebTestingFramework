@@ -53,7 +53,7 @@ public class ThenSteps {
     @Then("^the breadcrumbs links should match the Test Data$")
     public void the_breadcrumbs_links_should_match_the_Test_Data() throws Throwable {
         assertThat(Hooks.testBrandPageData)
-                .hasBreadcrumbsEqualTo(Hooks.extractedBrandPageData.getBreadcrumbs());
+                .hasBreadcrumbsEqualTo(Hooks.extractedBrandPageData.getBreadcrumbsLinks());
     }
 
     @Then("^the canonical url should match the Test Data$")

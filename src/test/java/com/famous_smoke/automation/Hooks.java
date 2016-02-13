@@ -153,7 +153,7 @@ public class Hooks {
      */
     private static Map<String, BrandPageData> createTestDataMap() {
         try {
-            Collection<BrandPageData> brands = DataWorkbook.getDefaultWorkbook().readBrands();
+            Collection<BrandPageData> brands = DataWorkbook.getTestDataWorkbook().readBrandPages();
             ConcurrentHashMap<String, BrandPageData> map = new ConcurrentHashMap<>();
             brands.stream().forEach(brand -> map.putIfAbsent(brand.getURL(), brand));
             return map;

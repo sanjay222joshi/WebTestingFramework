@@ -1,10 +1,12 @@
 package com.famous_smoke.automation.data;
 
-import java.util.List;
-import java.util.function.BooleanSupplier;
-
 /**
- * Created by jorge on 22-12-2015.
+ * <p>The Data representation of the BrandPage
+ * Page Object.</p>
+ *
+ * <p>It extends the BasePagaData class, and
+ * its constructor requires a BrasePageData
+ * instance.</p>
  */
 public class BrandPageData extends BasePageData {
 
@@ -16,17 +18,18 @@ public class BrandPageData extends BasePageData {
     private final String description;
     private final Boolean identified;
 
-    public BrandPageData(final String url,
-                         final String canonical,
-                         final String title,
-                         final String metaDescription,
-                         final String breadcumbsText,
-                         final List<String> breadcumbs,
+    public BrandPageData(final BasePageData basePageData,
                          final String header1,
                          final String description,
                          final Boolean identified) {
-        super(url, canonical, title,
-                metaDescription, breadcumbsText, breadcumbs);
+        super(
+                basePageData.getURL(),
+                basePageData.getCanonical(),
+                basePageData.getTitle(),
+                basePageData.getMetaDescription(),
+                basePageData.getBreadcrumbsText(),
+                basePageData.getBreadcrumbsLinks()
+        );
         this.header1 = header1;
         this.description = description;
         this.identified = identified;

@@ -1,7 +1,7 @@
 package com.famous_smoke.automation.pageobjects;
 
 import com.famous_smoke.automation.data.BrandPageData;
-import com.famous_smoke.automation.data.PageDataFactory;
+import com.famous_smoke.automation.data.DataFactory;
 import com.famous_smoke.automation.navigation.Navigator;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -50,7 +50,7 @@ public class BrandPage extends BasePage {
         String descriptionText = hasDescription() ?
                 description.getText()
                 : "";
-        return PageDataFactory.createBrand(getBasePageData(), header1Text, descriptionText, isIdentified());
+        return DataFactory.createBrandPage(getBasePageData(), header1Text, descriptionText, isIdentified());
     }
 
     /**
