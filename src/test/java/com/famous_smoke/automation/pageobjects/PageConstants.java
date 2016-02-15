@@ -16,11 +16,11 @@ public final class PageConstants {
     public static final String PROMO_CLOSE_LINK_CSS  = ".closebutton.trackEvent";
     public static final String BREADCRUMBS_LINKS_CSS = ".link";
     public static final String CANONICAL_XPATH       = "//link[@rel='canonical']";
-    public static final String HEADER1_CSS           = ".title.oswald";
-    public static final String DESCRIPTION_CSS       = ".justify";
-    public static final String LOGO_CSS              = ".full.nopad";
-    public static final String VIDEO_CSS             = ".minivideo";
-    public static final String BRANDS_CSS            = ".brand";
+    public static final String BRAND_HEADER1_CSS     = ".title.oswald";
+    public static final String BRAND_DESCRIPTION_CSS = ".justify";
+    public static final String BRAND_LOGO_CSS        = ".full.nopad";
+    public static final String BRAND_VIDEO_CSS       = ".minivideo";
+    public static final String CATEGORIES_BRANDS_CSS = ".brand";
 
     public static final String PAGE_HEADER_CSS       = ".pagebar";
 

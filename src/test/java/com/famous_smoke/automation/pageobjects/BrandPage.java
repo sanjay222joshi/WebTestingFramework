@@ -18,22 +18,22 @@ public class BrandPage extends BasePage {
     /**
      * The Header One.
      */
-    @FindBy(css = PageConstants.HEADER1_CSS)
+    @FindBy(css = PageConstants.BRAND_HEADER1_CSS)
     private static WebElement header1;
     /**
      * The Description/SEO Paragraph.
      */
-    @FindBy(css = PageConstants.DESCRIPTION_CSS)
+    @FindBy(css = PageConstants.BRAND_DESCRIPTION_CSS)
     private static WebElement description;
     /**
      * The Brand Logo.
      */
-    @FindBy(css = PageConstants.LOGO_CSS)
+    @FindBy(css = PageConstants.BRAND_LOGO_CSS)
     private static WebElement logo;
     /**
      * The BrandVideo.
      */
-    @FindBy(css = PageConstants.VIDEO_CSS)
+    @FindBy(css = PageConstants.BRAND_VIDEO_CSS)
     private static WebElement video;
 
     /**
@@ -59,7 +59,7 @@ public class BrandPage extends BasePage {
      * with the CSS of the header one.
      */
     public static boolean hasHeader1() {
-        return !findElementsByCss(Navigator.driver, PageConstants.HEADER1_CSS).isEmpty();
+        return !findElementsByCss(Navigator.driver, PageConstants.BRAND_HEADER1_CSS).isEmpty();
     }
 
     /**
@@ -68,7 +68,7 @@ public class BrandPage extends BasePage {
      * with the CSS of the description.
      */
     public static boolean hasDescription() {
-        return !findElementsByCss(Navigator.driver, PageConstants.DESCRIPTION_CSS).isEmpty();
+        return !findElementsByCss(Navigator.driver, PageConstants.BRAND_DESCRIPTION_CSS).isEmpty();
     }
 
     /**
@@ -77,7 +77,7 @@ public class BrandPage extends BasePage {
      * with the CSS of the logo.
      */
     public static boolean hasLogo() {
-        return !findElementsByCss(Navigator.driver, PageConstants.LOGO_CSS).isEmpty();
+        return !findElementsByCss(Navigator.driver, PageConstants.BRAND_LOGO_CSS).isEmpty();
     }
 
     /**
@@ -86,7 +86,7 @@ public class BrandPage extends BasePage {
      * with the CSS of the video.
      */
     public static boolean hasVideo() {
-        return !findElementsByCss(Navigator.driver, PageConstants.VIDEO_CSS).isEmpty();
+        return !findElementsByCss(Navigator.driver, PageConstants.BRAND_VIDEO_CSS).isEmpty();
     }
 
     /**

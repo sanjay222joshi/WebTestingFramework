@@ -17,7 +17,7 @@ public class CategoriesPage extends BasePage {
     /**
      * The Brands links.
      */
-    @FindBy(css = PageConstants.BRANDS_CSS)
+    @FindBy(css = PageConstants.CATEGORIES_BRANDS_CSS)
     private static List<WebElement> brands;
 
     /**
