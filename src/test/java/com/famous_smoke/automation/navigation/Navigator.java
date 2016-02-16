@@ -1,6 +1,7 @@
 package com.famous_smoke.automation.navigation;
 
 import com.famous_smoke.automation.pageobjects.BasePage;
+import com.famous_smoke.automation.pageobjects.BrandItemPage;
 import com.famous_smoke.automation.pageobjects.BrandPage;
 import com.famous_smoke.automation.pageobjects.CategoriesPage;
 import org.openqa.selenium.WebDriver;
@@ -44,6 +45,7 @@ public class Navigator {
     public static void initializePages() {
         Navigator.initializePage(CategoriesPage.class);
         Navigator.initializePage(BrandPage.class);
+        Navigator.initializePage(BrandItemPage.class);
     }
 
     /**

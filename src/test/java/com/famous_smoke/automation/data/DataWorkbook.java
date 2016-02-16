@@ -282,7 +282,7 @@ public final class DataWorkbook {
                 {BRAND_DESCRIPTION_COLUMN, data.getDescription()},
                 {BRAND_BREADCRUMBS_TEXT_COLUMN, data.getBreadcrumbsText()},
                 {BRAND_BREADCRUMBS_LINKS_COLUMN, getBreadcrumbsLinksAsString(data.getBreadcrumbsLinks())},
-                {BRAND_IDENTIFIED_COLUMN, data.isIdentified().toString()}
+                {BRAND_IDENTIFIED_COLUMN, data.getIdentified().toString()}
         }).collect(Collectors.toMap(kv -> (Integer) kv[0], kv -> (String) kv[1]));
     }
 

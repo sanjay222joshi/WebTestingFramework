@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.famous_smoke.automation.util.SeleniumFinder.findElementsByCss;
@@ -83,7 +84,7 @@ public class BasePage {
      * with the XPATH of the canonical URL.
      */
     public static boolean hasCanonical() {
-        return !findElementsByXpath(Navigator.driver, PageConstants.CANONICAL_XPATH).isEmpty();
+        return hasXPATHElement(PageConstants.CANONICAL_XPATH);
     }
 
     /**
@@ -92,7 +93,7 @@ public class BasePage {
      * with the Name of the meta description.
      */
     public static boolean hasMetaDescription() {
-        return !findElementsByName(Navigator.driver, PageConstants.META_DESCRIPTION_NAME).isEmpty();
+        return hasNameElement(PageConstants.META_DESCRIPTION_NAME);
     }
 
     /**
@@ -101,7 +102,7 @@ public class BasePage {
      * with the CSS of the breadcrumbs.
      */
     public static boolean hasBreadcrumbs() {
-        return !findElementsByCss(Navigator.driver, PageConstants.BREADCRUMBS_CSS).isEmpty();
+        return hasCSSElement(PageConstants.BREADCRUMBS_CSS);
     }
 
     /**
@@ -128,28 +129,101 @@ public class BasePage {
     public static BasePageData getBasePageData() {
         String url = Navigator.driver.getCurrentUrl();
         String title = Navigator.driver.getTitle();
-        String canonicalText = hasCanonical() ?
-                canonical.getAttribute(PageConstants.ATTRIBUTE_HREF)
-                : "";
-        String metaDescriptionText = hasMetaDescription() ?
-                metaDescription.getAttribute(PageConstants.ATTRIBUTE_CONTENT)
-                : "";
-        String breadcrumbsText = hasBreadcrumbs()?
-                breadcrumbs.getText()
-                : "";
-        ArrayList<String> breadcrumbsLinks = new ArrayList<>();
-        if (hasBreadcrumbs()) {
-            breadcrumbsLinks.addAll(
-                    findElementsByCss(breadcrumbs, PageConstants.BREADCRUMBS_LINKS_CSS)
-                            .stream()
-                            .map(breadcrumb -> breadcrumb.getAttribute(PageConstants.ATTRIBUTE_HREF))
-                            .collect(Collectors.toList())
-                    );
-        }
+
+        String canonicalText = extractElementAttribute(
+                canonical,
+                PageConstants.ATTRIBUTE_HREF,
+                hasCanonical()
+        );
+        String metaDescriptionText = extractElementAttribute(
+                metaDescription,
+                PageConstants.ATTRIBUTE_CONTENT,
+                hasMetaDescription()
+        );
+        String breadcrumbsText = extractElementText(breadcrumbs, hasBreadcrumbs());
+
+        List<String> breadcrumbsLinks = findElementsByCss(breadcrumbs, PageConstants.BREADCRUMBS_LINKS_CSS)
+                        .stream()
+                        .map(breadcrumb -> breadcrumb.getAttribute(PageConstants.ATTRIBUTE_HREF))
+                        .collect(Collectors.toList());
+
         return DataFactory.createBasePage(
                 url, title, canonicalText,
                 metaDescriptionText,
                 breadcrumbsText, breadcrumbsLinks);
+    }
+
+    /**
+     * Determines if the Page has an
+     * Elements with the CSS class.
+     * @param css the CSS class.
+     * @return true if there is at
+     * least one element with the
+     * CSS class.
+     */
+    protected static boolean hasCSSElement(final String css) {
+        return !findElementsByCss(Navigator.driver, css).isEmpty();
+    }
+
+    /**
+     * Determines if the Page has an
+     * Elements with the given Name.
+     * @param name the Name of the
+     *             element.
+     * @return true if there is at
+     * least one element with the
+     * Name.
+     */
+    protected static boolean hasNameElement(final String name) {
+        return !findElementsByName(Navigator.driver, name).isEmpty();
+    }
+
+    /**
+     * Determines if the Page has an
+     * Elements with the given XPATH.
+     * @param xpath the XPATH of the
+     *             element.
+     * @return true if there is at
+     * least one element with the
+     * XPATH.
+     */
+    protected static boolean hasXPATHElement(final String xpath) {
+        return !findElementsByXpath(Navigator.driver, xpath).isEmpty();
+    }
+
+    /**
+     * Extracts the text content of
+     * a WebElement validating a
+     * check.
+     * @param element the WebElement.
+     * @param check the check to
+     *              pass.
+     * @return the text of the WebElement
+     * or an empty String if the check
+     * is failed.
+     */
+    protected static String extractElementText(final WebElement element,
+                                               final Boolean check) {
+        return check ? element.getText() : "";
+    }
+
+    /**
+     * Extracts the value of a
+     * given attribute of the
+     * passed WebElement validating
+     * a check.
+     * @param element the WebElement.
+     * @param attribute the Attribute
+     *                  to extract.
+     * @param check the check to pass.
+     * @return the value of the Attribute
+     * or an empty String if the check
+     * is failed.
+     */
+    protected static String extractElementAttribute(final WebElement element,
+                                                    final String attribute,
+                                                    final Boolean check) {
+        return check ? element.getAttribute(attribute) : "";
     }
 
 }

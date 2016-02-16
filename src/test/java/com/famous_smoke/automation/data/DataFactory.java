@@ -1,5 +1,6 @@
 package com.famous_smoke.automation.data;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -67,4 +68,20 @@ public final class DataFactory {
         );
     }
 
+    public static BrandItemPageData createBrandItemPage(final BasePageData baseData,
+                                                        final String header1,
+                                                        final String description,
+                                                        final Collection<String> specs,
+                                                        final String pricing,
+                                                        final String rating,
+                                                        final Boolean identified) {
+        return new BrandItemPageData(
+                baseData,
+                header1,
+                description,
+                specs,
+                pricing,
+                rating,
+                identified);
+    }
 }

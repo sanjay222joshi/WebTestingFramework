@@ -20,6 +20,16 @@ public final class PageConstants {
     public static final String BRAND_DESCRIPTION_CSS = ".justify";
     public static final String BRAND_LOGO_CSS        = ".full.nopad";
     public static final String BRAND_VIDEO_CSS       = ".minivideo";
+
+    public static final String ITEM_HEADER1_CSS      = ".title.oswald.itemname";
+    public static final String ITEM_PRICING_CSS      = ".subtitle.oswald.cblack.itemprice";
+    public static final String ITEM_SPECS_CSS        = ".itemspecs.spacer.cdkgray";
+    public static final String ITEM_SPECS_TEXT_CSS   = ".left";
+    public static final String ITEM_DESCRIPTION_CSS  = ".left.threequarters";
+    public static final String ITEM_RATING_CSS       = ".itemratingbox.itemrating";
+    public static final String ITEM_IMAGE_CSS        = ".mainimg.imgzoom";
+    public static final String ITEM_VIDEO_CSS        = ".minivideo";
+
     public static final String CATEGORIES_BRANDS_CSS = ".brand";
 
     public static final String PAGE_HEADER_CSS       = ".pagebar";

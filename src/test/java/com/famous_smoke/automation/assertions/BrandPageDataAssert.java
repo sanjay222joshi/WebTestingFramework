@@ -194,7 +194,7 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
      */
     public BrandPageDataAssert isIdentified() {
         FamousSmokeAssertions
-                .assertThat(actual.isIdentified())
+                .assertThat(actual.getIdentified())
                 .overridingErrorMessage(AssertionMessages.BRAND_NOT_IDENTIFIED, actual.getURL())
                 .isTrue();
         return this;

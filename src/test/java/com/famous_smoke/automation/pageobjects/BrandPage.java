@@ -44,12 +44,9 @@ public class BrandPage extends BasePage {
      * information of the current BrandPage.
      */
     public static BrandPageData getBrandData() {
-        String header1Text = hasHeader1() ?
-                header1.getText()
-                : "";
-        String descriptionText = hasDescription() ?
-                description.getText()
-                : "";
+        String header1Text = extractElementText(header1, hasHeader1());
+        String descriptionText = extractElementText(description, hasDescription());
+
         return DataFactory.createBrandPage(getBasePageData(), header1Text, descriptionText, isIdentified());
     }
 
@@ -59,7 +56,7 @@ public class BrandPage extends BasePage {
      * with the CSS of the header one.
      */
     public static boolean hasHeader1() {
-        return !findElementsByCss(Navigator.driver, PageConstants.BRAND_HEADER1_CSS).isEmpty();
+        return hasCSSElement(PageConstants.BRAND_HEADER1_CSS);
     }
 
     /**
@@ -68,7 +65,7 @@ public class BrandPage extends BasePage {
      * with the CSS of the description.
      */
     public static boolean hasDescription() {
-        return !findElementsByCss(Navigator.driver, PageConstants.BRAND_DESCRIPTION_CSS).isEmpty();
+        return hasCSSElement(PageConstants.BRAND_DESCRIPTION_CSS);
     }
 
     /**
@@ -77,7 +74,7 @@ public class BrandPage extends BasePage {
      * with the CSS of the logo.
      */
     public static boolean hasLogo() {
-        return !findElementsByCss(Navigator.driver, PageConstants.BRAND_LOGO_CSS).isEmpty();
+        return hasCSSElement(PageConstants.BRAND_LOGO_CSS);
     }
 
     /**
@@ -86,7 +83,7 @@ public class BrandPage extends BasePage {
      * with the CSS of the video.
      */
     public static boolean hasVideo() {
-        return !findElementsByCss(Navigator.driver, PageConstants.BRAND_VIDEO_CSS).isEmpty();
+        return hasCSSElement(PageConstants.BRAND_VIDEO_CSS);
     }
 
     /**
