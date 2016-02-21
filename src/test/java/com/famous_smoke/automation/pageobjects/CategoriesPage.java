@@ -34,7 +34,7 @@ public class CategoriesPage extends BasePage {
      * represented by the index parameter.
      * @param brandIndex the brand position in the List.
      */
-    public static void clickBrandLink(final Integer brandIndex) {
+    public static void goToBrand(final Integer brandIndex) {
         brands.get(brandIndex).click();
     }
 

@@ -19,7 +19,7 @@ import static com.famous_smoke.automation.util.SeleniumFinder.findElementsByCss;
  */
 public class BrandItemPage extends BasePage {
 
-    private static final String RATING_SPLITTER = " ";
+    private static final String RATING_SPLITTER = "\n";
 
     @FindBy(css = PageConstants.ITEM_HEADER1_CSS)
     private static WebElement header1;

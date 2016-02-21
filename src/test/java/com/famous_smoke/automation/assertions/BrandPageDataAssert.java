@@ -1,7 +1,7 @@
 package com.famous_smoke.automation.assertions;
 
 import com.famous_smoke.automation.data.BrandPageData;
-import org.fest.assertions.api.AbstractAssert;
+import org.assertj.core.api.AbstractAssert;
 
 import java.util.List;
 
@@ -16,6 +16,8 @@ import java.util.List;
  * <p>This class must extend the AbstractAssert class.</p>
  */
 public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, BrandPageData> {
+
+    private static final String COLLECTION_SEPARATOR = ",";
 
     /**
      * Constructor matching the one requested by
@@ -143,8 +145,8 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
      */
     public BrandPageDataAssert hasBreadcrumbsEqualTo(final List<String> expected){
         return isEqualTo(BrandPageData.BREADCRUMBS_LINKS_FIELD_NAME,
-                reduceBreadcrumbsList(actual.getBreadcrumbsLinks()),
-                reduceBreadcrumbsList(expected));
+                reduceCollectionToString(actual.getBreadcrumbsLinks()),
+                reduceCollectionToString(expected));
     }
 
     /**
@@ -338,21 +340,20 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
 
     /**
      * Converts a list of Strings
-     * to a single string separated by the constant
-     * BrandPageData.BREADCRUMBS_LINKS_SEPARATOR.
+     * to a single string separated by the constant.
      *
      * This is done through the Stream API using
      * a reduce operation, which is an accumulative
      * function that concatenates all the values of
      * the list together.
-     * @param breadcrumbs the breadcrumbs list.
+     * @param strings the strings list.
      * @return the String representation of the
-     * breadcrumbs list.
+     * strings list.
      */
-    private String reduceBreadcrumbsList(final List<String> breadcrumbs) {
-        return breadcrumbs
+    private String reduceCollectionToString(final List<String> strings) {
+        return strings
                 .stream()
-                .reduce("", (a, b) -> a + BrandPageData.BREADCRUMBS_LINKS_SEPARATOR + b);
+                .reduce("", (a, b) -> a + COLLECTION_SEPARATOR + b);
     }
 
 }

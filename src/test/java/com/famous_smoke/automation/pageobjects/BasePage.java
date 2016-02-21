@@ -6,13 +6,12 @@ import com.famous_smoke.automation.navigation.Navigator;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.famous_smoke.automation.util.SeleniumFinder.findElementsByCss;
 import static com.famous_smoke.automation.util.SeleniumFinder.findElementsByName;
-import static com.famous_smoke.automation.util.SeleniumFinder.findElementsByXpath;
+import static com.famous_smoke.automation.util.SeleniumFinder.findElementsByXPath;
 
 /**
  * <p>Contains the common elements for all
@@ -188,7 +187,7 @@ public class BasePage {
      * XPATH.
      */
     protected static boolean hasXPATHElement(final String xpath) {
-        return !findElementsByXpath(Navigator.driver, xpath).isEmpty();
+        return !findElementsByXPath(Navigator.driver, xpath).isEmpty();
     }
 
     /**

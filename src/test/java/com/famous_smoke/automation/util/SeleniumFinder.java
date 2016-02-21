@@ -81,7 +81,7 @@ public class SeleniumFinder {
      *              are going to search.
      * @return the WebElement that conforms to the search.
      */
-    public static WebElement findElementByXpath(final SearchContext context,
+    public static WebElement findElementByXPath(final SearchContext context,
                                                 final String xpath) {
         return findElement(context, By.xpath(xpath));
     }
@@ -95,7 +95,7 @@ public class SeleniumFinder {
      *              going to search.
      * @return the WebElements that conforms to the search.
      */
-    public static List<WebElement> findElementsByXpath(final SearchContext context,
+    public static List<WebElement> findElementsByXPath(final SearchContext context,
                                                        final String xpath) {
         return findElements(context, By.xpath(xpath));
     }

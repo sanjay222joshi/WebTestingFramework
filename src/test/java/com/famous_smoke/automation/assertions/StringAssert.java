@@ -1,7 +1,7 @@
 package com.famous_smoke.automation.assertions;
 
 import com.famous_smoke.automation.validators.UrlValidators;
-import org.fest.assertions.api.Assertions;
+
 
 /**
  * <p>We create our own StringAssert class to add
@@ -10,7 +10,7 @@ import org.fest.assertions.api.Assertions;
  * <p>If we need additional validations of pure
  * String values, we must add it to this class.</p>
  */
-public class StringAssert extends org.fest.assertions.api.StringAssert {
+public class StringAssert extends org.assertj.core.api.StringAssert {
 
     /**
      * The constructor that matches the parent class.

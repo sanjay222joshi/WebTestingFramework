@@ -2,11 +2,13 @@ package com.famous_smoke.automation.pageobjects;
 
 import com.famous_smoke.automation.data.BrandPageData;
 import com.famous_smoke.automation.data.DataFactory;
-import com.famous_smoke.automation.navigation.Navigator;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.famous_smoke.automation.util.SeleniumFinder.findElementsByCss;
+import java.util.List;
+
+import static com.famous_smoke.automation.util.SeleniumFinder.findElementByCss;
+import static com.famous_smoke.automation.util.SeleniumFinder.findElementByXPath;
 
 /**
  * <p>Represents the Brand pages of the site.</p>
@@ -35,6 +37,34 @@ public class BrandPage extends BasePage {
      */
     @FindBy(css = PageConstants.BRAND_VIDEO_CSS)
     private static WebElement video;
+    /**
+     * The Brand Items
+     */
+    @FindBy(css = PageConstants.BRAND_ITEM_BOX_CSS)
+    private static List<WebElement> items;
+
+    /**
+     * Gets the amount of items associated
+     * with this brand.
+     * @return the count of item pages
+     * associated with this brand.
+     */
+    public static Integer getItemsCount() {
+        return items.size();
+    }
+
+    /**
+     * Navigates to the Item in the
+     * items list associated with the
+     * index.
+     * @param itemIndex the index for
+     *                  the items list.
+     */
+    public static void goToItem(final Integer itemIndex) {
+        WebElement item = items.get(itemIndex);
+        findElementByCss(item, PageConstants.BRAND_ITEM_LINK_CSS)
+                .click();
+    }
 
     /**
      * Creates the BrandPageData by a mixture
@@ -46,7 +76,6 @@ public class BrandPage extends BasePage {
     public static BrandPageData getBrandData() {
         String header1Text = extractElementText(header1, hasHeader1());
         String descriptionText = extractElementText(description, hasDescription());
-
         return DataFactory.createBrandPage(getBasePageData(), header1Text, descriptionText, isIdentified());
     }
 

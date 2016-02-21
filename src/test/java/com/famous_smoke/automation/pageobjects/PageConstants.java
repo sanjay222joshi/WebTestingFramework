@@ -20,6 +20,8 @@ public final class PageConstants {
     public static final String BRAND_DESCRIPTION_CSS = ".justify";
     public static final String BRAND_LOGO_CSS        = ".full.nopad";
     public static final String BRAND_VIDEO_CSS       = ".minivideo";
+    public static final String BRAND_ITEM_BOX_CSS    = ".infobox";
+    public static final String BRAND_ITEM_LINK_CSS   = ".title.cblack.oswald";
 
     public static final String ITEM_HEADER1_CSS      = ".title.oswald.itemname";
     public static final String ITEM_PRICING_CSS      = ".subtitle.oswald.cblack.itemprice";

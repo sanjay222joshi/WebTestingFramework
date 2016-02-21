@@ -1,7 +1,7 @@
 package com.famous_smoke.automation.step_definitions.seo;
 
 import com.famous_smoke.automation.Hooks;
-import com.famous_smoke.automation.modules.NavigateToBrandPageAction;
+import com.famous_smoke.automation.actions.NavigateToBrandPageAction;
 import cucumber.api.java.en.When;
 
 /**

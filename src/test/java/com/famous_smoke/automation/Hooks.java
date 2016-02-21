@@ -1,5 +1,6 @@
 package com.famous_smoke.automation;
 
+import com.famous_smoke.automation.data.BrandItemPageData;
 import com.famous_smoke.automation.data.BrandPageData;
 import com.famous_smoke.automation.data.DataWorkbook;
 import com.famous_smoke.automation.navigation.Navigator;
@@ -60,6 +61,11 @@ public class Hooks {
      * that need to collect data from multiple URLS.
      */
     public static Collection<BrandPageData> testBrandPagesData;
+    /**
+     * All the BrandPageItemData objects that are fetched by tests
+     * that need to collect data from multiple urls.
+     */
+    public static Collection<BrandItemPageData> testBrandItemPagesData;
     /**
      * This variable is for the check to see if the features
      * templates need to be processed.
