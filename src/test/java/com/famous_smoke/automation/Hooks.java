@@ -182,7 +182,7 @@ public class Hooks {
     private void embedScreenshot(final Scenario scenario,
                                  final WebDriver driver) {
         try {
-            if (Navigator.driver.getClass().isAssignableFrom(TakesScreenshot.class)) {
+            if (Navigator.driver instanceof TakesScreenshot) {
                 scenario.write("Current Page URL is " + driver.getCurrentUrl());
                 scenario.embed(takeScreenshot(driver), "image/png");
             }

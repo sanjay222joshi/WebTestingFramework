@@ -5,6 +5,8 @@ import com.famous_smoke.automation.data.DataFactory;
 import com.famous_smoke.automation.navigation.Navigator;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,6 +21,8 @@ import static com.famous_smoke.automation.util.SeleniumFinder.findElementsByXPat
  * using the framework.</p>
  */
 public class BasePage {
+
+    private static final long WAIT_TIME_IN_SECONDS = 5L;
 
     /**
      * The Canonical URL.
@@ -65,16 +69,19 @@ public class BasePage {
      *                        link to click.
      */
     public static void clickBreadcrumb(final Integer breadcrumbIndex){
-        findElementsByCss(breadcrumbs, PageConstants.BREADCRUMBS_LINKS_CSS)
+        waitUntilElementIsClickable(
+                findElementsByCss(breadcrumbs, PageConstants.BREADCRUMBS_LINKS_CSS)
                 .get(breadcrumbIndex)
-                .click();
+        ).click();
     }
 
     /**
      * Closes the promotion form.
      */
     public static void closePromo() {
-        promoCloseLink.click();
+        waitUntilElementIsClickable(
+                promoCloseLink
+        ).click();
     }
 
     /**
@@ -223,6 +230,11 @@ public class BasePage {
                                                     final String attribute,
                                                     final Boolean check) {
         return check ? element.getAttribute(attribute) : "";
+    }
+
+    protected static WebElement waitUntilElementIsClickable(final WebElement element) {
+        return new WebDriverWait(Navigator.driver, WAIT_TIME_IN_SECONDS)
+                .until(ExpectedConditions.elementToBeClickable(element));
     }
 
 }

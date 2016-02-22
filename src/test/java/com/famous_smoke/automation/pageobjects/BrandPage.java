@@ -62,8 +62,9 @@ public class BrandPage extends BasePage {
      */
     public static void goToItem(final Integer itemIndex) {
         WebElement item = items.get(itemIndex);
-        findElementByCss(item, PageConstants.BRAND_ITEM_LINK_CSS)
-                .click();
+        waitUntilElementIsClickable(
+                findElementByCss(item, PageConstants.BRAND_ITEM_LINK_CSS)
+        ).click();
     }
 
     /**
