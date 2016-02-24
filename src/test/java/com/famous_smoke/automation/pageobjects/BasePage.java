@@ -11,9 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.famous_smoke.automation.util.SeleniumFinder.findElementsByCss;
-import static com.famous_smoke.automation.util.SeleniumFinder.findElementsByName;
-import static com.famous_smoke.automation.util.SeleniumFinder.findElementsByXPath;
+import static com.famous_smoke.automation.util.SeleniumFinder.*;
 
 /**
  * <p>Contains the common elements for all
@@ -22,7 +20,7 @@ import static com.famous_smoke.automation.util.SeleniumFinder.findElementsByXPat
  */
 public class BasePage {
 
-    private static final long WAIT_TIME_IN_SECONDS = 5L;
+    private static final long WAIT_TIME_IN_SECONDS = 30L;
 
     /**
      * The Canonical URL.
@@ -118,7 +116,7 @@ public class BasePage {
      * the form is displayed.
      */
     public static boolean hasPromo() {
-        return !findElementsByName(Navigator.driver, PageConstants.PROMO_FORM_NAME).isEmpty()
+        return hasNameElement(PageConstants.PROMO_FORM_NAME)
                 && promoForm.isDisplayed();
     }
 

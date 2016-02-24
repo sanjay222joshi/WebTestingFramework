@@ -1,4 +1,5 @@
 @validation
+@brands
 Feature: The Brand Pages should have a visible Logo or visible Video
 
   Scenario Outline: I will validate the Brand Logo or Video

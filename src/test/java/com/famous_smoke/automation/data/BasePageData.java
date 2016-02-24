@@ -66,7 +66,7 @@ public class BasePageData {
 
     @Override
     public boolean equals(final Object o) {
-        if (o.getClass().isAssignableFrom(BasePageData.class)) {
+        if (o instanceof BasePageData) {
             BasePageData comparable = (BasePageData) o;
             return this.url.equals(comparable.getURL());
         }

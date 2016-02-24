@@ -35,6 +35,9 @@ public class CategoriesPage extends BasePage {
      * @param brandIndex the brand position in the List.
      */
     public static void goToBrand(final Integer brandIndex) {
+        if (hasPromo()) {
+            closePromo();
+        }
         waitUntilElementIsClickable(
                 brands.get(brandIndex)
         ).click();

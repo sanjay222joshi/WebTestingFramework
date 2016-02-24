@@ -1,9 +1,11 @@
 package com.famous_smoke.automation.util;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -121,7 +123,11 @@ public class SeleniumFinder {
      */
     private static List<WebElement> findElements(final SearchContext context,
                                                  final By by){
-        return context.findElements(by);
+        try {
+            return context.findElements(by);
+        } catch(NoSuchElementException exception) {
+            return new ArrayList<>();
+        }
     }
     
 }
