@@ -82,6 +82,15 @@ public final class DataFactory {
                 specs,
                 pricing,
                 rating,
-                identified);
+                identified
+        );
+    }
+
+    public static BrandListPageData createBrandListPage(final BasePageData baseData,
+                                                        final Collection<String> brandLinks) {
+        return new BrandListPageData(
+                baseData,
+                brandLinks
+        );
     }
 }

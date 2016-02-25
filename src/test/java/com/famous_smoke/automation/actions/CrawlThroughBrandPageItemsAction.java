@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * <p>Crawls through the different Brand links
- * of the CategoriesPage.</p>
+ * of the BrandListPage.</p>
  */
 public class CrawlThroughBrandPageItemsAction {
 

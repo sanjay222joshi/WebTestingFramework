@@ -20,7 +20,7 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		features = {"classpath:features/setup"},
+		features = {"classpath:features/setup/"},
 		plugin = {"pretty", "json:target/cucumber-setup.json"},
         tags = "@setup"
 )

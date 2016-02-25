@@ -1,18 +1,22 @@
 package com.famous_smoke.automation.pageobjects;
 
+import com.famous_smoke.automation.data.BrandListPageData;
+import com.famous_smoke.automation.data.DataFactory;
+import com.famous_smoke.automation.util.SeleniumFinder;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>Represents the page with all the
  * Brand Links, that we use to scrap the
  * data of the Brand Pages.</p>
  *
- * <p>CategoriesPage extends from BasePage.</p>
+ * <p>BrandListPage extends from BasePage.</p>
  */
-public class CategoriesPage extends BasePage {
+public class BrandListPage extends BasePage {
 
     /**
      * The Brands links.
@@ -41,6 +45,14 @@ public class CategoriesPage extends BasePage {
         waitUntilElementIsClickable(
                 brands.get(brandIndex)
         ).click();
+    }
+
+    public static BrandListPageData getBrandListData() {
+        List<String> brandLinks = brands
+                .stream()
+                .map(b -> extractElementAttribute(b, PageConstants.ATTRIBUTE_HREF, true))
+                .collect(Collectors.toList());
+        return DataFactory.createBrandListPage(getBasePageData(), brandLinks);
     }
 
 }

@@ -1,11 +1,11 @@
 package com.famous_smoke.automation.step_definitions.setup;
 
 import com.famous_smoke.automation.Hooks;
-import com.famous_smoke.automation.actions.ScrapBrandItemsDataFromCategoriesPageAction;
+import com.famous_smoke.automation.actions.ScrapBrandItemsDataFromBrandListPageAction;
 import com.famous_smoke.automation.actions.NavigateToTestUrlAction;
 import com.famous_smoke.automation.util.FeaturesProcessor;
 import com.famous_smoke.automation.util.TestConfigReader;
-import com.famous_smoke.automation.actions.ScrapBrandsDataFromCategoriesPageAction;
+import com.famous_smoke.automation.actions.ScrapBrandsDataFromBrandListPageAction;
 import cucumber.api.java.en.Given;
 
 
@@ -31,14 +31,14 @@ public class GivenSteps {
     @Given("^I crawl through the brands list$")
     public void i_crawl_through_the_brands_list() throws Throwable {
         if (Hooks.testSetupNeeded) {
-            Hooks.testBrandPagesData = ScrapBrandsDataFromCategoriesPageAction.execute();
+            Hooks.testBrandPagesData = ScrapBrandsDataFromBrandListPageAction.execute();
         }
     }
 
     @Given("^I crawl through the items of each brand$")
     public void i_crawl_through_the_items_of_each_brand() throws Throwable {
         if (Hooks.testSetupNeeded) {
-            Hooks.testBrandItemPagesData = ScrapBrandItemsDataFromCategoriesPageAction.execute();
+            Hooks.testBrandItemPagesData = ScrapBrandItemsDataFromBrandListPageAction.execute();
         }
     }
 

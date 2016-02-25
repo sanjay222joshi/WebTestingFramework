@@ -3,16 +3,16 @@ package com.famous_smoke.automation.actions;
 import com.famous_smoke.automation.Hooks;
 import com.famous_smoke.automation.data.BrandItemPageData;
 import com.famous_smoke.automation.navigation.Navigator;
-import com.famous_smoke.automation.pageobjects.CategoriesPage;
+import com.famous_smoke.automation.pageobjects.BrandListPage;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * <p>Crawls through the different Brand links
- * of the CategoriesPage.</p>
+ * of the BrandListPage.</p>
  */
-public class ScrapBrandItemsDataFromCategoriesPageAction {
+public class ScrapBrandItemsDataFromBrandListPageAction {
 
     /**
      * Goes through the BrandLinks list of the
@@ -37,14 +37,15 @@ public class ScrapBrandItemsDataFromCategoriesPageAction {
      */
     public static List<BrandItemPageData> execute() throws Throwable {
         List<BrandItemPageData> itemsData = new ArrayList<>();
-        int linkCount = CategoriesPage.getBrandsLinksCount();
-        for (int index = 0; index < linkCount && index < Hooks.testMaximumCrawls; ++index) {
-            if (CategoriesPage.hasPromo()) {
-                CategoriesPage.closePromo();
-            }
-            CategoriesPage.goToBrand(index);
+        Hooks.testBrandListPageData = BrandListPage.getBrandListData();
+        int crawl = 0;
+        for (String brandLink : Hooks.testBrandListPageData.getBrandLinks()) {
+            Hooks.testUrl = brandLink;
+            NavigateToTestUrlAction.execute();
             itemsData.addAll(CrawlThroughBrandPageItemsAction.execute());
-            Navigator.goBack();
+            if (++crawl == Hooks.testMaximumCrawls) {
+                break;
+            }
         }
         return itemsData;
     }
