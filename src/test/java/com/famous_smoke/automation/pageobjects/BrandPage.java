@@ -5,7 +5,9 @@ import com.famous_smoke.automation.data.DataFactory;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.famous_smoke.automation.util.SeleniumFinder.findElementByCss;
 import static com.famous_smoke.automation.util.SeleniumFinder.findElementByXPath;
@@ -65,6 +67,14 @@ public class BrandPage extends BasePage {
         waitUntilElementIsClickable(
                 findElementByCss(item, PageConstants.BRAND_ITEM_LINK_CSS)
         ).click();
+    }
+
+    public static List<String> getItemsURLs() {
+        return items
+                .stream()
+                .map(item -> findElementByCss(item, PageConstants.BRAND_ITEM_LINK_CSS))
+                .map(item -> extractElementAttribute(item, PageConstants.ATTRIBUTE_HREF, true))
+                .collect(Collectors.toList());
     }
 
     /**

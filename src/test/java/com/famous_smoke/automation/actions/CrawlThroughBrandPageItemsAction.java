@@ -1,5 +1,6 @@
 package com.famous_smoke.automation.actions;
 
+import com.famous_smoke.automation.Hooks;
 import com.famous_smoke.automation.data.BrandItemPageData;
 import com.famous_smoke.automation.navigation.Navigator;
 import com.famous_smoke.automation.pageobjects.BrandItemPage;
@@ -35,13 +36,10 @@ public class CrawlThroughBrandPageItemsAction {
         List<BrandItemPageData> itemsData = new ArrayList<>();
         String url = BrandPage.getBrandData().getURL();
         if (UrlValidators.isBrandPage(url)) {
-            int itemsCount = BrandPage.getItemsCount();
-            for (int itemIndex = 0; itemIndex < itemsCount; ++itemIndex) {
-                if (BrandPage.hasPromo()) {
-                    BrandPage.closePromo();
-                }
-                BrandPage.goToItem(itemIndex);
-                itemsData.add(BrandItemPage.getItemData());
+            List<String> itemsURLs = BrandPage.getItemsURLs();
+            for (String itemURL : itemsURLs) {
+                Hooks.testUrl = itemURL;
+                itemsData.add(NavigateToBrandItemPageAction.execute());
                 Navigator.goBack();
             }
         }
