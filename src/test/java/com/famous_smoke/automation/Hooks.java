@@ -114,6 +114,7 @@ public class Hooks {
         if (Navigator.driver == null) {
             Navigator.driver = WebDriverFactory.createDriver(TestConfigReader.getSeleniumDriver());
             Navigator.driver.manage().window().maximize();
+            System.out.println("WebDriver is " + TestConfigReader.getSeleniumDriver());
         }
     }
 
