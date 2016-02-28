@@ -14,9 +14,14 @@ import cucumber.api.java.en.Given;
  */
 public class GivenSteps {
 
-    @Given("^I need to Setup the Features$")
-    public void i_need_to_Setup_the_Features() throws Throwable {
-        Hooks.testSetupNeeded = FeaturesProcessor.needToProcess();
+    @Given("^I need to Setup the Features for the Brands$")
+    public void i_need_to_Setup_the_Features_for_the_Brands() throws Throwable {
+        Hooks.testSetupNeeded = FeaturesProcessor.needToProcessBrands();
+    }
+
+    @Given("^I need to Setup the Features for the Items$")
+    public void i_need_to_Setup_the_Features_for_the_Items() throws Throwable {
+        Hooks.testSetupNeeded = FeaturesProcessor.needToProcessItems();
     }
 
     @Given("^I navigate to the page \"([^\"]*)\"$")

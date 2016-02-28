@@ -1,6 +1,7 @@
 package com.famous_smoke.automation.util;
 
 import com.famous_smoke.automation.data.BasePageData;
+import com.famous_smoke.automation.data.BrandItemPageData;
 import com.famous_smoke.automation.data.BrandPageData;
 import com.famous_smoke.automation.validators.UrlValidators;
 
@@ -8,10 +9,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -28,56 +26,22 @@ import java.util.stream.Stream;
  */
 public class FeaturesProcessor {
 
-    /**
-     * The extension with which the features files
-     * will be created.
-     */
-    private static final String FEATURES_EXTENSION                = ".feature";
-    /**
-     * The extension of the template files.
-     */
-    private static final String TEMPLATES_EXTENSION               = ".template";
-    /**
-     * The base folder for all the templates.
-     */
-    private static final String FEATURES_TEMPLATES_FOLDER         = "src/test/resources/features-templates/";
-    /**
-     * The folder for the Action Validation
-     * templates.
-     */
-    private static final String ACTIONVALIDATION_TEMPLATES_FOLDER = FEATURES_TEMPLATES_FOLDER + "actionvalidation/";
-    /**
-     * The folder for the SEO templates.
-     */
-    private static final String SEO_TEMPLATES_FOLDER              = FEATURES_TEMPLATES_FOLDER + "seo/";
-    /**
-     * The folder for the Validation templates.
-     */
-    private static final String VALIDATION_TEMPLATES_FOLDER       = FEATURES_TEMPLATES_FOLDER + "validation/";
-    /**
-     * The folder where the processed features
-     * are going to be stored.
-     */
-    private static final String PROCESSED_FOLDER                  = "src/test/resources/features/processed/";
-    /**
-     * The TAG which will be replaced with
-     * all the scrapped URLs.
-     */
-    private static final String LOAD_URLS_KEYWORD                 = "<LOAD_URLS>";
-    /**
-     * The TAG which will be replaced with
-     * the scrapped Brand URLs.
-     */
-    private static final String LOAD_BRAND_URLS_KEYWORD           = "<LOAD_BRAND_URLS>";
-    /**
-     * The TAG which will be replaced with
-     * the scrapped Brand Group URLs.
-     */
-    private static final String LOAD_GROUP_URLS_KEYWORD           = "<LOAD_BRAND_GROUP_URLS>";
-    /**
-     * The new line separator.
-     */
-    private static final String LINE_BREAKER                      = "\n";
+    private static final String FEATURES_EXTENSION               = ".feature";
+    private static final String TEMPLATES_EXTENSION              = ".template";
+    private static final String FEATURES_TEMPLATES_FOLDER        = "src/test/resources/features-templates/";
+    private static final String BRANDS_FEATURES_TEMPLATES_FOLDER = FEATURES_TEMPLATES_FOLDER + "brands/";
+    private static final String ITEMS_FEATURES_TEMPLATES_FOLDER  = FEATURES_TEMPLATES_FOLDER + "items/";
+    private static final String BRANDS_ACTIONVALIDATION_FOLDER   = BRANDS_FEATURES_TEMPLATES_FOLDER + "actionvalidation/";
+    private static final String BRANDS_SEO_FOLDER                = BRANDS_FEATURES_TEMPLATES_FOLDER + "seo/";
+    private static final String BRANDS_VALIDATION_FOLDER         = BRANDS_FEATURES_TEMPLATES_FOLDER + "validation/";
+    private static final String ITEMS_ACTIONVALIDATION_FOLDER    = ITEMS_FEATURES_TEMPLATES_FOLDER + "actionvalidation/";
+    private static final String ITEMS_SEO_FOLDER                 = ITEMS_FEATURES_TEMPLATES_FOLDER + "seo/";
+    private static final String ITEMS_VALIDATION_FOLDER          = ITEMS_FEATURES_TEMPLATES_FOLDER + "validation/";
+    private static final String PROCESSED_FOLDER                 = "src/test/resources/features/processed/";
+    private static final String LOAD_URLS_KEYWORD                = "<LOAD_URLS>";
+    private static final String LOAD_BRAND_URLS_KEYWORD          = "<LOAD_BRAND_URLS>";
+    private static final String LOAD_GROUP_URLS_KEYWORD          = "<LOAD_BRAND_GROUP_URLS>";
+    private static final String LINE_BREAKER                     = "\n";
 
     private FeaturesProcessor() {
         //not called
@@ -90,9 +54,22 @@ public class FeaturesProcessor {
      *              containing all the scrapped data.
      */
     public static void processBrandFeatures(final Collection<BrandPageData> datas) {
-        listTemplateFiles()
+        processFeatures(listBrandsTemplateFiles(), new ArrayList<>(datas));
+    }
+
+    public static void processItemsFeatures(final Collection<BrandItemPageData> datas) {
+        processFeatures(listItemsTemplateFiles(), new ArrayList<>(datas));
+    }
+
+    private static void processFeatures(final Collection<Path> templateFiles,
+                                        final Collection<BasePageData> datas) {
+        Collection<String> urls = datas
                 .stream()
-                .forEach(template -> createProcessedFeatureFile(template, datas));
+                .map(BasePageData::getURL)
+                .collect(Collectors.toList());
+        templateFiles
+                .stream()
+                .forEach(template -> createProcessedFeatureFile(template, urls));
     }
 
     /**
@@ -101,8 +78,12 @@ public class FeaturesProcessor {
      * differ from the number of template files.
      * @throws IOException
      */
-    public static boolean needToProcess() throws IOException {
-        return listProcessedFiles().size() != listTemplateFiles().size();
+    public static boolean needToProcessBrands() throws IOException {
+        return listProcessedFiles().size() < listBrandsTemplateFiles().size();
+    }
+
+    public static boolean needToProcessItems() throws IOException {
+        return listProcessedFiles().size() < listItemsTemplateFiles().size();
     }
 
     /**
@@ -111,11 +92,21 @@ public class FeaturesProcessor {
      * @return the Path List representing the
      * template files.
      */
-    private static List<Path> listTemplateFiles() {
+    private static List<Path> listBrandsTemplateFiles() {
         return Arrays.stream(new String[]{
-                SEO_TEMPLATES_FOLDER,
-                VALIDATION_TEMPLATES_FOLDER,
-                ACTIONVALIDATION_TEMPLATES_FOLDER})
+                BRANDS_SEO_FOLDER,
+                BRANDS_VALIDATION_FOLDER,
+                BRANDS_ACTIONVALIDATION_FOLDER})
+                .map(FeaturesProcessor::listTemplateFolder)
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
+    }
+
+    private static List<Path> listItemsTemplateFiles() {
+        return Arrays.stream(new String[]{
+                ITEMS_SEO_FOLDER,
+                ITEMS_VALIDATION_FOLDER,
+                ITEMS_ACTIONVALIDATION_FOLDER})
                 .map(FeaturesProcessor::listTemplateFolder)
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
@@ -166,13 +157,13 @@ public class FeaturesProcessor {
      * It replaces the KEYWORDS with the urls and Scenarios
      * IDs.
      * @param template the Path of the template file
-     * @param datas the scrapped BrandPageData containing
+     * @param urls the scrapped BrandPageData containing
      *              the URLs.
      * @return the Path of the feature file.
      * @throws RuntimeException if there is any IOException.
      */
     private static Path createProcessedFeatureFile(final Path template,
-                                                   final Collection<BrandPageData> datas) {
+                                                   final Collection<String> urls) {
         try {
             final String fileName = PROCESSED_FOLDER + template
                     .getFileName()
@@ -181,9 +172,9 @@ public class FeaturesProcessor {
             return writeProcessedContent(
                     fileName,
                     readTemplateContent(template)
-                            .replace(LOAD_URLS_KEYWORD, retrieveUrls(datas))
-                            .replace(LOAD_BRAND_URLS_KEYWORD, retrieveBrandsUrls(datas))
-                            .replace(LOAD_GROUP_URLS_KEYWORD, retrieveBrandGroupsUrls(datas))
+                            .replace(LOAD_URLS_KEYWORD, reduceUrls(urls.stream()))
+                            .replace(LOAD_BRAND_URLS_KEYWORD, retrieveBrandsUrls(urls))
+                            .replace(LOAD_GROUP_URLS_KEYWORD, retrieveBrandGroupsUrls(urls))
             );
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -206,28 +197,28 @@ public class FeaturesProcessor {
      * Converts the BrandPageData collection in a
      * String containing the URLs of the Brand elements
      * of the collection.
-     * @param datas the BrandPageData collection.
+     * @param urls the BrandPageData collection.
      * @return a String with the Brands URLs and
      * Scenarios IDs.
      */
-    private static String retrieveBrandsUrls(final Collection<BrandPageData> datas) {
-        return reduceUrls(datas.stream()
-                .map(BasePageData::getURL)
-                .filter(UrlValidators::isBrandPage));
+    private static String retrieveBrandsUrls(final Collection<String> urls) {
+        return reduceUrls(
+                urls.stream().filter(UrlValidators::isBrandPage)
+        );
     }
 
     /**
      * Converts the BrandPageData collection in a
      * String containing the URLs of the Brand Group
      * elements of the collection.
-     * @param datas the BrandPageData collection.
+     * @param urls the BrandPageData collection.
      * @return a String with the Brand Group URLs
      * and Scenarios IDs.
      */
-    private static String retrieveBrandGroupsUrls(final Collection<BrandPageData> datas) {
-        return reduceUrls(datas.stream()
-                .map(BasePageData::getURL)
-                .filter(UrlValidators::isBrandGroupPage));
+    private static String retrieveBrandGroupsUrls(final Collection<String> urls) {
+        return reduceUrls(
+                urls.stream().filter(UrlValidators::isBrandGroupPage)
+        );
     }
 
     /***

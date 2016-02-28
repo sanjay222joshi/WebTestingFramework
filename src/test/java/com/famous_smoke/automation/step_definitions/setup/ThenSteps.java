@@ -20,7 +20,9 @@ public class ThenSteps {
 
     @Then("^I should process the items features templates$")
     public void i_should_process_the_items_features_templates() throws Throwable {
-        fail("Implement this step");
+        if (Hooks.testSetupNeeded) {
+            FeaturesProcessor.processItemsFeatures(Hooks.testBrandItemPagesData);
+        }
     }
 
 }
