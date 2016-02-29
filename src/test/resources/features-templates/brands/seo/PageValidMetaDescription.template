@@ -1,4 +1,5 @@
 @seo
+@brands
 Feature: The MetaDescription of all the Pages should match the Test Data
 
   Scenario Outline: I will validate Page MetaDescription

@@ -1,22 +1,27 @@
 package com.famous_smoke.automation.step_definitions.setup;
 
 import com.famous_smoke.automation.Hooks;
+import com.famous_smoke.automation.actions.ScrapBrandItemsDataFromBrandListPageAction;
+import com.famous_smoke.automation.actions.NavigateToTestUrlAction;
 import com.famous_smoke.automation.util.FeaturesProcessor;
 import com.famous_smoke.automation.util.TestConfigReader;
-import com.famous_smoke.automation.modules.CrawlThroughBrandsAction;
-import com.famous_smoke.automation.modules.NavigateToBrandPageAction;
+import com.famous_smoke.automation.actions.ScrapBrandsDataFromBrandListPageAction;
 import cucumber.api.java.en.Given;
 
-import static org.fest.assertions.api.Assertions.assertThat;
 
 /**
  * Created by jorge on 27-12-2015.
  */
 public class GivenSteps {
 
-    @Given("^I need to Setup the Features$")
-    public void i_need_to_Setup_the_Features() throws Throwable {
-        Hooks.testSetupNeeded = FeaturesProcessor.needToProcess();
+    @Given("^I need to Setup the Features for the Brands$")
+    public void i_need_to_Setup_the_Features_for_the_Brands() throws Throwable {
+        Hooks.testSetupNeeded = FeaturesProcessor.needToProcessBrands();
+    }
+
+    @Given("^I need to Setup the Features for the Items$")
+    public void i_need_to_Setup_the_Features_for_the_Items() throws Throwable {
+        Hooks.testSetupNeeded = FeaturesProcessor.needToProcessItems();
     }
 
     @Given("^I navigate to the page \"([^\"]*)\"$")
@@ -24,14 +29,21 @@ public class GivenSteps {
         if (Hooks.testSetupNeeded) {
             Hooks.testUrl = url;
             Hooks.testMaximumCrawls = TestConfigReader.getMaximumCrawls();
-            NavigateToBrandPageAction.execute();
+            NavigateToTestUrlAction.execute();
         }
     }
 
-    @Given("^I crawl through the list$")
-    public void i_crawl_through_the_list() throws Throwable {
+    @Given("^I crawl through the brands list$")
+    public void i_crawl_through_the_brands_list() throws Throwable {
         if (Hooks.testSetupNeeded) {
-            Hooks.testBrandPagesData = CrawlThroughBrandsAction.execute();
+            Hooks.testBrandPagesData = ScrapBrandsDataFromBrandListPageAction.execute();
+        }
+    }
+
+    @Given("^I crawl through the items of each brand$")
+    public void i_crawl_through_the_items_of_each_brand() throws Throwable {
+        if (Hooks.testSetupNeeded) {
+            Hooks.testBrandItemPagesData = ScrapBrandItemsDataFromBrandListPageAction.execute();
         }
     }
 

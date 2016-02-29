@@ -1,7 +1,8 @@
 package com.famous_smoke.automation.assertions;
 
 import com.famous_smoke.automation.data.BrandPageData;
-import org.fest.assertions.api.Assertions;
+import org.assertj.core.api.Assertions;
+
 
 /**
  * <p>Entry point to the FEST Assertions.</p>

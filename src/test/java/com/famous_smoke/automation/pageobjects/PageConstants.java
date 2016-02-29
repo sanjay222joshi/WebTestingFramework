@@ -16,11 +16,23 @@ public final class PageConstants {
     public static final String PROMO_CLOSE_LINK_CSS  = ".closebutton.trackEvent";
     public static final String BREADCRUMBS_LINKS_CSS = ".link";
     public static final String CANONICAL_XPATH       = "//link[@rel='canonical']";
-    public static final String HEADER1_CSS           = ".title.oswald";
-    public static final String DESCRIPTION_CSS       = ".justify";
-    public static final String LOGO_CSS              = ".full.nopad";
-    public static final String VIDEO_CSS             = ".minivideo";
-    public static final String BRANDS_CSS            = ".brand";
+    public static final String BRAND_HEADER1_CSS     = ".title.oswald";
+    public static final String BRAND_DESCRIPTION_CSS = ".justify";
+    public static final String BRAND_LOGO_CSS        = ".full.nopad";
+    public static final String BRAND_VIDEO_CSS       = ".minivideo";
+    public static final String BRAND_ITEM_BOX_CSS    = ".infobox";
+    public static final String BRAND_ITEM_LINK_CSS   = ".title.cblack.oswald";
+
+    public static final String ITEM_HEADER1_CSS      = ".title.oswald.itemname";
+    public static final String ITEM_PRICING_CSS      = ".subtitle.oswald.cblack.itemprice";
+    public static final String ITEM_SPECS_CSS        = ".itemspecs.spacer.cdkgray";
+    public static final String ITEM_SPECS_TEXT_CSS   = ".left";
+    public static final String ITEM_DESCRIPTION_CSS  = ".left.threequarters";
+    public static final String ITEM_RATING_CSS       = ".itemratingbox.itemrating";
+    public static final String ITEM_IMAGE_CSS        = ".mainimg.imgzoom";
+    public static final String ITEM_VIDEO_CSS        = ".minivideo";
+
+    public static final String CATEGORIES_BRANDS_CSS = ".brand";
 
     public static final String PAGE_HEADER_CSS       = ".pagebar";
 

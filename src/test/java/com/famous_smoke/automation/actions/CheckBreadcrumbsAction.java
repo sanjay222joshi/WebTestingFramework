@@ -1,9 +1,8 @@
-package com.famous_smoke.automation.modules;
+package com.famous_smoke.automation.actions;
 
 
 import com.famous_smoke.automation.data.BrandPageData;
 import com.famous_smoke.automation.navigation.Navigator;
-import com.famous_smoke.automation.pageobjects.BasePage;
 import com.famous_smoke.automation.pageobjects.BrandPage;
 
 import static com.famous_smoke.automation.validators.SourceValidators.isInternalError;

@@ -15,7 +15,9 @@ public class BasePageData {
     public static final String BREADCRUMBS_TEXT_FIELD_NAME  = "BREADCRUMBS TEXT";
     public static final String BREADCRUMBS_LINKS_FIELD_NAME = "BREADCRUMBS LINKS";
 
-    public static final String BREADCRUMBS_LINKS_SEPARATOR = ",";
+    private static final int   HASH_CODE_SUM_PRIME         = 739;
+    private static final int   HASH_CODE_MULT_PRIME        = 499;
+
 
     private final String url;
     private final String canonical;
@@ -64,11 +66,16 @@ public class BasePageData {
 
     @Override
     public boolean equals(final Object o) {
-        if (o.getClass().isAssignableFrom(BasePageData.class)) {
+        if (o instanceof BasePageData) {
             BasePageData comparable = (BasePageData) o;
             return this.url.equals(comparable.getURL());
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return HASH_CODE_MULT_PRIME * (HASH_CODE_SUM_PRIME + url.hashCode());
     }
 
 }

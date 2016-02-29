@@ -9,11 +9,19 @@ import cucumber.api.java.en.When;
  */
 public class WhenSteps {
 
-    @When("^I store the extracted data$")
-    public void i_store_the_extracted_data() throws Throwable {
+    @When("^I store the extracted brands data$")
+    public void i_store_the_extracted_brands_data() throws Throwable {
         if (Hooks.testSetupNeeded) {
             DataWorkbook workbook = DataWorkbook.getTestDataWorkbook();
             workbook.writeBrandPages(Hooks.testBrandPagesData);
+        }
+    }
+
+    @When("^I store the extracted items data$")
+    public void i_store_the_extracted_items_data() throws Throwable {
+        if (Hooks.testSetupNeeded) {
+            DataWorkbook workbook = DataWorkbook.getTestDataWorkbook();
+            workbook.writeBrandItemPages(Hooks.testBrandItemPagesData);
         }
     }
 

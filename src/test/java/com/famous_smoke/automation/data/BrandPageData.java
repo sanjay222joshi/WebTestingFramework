@@ -43,7 +43,7 @@ public class BrandPageData extends BasePageData {
         return description;
     }
 
-    public Boolean isIdentified() {
+    public Boolean getIdentified() {
         return identified;
     }
 

@@ -1,5 +1,6 @@
 @seo
-Feature: The Brand Pages have a Header One matching the extracted Data
+@items
+Feature: The Item Pages have a Header One matching the extracted Data
 
   Scenario Outline: I will validate the Brand Header One
     Given I want to the check the content of the url "<URL>"

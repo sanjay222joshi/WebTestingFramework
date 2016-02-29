@@ -1,5 +1,7 @@
 package com.famous_smoke.automation;
 
+import com.famous_smoke.automation.data.BrandItemPageData;
+import com.famous_smoke.automation.data.BrandListPageData;
 import com.famous_smoke.automation.data.BrandPageData;
 import com.famous_smoke.automation.data.DataWorkbook;
 import com.famous_smoke.automation.navigation.Navigator;
@@ -13,8 +15,14 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
+import ru.yandex.qatools.ashot.AShot;
+import ru.yandex.qatools.ashot.Screenshot;
 
+import javax.imageio.ImageIO;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -50,6 +58,10 @@ public class Hooks {
      */
     public static BrandPageData extractedBrandPageData;
     /**
+     * Contains the Brand List Page Data
+     */
+    public static BrandListPageData testBrandListPageData;
+    /**
      * The BrandPageData that is fetched by the test
      * from the URL at runtime. This is used by tests
      * that run against only one URL
@@ -60,6 +72,11 @@ public class Hooks {
      * that need to collect data from multiple URLS.
      */
     public static Collection<BrandPageData> testBrandPagesData;
+    /**
+     * All the BrandPageItemData objects that are fetched by tests
+     * that need to collect data from multiple urls.
+     */
+    public static Collection<BrandItemPageData> testBrandItemPagesData;
     /**
      * This variable is for the check to see if the features
      * templates need to be processed.
@@ -97,6 +114,7 @@ public class Hooks {
         if (Navigator.driver == null) {
             Navigator.driver = WebDriverFactory.createDriver(TestConfigReader.getSeleniumDriver());
             Navigator.driver.manage().window().maximize();
+            System.out.println("WebDriver is " + TestConfigReader.getSeleniumDriver());
         }
     }
 
@@ -176,9 +194,10 @@ public class Hooks {
     private void embedScreenshot(final Scenario scenario,
                                  final WebDriver driver) {
         try {
-            if (Navigator.driver.getClass().isAssignableFrom(TakesScreenshot.class)) {
+            if (Navigator.driver instanceof TakesScreenshot) {
                 scenario.write("Current Page URL is " + driver.getCurrentUrl());
                 scenario.embed(takeScreenshot(driver), "image/png");
+                saveScreenshot(new AShot().takeScreenshot(driver), scenario.getName());
             }
         } catch (WebDriverException somePlatformsDontSupportScreenshots) {
             System.err.println(somePlatformsDontSupportScreenshots.getMessage());
@@ -194,6 +213,21 @@ public class Hooks {
      */
     private static byte[] takeScreenshot(final WebDriver driver) {
         return ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+    }
+
+    private static void saveScreenshot(final Screenshot screenshot,
+                                       final String fileName) {
+        try {
+            Files.createDirectory(Paths.get("target/screenshots/"));
+            File outputFile = Files.createFile(Paths.get("target/screenshots/"+fileName+".png")).toFile();
+            ImageIO.write(
+                    screenshot.getImage(),
+                    "png",
+                    outputFile
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

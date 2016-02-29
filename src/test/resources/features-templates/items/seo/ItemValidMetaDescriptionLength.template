@@ -1,5 +1,6 @@
 @seo
-Feature: The MetaDescription length of all Pages is in a range
+@items
+Feature: The MetaDescription length of all the Item Pages is in a range
 
   Scenario Outline: I will validate the length of the Page MetaDescription
     Given I want to the check the content of the url "<URL>"

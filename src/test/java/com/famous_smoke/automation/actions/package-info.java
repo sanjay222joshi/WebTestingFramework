@@ -8,4 +8,4 @@
  *
  * <p>Currently only BrandPageData objects are supported.</p>
  */
-package com.famous_smoke.automation.modules;
+package com.famous_smoke.automation.actions;

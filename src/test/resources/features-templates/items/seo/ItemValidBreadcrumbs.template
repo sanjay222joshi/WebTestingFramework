@@ -1,0 +1,25 @@
+@seo
+@items
+Feature: The breadcrumbs of all the Items' Pages should match the Test Data
+
+  Scenario Outline: I will validate the Page Breadcrumbs
+    Given I want to the check the content of the url "<URL>"
+    When I navigate to the page
+    Then the breadcrumbs should not be empty
+    And the breadcrumbs text should match the Test Data
+    And the breadcrumbs links should match the Test Data
+    Examples:
+      | URL | SCENARIO-ID |
+      <LOAD_URLS>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -26,6 +26,8 @@ public final class DataWorkbook {
      */
     private static final DataWorkbook TESTDATA_WORKBOOK  = new DataWorkbook(TestConfigReader.getTestDataWorkbookPath());
 
+    private static final String COLLECTION_SEPARATOR = ",";
+
     /**
      * The name of the sheet with the BrandPageData
      * information.
@@ -36,10 +38,20 @@ public final class DataWorkbook {
     private static final String BRANDPAGEDATA_SHEET_NAME = "BrandPageData";
 
     /**
+     * The name of the sheet with the BrandItemPageData
+     * information.
+     *
+     * This sheet has to exist in the XLSX even if
+     * it's blank.
+     */
+    private static final String BRANDITEMPAGEDATA_SHEET_NAME = "BrandItemPageData";
+    
+    private static final int HEADER_ROW = 0;
+    
+    /**
      * The header row information for the BrandPage
      * Data Sheet.
      */
-    private static final int    BRAND_HEADER_ROW               = 0;
     private static final String BRAND_URL_HEADER               = BrandPageData.URL_FIELD_NAME;
     private static final String BRAND_CANONICAL_HEADER         = BrandPageData.CANONICAL_FIELD_NAME;
     private static final String BRAND_TITLE_HEADER             = BrandPageData.TITLE_FIELD_NAME;
@@ -49,6 +61,24 @@ public final class DataWorkbook {
     private static final String BRAND_BREADCRUMBS_TEXT_HEADER  = BrandPageData.BREADCRUMBS_TEXT_FIELD_NAME;
     private static final String BRAND_BREADCRUMBS_LINKS_HEADER = BrandPageData.BREADCRUMBS_LINKS_FIELD_NAME;
     private static final String BRAND_IDENTIFIED_HEADER        = BrandPageData.IDENTIFIED_FIELD_NAME;
+
+    /**
+     * The header row information for the BrandItemPage
+     * Data Sheet.
+     */
+    private static final String ITEM_URL_HEADER               = BrandItemPageData.URL_FIELD_NAME;
+    private static final String ITEM_CANONICAL_HEADER         = BrandItemPageData.CANONICAL_FIELD_NAME;
+    private static final String ITEM_TITLE_HEADER             = BrandItemPageData.TITLE_FIELD_NAME;
+    private static final String ITEM_META_DESCRIPTION_HEADER  = BrandItemPageData.METADESCRIPTION_FIELD_NAME;
+    private static final String ITEM_HEADER1_HEADER           = BrandItemPageData.HEADER1_FIELD_NAME;
+    private static final String ITEM_DESCRIPTION_HEADER       = BrandItemPageData.DESCRIPTION_FIELD_NAME;
+    private static final String ITEM_BREADCRUMBS_TEXT_HEADER  = BrandItemPageData.BREADCRUMBS_TEXT_FIELD_NAME;
+    private static final String ITEM_BREADCRUMBS_LINKS_HEADER = BrandItemPageData.BREADCRUMBS_LINKS_FIELD_NAME;
+    private static final String ITEM_SPECS_HEADER             = BrandItemPageData.SPECS_FIELD_NAME;
+    private static final String ITEM_PRICING_HEADER           = BrandItemPageData.PRICING_FIELD_NAME;
+    private static final String ITEM_RATING_HEADER            = BrandItemPageData.RATING_FIELD_NAME;
+    private static final String ITEM_IDENTIFIED_HEADER        = BrandItemPageData.IDENTIFIED_FIELD_NAME;
+    
     /**
      * The column placements of the BrandPageData elements
      * in the XLSX sheet.
@@ -62,6 +92,19 @@ public final class DataWorkbook {
     private static final int BRAND_BREADCRUMBS_TEXT_COLUMN  = 6;
     private static final int BRAND_BREADCRUMBS_LINKS_COLUMN = 7;
     private static final int BRAND_IDENTIFIED_COLUMN        = 8;
+
+    private static final int ITEM_URL_COLUMN               = 0;
+    private static final int ITEM_CANONICAL_COLUMN         = 1;
+    private static final int ITEM_TITLE_COLUMN             = 2;
+    private static final int ITEM_META_DESCRIPTION_COLUMN  = 3;
+    private static final int ITEM_HEADER1_COLUMN           = 4;
+    private static final int ITEM_DESCRIPTION_COLUMN       = 5;
+    private static final int ITEM_BREADCRUMBS_TEXT_COLUMN  = 6;
+    private static final int ITEM_BREADCRUMBS_LINKS_COLUMN = 7;
+    private static final int ITEM_SPECS_COLUMN             = 8;
+    private static final int ITEM_PRICING_COLUMN           = 9;
+    private static final int ITEM_RATING_COLUMN            = 10;
+    private static final int ITEM_IDENTIFIED_COLUMN        = 11;
 
     /**
      * The location of the XLSX File.
@@ -128,6 +171,47 @@ public final class DataWorkbook {
     }
 
     /**
+     * Writes the Collection of the BrandItemPageData
+     * as a table.
+     *
+     * The elements of the BrandItemPageData objects
+     * are placed in specific columns of the table,
+     * this is determined by a DataMap which pairs
+     * each element with a column.
+     *
+     * If the BrandItemPageData Sheet already exists,
+     * it is overwritten with only the values passed
+     * as parameters.
+     * @param datas the Collection of BrandItemPageData
+     *              to write.
+     * @return the current DataWorkbook object,
+     * this allows chained calls.
+     * @throws IOException
+     */
+    public DataWorkbook writeBrandItemPages(final Collection<BrandItemPageData> datas) throws IOException {
+        Workbook workbook = openWorkBook(location);
+        Sheet sheet = createBrandItemPageDataSheet(workbook);
+
+        int row = 1;
+        for (BrandItemPageData data : datas) {
+            Row brandRow = sheet.createRow(row);
+
+            CellStyle dataStyle = createDataStyle(workbook);
+            getBrandItemDataMap(data).forEach((column, value) -> {
+                Cell cell = createCell(brandRow, column, dataStyle);
+                cell.setCellValue(value);
+                sheet.autoSizeColumn(cell.getColumnIndex());
+            });
+
+            ++row;
+        }
+
+        writeWorkBook(workbook, location);
+        workbook.close();
+        return this;
+    }
+
+    /**
      * Reads the BrandPageData table in the BrandPageData
      * Sheet, and returns the values in a Collection.
      * @return the Collection with the BrandPageData
@@ -157,7 +241,7 @@ public final class DataWorkbook {
                     DataFactory.createBasePage(
                             url, title, canonical,
                             metaDescription, breadcrumbsText,
-                            Arrays.asList(breadcrumbsLinks.split(BasePageData.BREADCRUMBS_LINKS_SEPARATOR))
+                            Arrays.asList(breadcrumbsLinks.split(COLLECTION_SEPARATOR))
                     ),
                     header1,
                     description,
@@ -202,7 +286,16 @@ public final class DataWorkbook {
      * object.
      */
     private static Sheet getBrandPageDataSheet(final Workbook workbook) {
-        return workbook.getSheet(BRANDPAGEDATA_SHEET_NAME);
+        return getSheet(workbook, BRANDPAGEDATA_SHEET_NAME);
+    }
+
+    private static Sheet getBrandItemPageDataSheet(final Workbook workbook) {
+        return getSheet(workbook, BRANDITEMPAGEDATA_SHEET_NAME);
+    }
+
+    private static Sheet getSheet(final Workbook workbook,
+                                  final String sheetName) {
+        return workbook.getSheet(sheetName);
     }
 
     /**
@@ -222,10 +315,27 @@ public final class DataWorkbook {
             deleteSheet(workbook, getBrandPageDataSheet(workbook));
         }
         Sheet sheet = workbook.createSheet(BRANDPAGEDATA_SHEET_NAME);
-        Row header = sheet.createRow(BRAND_HEADER_ROW);
+        Row header = sheet.createRow(HEADER_ROW);
         CellStyle style = createHeaderStyle(workbook);
 
         getBrandHeaderMap().forEach((column, value) -> {
+            Cell cell = createCell(header, column, style);
+            cell.setCellValue(value);
+            sheet.autoSizeColumn(cell.getColumnIndex());
+        });
+
+        return sheet;
+    }
+
+    private static Sheet createBrandItemPageDataSheet(final Workbook workbook) {
+        if (getBrandItemPageDataSheet(workbook) != null) {
+            deleteSheet(workbook, getBrandItemPageDataSheet(workbook));
+        }
+        Sheet sheet = workbook.createSheet(BRANDITEMPAGEDATA_SHEET_NAME);
+        Row header = sheet.createRow(HEADER_ROW);
+        CellStyle style = createHeaderStyle(workbook);
+
+        getBrandItemHeaderMap().forEach((column, value) -> {
             Cell cell = createCell(header, column, style);
             cell.setCellValue(value);
             sheet.autoSizeColumn(cell.getColumnIndex());
@@ -264,6 +374,23 @@ public final class DataWorkbook {
         }).collect(Collectors.toMap(kv -> (Integer) kv[0], kv -> (String) kv[1]));
     }
 
+    private static Map<Integer, String> getBrandItemHeaderMap() {
+        return Arrays.stream(new Object[][] {
+                {ITEM_URL_COLUMN, ITEM_URL_HEADER},
+                {ITEM_CANONICAL_COLUMN, ITEM_CANONICAL_HEADER},
+                {ITEM_TITLE_COLUMN, ITEM_TITLE_HEADER},
+                {ITEM_META_DESCRIPTION_COLUMN, ITEM_META_DESCRIPTION_HEADER},
+                {ITEM_HEADER1_COLUMN, ITEM_HEADER1_HEADER},
+                {ITEM_DESCRIPTION_COLUMN, ITEM_DESCRIPTION_HEADER},
+                {ITEM_SPECS_COLUMN, ITEM_SPECS_HEADER},
+                {ITEM_PRICING_COLUMN, ITEM_PRICING_HEADER},
+                {ITEM_RATING_COLUMN, ITEM_RATING_HEADER},
+                {ITEM_BREADCRUMBS_TEXT_COLUMN, ITEM_BREADCRUMBS_TEXT_HEADER},
+                {ITEM_BREADCRUMBS_LINKS_COLUMN, ITEM_BREADCRUMBS_LINKS_HEADER},
+                {ITEM_IDENTIFIED_COLUMN, ITEM_IDENTIFIED_HEADER}
+        }).collect(Collectors.toMap(kv -> (Integer) kv[0], kv -> (String) kv[1]));
+    }
+
     /**
      * Creates a map of the BrandPageData Sheet
      * table rows specifying in which column
@@ -281,8 +408,33 @@ public final class DataWorkbook {
                 {BRAND_HEADER1_COLUMN, data.getHeader1()},
                 {BRAND_DESCRIPTION_COLUMN, data.getDescription()},
                 {BRAND_BREADCRUMBS_TEXT_COLUMN, data.getBreadcrumbsText()},
-                {BRAND_BREADCRUMBS_LINKS_COLUMN, getBreadcrumbsLinksAsString(data.getBreadcrumbsLinks())},
-                {BRAND_IDENTIFIED_COLUMN, data.isIdentified().toString()}
+                {BRAND_BREADCRUMBS_LINKS_COLUMN, reduceCollectionToString(data.getBreadcrumbsLinks())},
+                {BRAND_IDENTIFIED_COLUMN, data.getIdentified().toString()}
+        }).collect(Collectors.toMap(kv -> (Integer) kv[0], kv -> (String) kv[1]));
+    }
+
+    /**
+     * Creates a map of the BrandItemPageData Sheet
+     * table rows specifying in which column
+     * goes each BrandItemPageData field.
+     * @param data the BrandItemPageData instance
+     * @return the Map with the Column and
+     * BrandItemPageData fields.
+     */
+    private static Map<Integer, String> getBrandItemDataMap(final BrandItemPageData data) {
+        return Arrays.stream(new Object[][] {
+                {ITEM_URL_COLUMN, data.getURL()},
+                {ITEM_CANONICAL_COLUMN, data.getCanonical()},
+                {ITEM_TITLE_COLUMN, data.getTitle()},
+                {ITEM_META_DESCRIPTION_COLUMN, data.getMetaDescription()},
+                {ITEM_HEADER1_COLUMN, data.getHeader1()},
+                {ITEM_DESCRIPTION_COLUMN, data.getDescription()},
+                {ITEM_SPECS_COLUMN, reduceCollectionToString(data.getSpecs())},
+                {ITEM_PRICING_COLUMN, data.getPricing()},
+                {ITEM_RATING_COLUMN, data.getRating()},
+                {ITEM_BREADCRUMBS_TEXT_COLUMN, data.getBreadcrumbsText()},
+                {ITEM_BREADCRUMBS_LINKS_COLUMN, reduceCollectionToString(data.getBreadcrumbsLinks())},
+                {ITEM_IDENTIFIED_COLUMN, data.getIdentified().toString()}
         }).collect(Collectors.toMap(kv -> (Integer) kv[0], kv -> (String) kv[1]));
     }
 
@@ -358,17 +510,17 @@ public final class DataWorkbook {
 
     /**
      * Transforms the Collection of Strings
-     * representing the BreadcrumbsLinks as
-     * a Single String
-     * @param breadcrumbsLinks the String Collection.
+     * to a Single String
+     * @param strings the String Collection.
      * @return the reduced String with all
-     * the Breadcrumbs Links.
+     * values of the collection.
      */
-    private static String getBreadcrumbsLinksAsString(final Collection<String> breadcrumbsLinks) {
-        return breadcrumbsLinks
+    private static String reduceCollectionToString(final Collection<String> strings) {
+        return strings
                 .stream()
-                .reduce("", (a, b) -> a + BrandPageData.BREADCRUMBS_LINKS_SEPARATOR + b)
-                .replaceFirst(BrandPageData.BREADCRUMBS_LINKS_SEPARATOR, "");
+                .reduce("", (a, b) -> a + COLLECTION_SEPARATOR + b)
+                .replaceFirst(COLLECTION_SEPARATOR, "");
     }
+
 
 }

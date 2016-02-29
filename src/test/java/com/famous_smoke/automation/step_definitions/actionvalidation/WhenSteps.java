@@ -1,7 +1,7 @@
 package com.famous_smoke.automation.step_definitions.actionvalidation;
 
 import com.famous_smoke.automation.Hooks;
-import com.famous_smoke.automation.modules.CheckBreadcrumbsAction;
+import com.famous_smoke.automation.actions.CheckBreadcrumbsAction;
 import cucumber.api.java.en.When;
 
 
