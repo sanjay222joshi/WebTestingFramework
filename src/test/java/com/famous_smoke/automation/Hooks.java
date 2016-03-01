@@ -23,6 +23,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
@@ -43,6 +44,7 @@ public class Hooks {
      */
     public static final Map<String, BrandPageData>     TEST_BRAND_DATA_MAP = createTestBrandDataMap();
     public static final Map<String, BrandItemPageData> TEST_ITEM_DATA_MAP  = createTestBrandItemDataMap();
+    public static final Map<String, BasePageData>      TEST_BASE_DATA_MAP  = createTestBaseDataMap();
 
     /**
      * The starting URL of each test.
@@ -54,6 +56,7 @@ public class Hooks {
     public static Integer testMaximumCrawls;
 
     public static BasePageData testBasePageData;
+    public static BasePageData extractedBasePageData;
     /**
      * This is the BrandPageData of the URL of
      * any test as it is represented in the Map constant.
@@ -203,6 +206,12 @@ public class Hooks {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private static Map<String, BasePageData> createTestBaseDataMap() {
+        ConcurrentHashMap<String, BasePageData> map = new ConcurrentHashMap<>();
+        getBasePagesData().stream().forEach(data -> map.putIfAbsent(data.getURL(), data));
+        return map;
     }
 
     /**

@@ -3,7 +3,7 @@
 Feature: The Brand Group Pages have a Description matching the extracted Data
 
   Scenario Outline: I will validate the Brand Group Description
-    Given I want to the check the content of the url "<URL>"
+    Given I want to the check the content of the brand url "<URL>"
     And the url is from a brand group page
     When I navigate to the brand page
     Then the brand description should not be empty

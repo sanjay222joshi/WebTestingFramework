@@ -71,25 +71,25 @@ public class ThenSteps {
     @Then("^the breadcrumbs text should match the Test Data$")
     public void the_breadcrumbs_text_should_match_the_Test_Data() throws Throwable {
         assertThat(Hooks.testBasePageData)
-                .hasBreadcrumbsTextEqualTo(Hooks.extractedBrandPageData.getBreadcrumbsText());
+                .hasBreadcrumbsTextEqualTo(Hooks.extractedBasePageData.getBreadcrumbsText());
     }
 
     @Then("^the breadcrumbs links should match the Test Data$")
     public void the_breadcrumbs_links_should_match_the_Test_Data() throws Throwable {
         assertThat(Hooks.testBasePageData)
-                .hasBreadcrumbsEqualTo(Hooks.extractedBrandPageData.getBreadcrumbsLinks());
+                .hasBreadcrumbsEqualTo(Hooks.extractedBasePageData.getBreadcrumbsLinks());
     }
 
     @Then("^the canonical url should match the Test Data$")
     public void the_canonical_url_should_match_the_TestData() throws Throwable {
         assertThat(Hooks.testBasePageData)
-                .hasCanonicalEqualTo(Hooks.extractedBrandPageData.getCanonical());
+                .hasCanonicalEqualTo(Hooks.extractedBasePageData.getCanonical());
     }
 
     @Then("^the meta description should match the Test Data$")
     public void the_meta_description_should_match_the_TestData() throws Throwable {
         assertThat(Hooks.testBasePageData)
-                .hasMetaDescriptionEqualTo(Hooks.extractedBrandPageData.getMetaDescription());
+                .hasMetaDescriptionEqualTo(Hooks.extractedBasePageData.getMetaDescription());
     }
 
     @Then("^the meta description should be over (\\d+) characters$")
@@ -110,7 +110,7 @@ public class ThenSteps {
                 .hasTitle();
 
         assertThat(Hooks.testBasePageData)
-                .hasTitleEqualTo(Hooks.extractedBrandPageData.getTitle());
+                .hasTitleEqualTo(Hooks.extractedBasePageData.getTitle());
     }
 
     @Then("^the title should be  under (\\d+) characters$")
