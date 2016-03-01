@@ -1,5 +1,5 @@
 @actionvalidation
-@brands
+@all
 Feature: In every Page all breadcrumbs must go to correct links
 
   Scenario Outline: I will validate the navigation of the breadcrumbs
@@ -8,4 +8,4 @@ Feature: In every Page all breadcrumbs must go to correct links
     Then the navigation must be valid
     Examples:
     | URL | SCENARIO-ID |
-    <LOAD_URLS>
+    <LOAD_BASE_URLS>

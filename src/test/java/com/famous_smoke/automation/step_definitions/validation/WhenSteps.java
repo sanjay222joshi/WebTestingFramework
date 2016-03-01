@@ -10,8 +10,8 @@ import cucumber.api.java.en.When;
  */
 public class WhenSteps {
 
-    @When("^I load the page$")
-    public void i_load_the_page() throws Throwable {
+    @When("^I load the brand page$")
+    public void i_load_the_brand_page() throws Throwable {
         Hooks.testBrandPageData = NavigateToBrandPageAction.execute();
     }
 

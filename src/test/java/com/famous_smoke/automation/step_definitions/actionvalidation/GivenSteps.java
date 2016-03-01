@@ -15,8 +15,8 @@ public class GivenSteps {
     @Given("^I want to check the breadcrumbs of \"([^\"]*)\"$")
     public void i_want_to_check_the_breadcrumbs_of(final String url) throws Throwable {
         Hooks.testUrl = url;
-        Hooks.testBrandPageData = NavigateToBrandPageAction.execute();
-        assertThat(Hooks.testBrandPageData).hasBreadcrumbs();
-        Hooks.testBrandPageData = null;
+        Hooks.testBasePageData = NavigateToBrandPageAction.execute();
+        assertThat(Hooks.testBasePageData).hasBreadcrumbs();
+        Hooks.testBasePageData = null;
     }
 }

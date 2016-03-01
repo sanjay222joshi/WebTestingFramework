@@ -60,4 +60,14 @@ public class StringAssert extends org.assertj.core.api.StringAssert {
         return this;
     }
 
+    public StringAssert isItemURL() {
+        FamousSmokeAssertions
+                .assertThat(UrlValidators.isBrandItemPage(actual))
+                .overridingErrorMessage(
+                        AssertionMessages.URL_NOT_ITEM,
+                        actual)
+                .isTrue();
+        return this;
+    }
+
 }

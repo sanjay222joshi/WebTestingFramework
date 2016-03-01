@@ -1,5 +1,5 @@
 @seo
-@brands
+@all
 Feature: The breadcrumbs of all the Pages should match the Test Data
 
   Scenario Outline: I will validate the Page Breadcrumbs
@@ -10,7 +10,7 @@ Feature: The breadcrumbs of all the Pages should match the Test Data
     And the breadcrumbs links should match the Test Data
     Examples:
       | URL | SCENARIO-ID |
-      <LOAD_URLS>
+      <LOAD_BASE_URLS>
 
 
 

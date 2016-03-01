@@ -12,7 +12,7 @@ public class WhenSteps {
 
     @When("^I check all the breadcrumbs$")
     public void i_check_all_the_breadcrumbs() throws Throwable {
-        Hooks.testBrandPageData = CheckBreadcrumbsAction.execute();
+        Hooks.testBasePageData = CheckBreadcrumbsAction.execute();
     }
 
 }
