@@ -1,6 +1,7 @@
 package com.famous_smoke.automation.step_definitions.validation;
 
 import com.famous_smoke.automation.Hooks;
+import com.famous_smoke.automation.actions.NavigateToBrandItemPageAction;
 import com.famous_smoke.automation.actions.NavigateToBrandPageAction;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.When;
@@ -18,8 +19,7 @@ public class WhenSteps {
 
     @When("^I load the item page$")
     public void i_load_the_item_page() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        Hooks.testBrandItemPageData = NavigateToBrandItemPageAction.execute();
     }
 
 }

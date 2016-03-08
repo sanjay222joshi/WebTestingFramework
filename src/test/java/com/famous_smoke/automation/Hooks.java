@@ -84,6 +84,7 @@ public class Hooks {
     public static Collection<BrandItemPageData> testBrandItemPagesData;
 
     public static BrandItemPageData testBrandItemPageData;
+    public static BrandItemPageData extractedBrandItemPageData;
     /**
      * This variable is for the check to see if the features
      * templates need to be processed.

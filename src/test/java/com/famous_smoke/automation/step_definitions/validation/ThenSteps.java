@@ -20,8 +20,7 @@ public class ThenSteps {
 
     @Then("^the item identification should be visible$")
     public void the_item_identification_should_be_visible() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        assertThat(Hooks.testBrandItemPageData).isIdentified();
     }
 
 }

@@ -18,9 +18,9 @@ public class GivenSteps {
     }
 
     @Given("^I want to the validate the item in \"([^\"]*)\"$")
-    public void i_want_to_the_validate_the_item_in(String arg1) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    public void i_want_to_the_validate_the_item_in(final String url) throws Throwable {
+        assertThat(url).isItemURL();
+        Hooks.testUrl = url;
     }
 
 }
