@@ -1,11 +1,9 @@
 package com.famous_smoke.automation;
 
-import com.famous_smoke.automation.data.BrandItemPageData;
-import com.famous_smoke.automation.data.BrandListPageData;
-import com.famous_smoke.automation.data.BrandPageData;
-import com.famous_smoke.automation.data.DataWorkbook;
+import com.famous_smoke.automation.data.*;
 import com.famous_smoke.automation.navigation.Navigator;
 import com.famous_smoke.automation.navigation.WebDriverFactory;
+import com.famous_smoke.automation.pageobjects.BasePage;
 import com.famous_smoke.automation.util.TestConfigReader;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -23,7 +21,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
@@ -42,7 +42,9 @@ public class Hooks {
      * This constant map contains the BrandPageData that was extracted by the setup features.
      * It's identified by the url to which the data was extracted.
      */
-    public static final Map<String, BrandPageData> TEST_DATA_MAP = createTestDataMap();
+    public static final Map<String, BrandPageData>     TEST_BRAND_DATA_MAP = createTestBrandDataMap();
+    public static final Map<String, BrandItemPageData> TEST_ITEM_DATA_MAP  = createTestBrandItemDataMap();
+    public static final Map<String, BasePageData>      TEST_BASE_DATA_MAP  = createTestBaseDataMap();
 
     /**
      * The starting URL of each test.
@@ -52,6 +54,9 @@ public class Hooks {
      * The maximum crawls for the brand crawler.
      */
     public static Integer testMaximumCrawls;
+
+    public static BasePageData testBasePageData;
+    public static BasePageData extractedBasePageData;
     /**
      * This is the BrandPageData of the URL of
      * any test as it is represented in the Map constant.
@@ -77,6 +82,9 @@ public class Hooks {
      * that need to collect data from multiple urls.
      */
     public static Collection<BrandItemPageData> testBrandItemPagesData;
+
+    public static BrandItemPageData testBrandItemPageData;
+    public static BrandItemPageData extractedBrandItemPageData;
     /**
      * This variable is for the check to see if the features
      * templates need to be processed.
@@ -87,6 +95,17 @@ public class Hooks {
      * been set.
      */
     private static boolean shutDownSet = false;
+
+    public static Collection<BasePageData> getBasePagesData() {
+        try {
+            ArrayList<BasePageData> data = new ArrayList<>();
+            data.addAll(DataWorkbook.getTestDataWorkbook().readBrandPages());
+            data.addAll(DataWorkbook.getTestDataWorkbook().readBrandItemPages());
+            return data;
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
 
     /**
      * This operation shutoffs the logging used by
@@ -114,7 +133,6 @@ public class Hooks {
         if (Navigator.driver == null) {
             Navigator.driver = WebDriverFactory.createDriver(TestConfigReader.getSeleniumDriver());
             Navigator.driver.manage().window().maximize();
-            System.out.println("WebDriver is " + TestConfigReader.getSeleniumDriver());
         }
     }
 
@@ -169,7 +187,7 @@ public class Hooks {
      * @throws RuntimeException if anything goes wrong
      * with the IO.
      */
-    private static Map<String, BrandPageData> createTestDataMap() {
+    private static Map<String, BrandPageData> createTestBrandDataMap() {
         try {
             Collection<BrandPageData> brands = DataWorkbook.getTestDataWorkbook().readBrandPages();
             ConcurrentHashMap<String, BrandPageData> map = new ConcurrentHashMap<>();
@@ -178,6 +196,23 @@ public class Hooks {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private static Map<String, BrandItemPageData> createTestBrandItemDataMap() {
+        try {
+            Collection<BrandItemPageData> items = DataWorkbook.getTestDataWorkbook().readBrandItemPages();
+            ConcurrentHashMap<String, BrandItemPageData> map = new ConcurrentHashMap<>();
+            items.stream().forEach(item -> map.putIfAbsent(item.getURL(), item));
+            return map;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static Map<String, BasePageData> createTestBaseDataMap() {
+        ConcurrentHashMap<String, BasePageData> map = new ConcurrentHashMap<>();
+        getBasePagesData().stream().forEach(data -> map.putIfAbsent(data.getURL(), data));
+        return map;
     }
 
     /**
@@ -229,5 +264,6 @@ public class Hooks {
             e.printStackTrace();
         }
     }
+
 
 }

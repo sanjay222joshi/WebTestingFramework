@@ -1,5 +1,5 @@
 @seo
-@brands
+@all
 Feature: The MetaDescription of all the Pages should match the Test Data
 
   Scenario Outline: I will validate Page MetaDescription
@@ -8,7 +8,7 @@ Feature: The MetaDescription of all the Pages should match the Test Data
     Then the meta description should match the Test Data
     Examples:
       | URL | SCENARIO-ID |
-  <LOAD_URLS>
+  <LOAD_BASE_URLS>
 
 
 

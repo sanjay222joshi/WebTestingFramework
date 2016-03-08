@@ -3,9 +3,9 @@
 Feature: The Item Pages should have a visible Logo or visible Video
 
   Scenario Outline: I will validate the Brand Logo or Video
-    Given I want to the validate the brand in "<URL>"
-    When I load the page
-    Then the brand identification should be visible
+    Given I want to the validate the item in "<URL>"
+    When I load the item page
+    Then the item identification should be visible
     Examples:
       | URL | SCENARIO-ID |
-  <LOAD_BRAND_URLS>
+  <LOAD_ITEM_URLS>

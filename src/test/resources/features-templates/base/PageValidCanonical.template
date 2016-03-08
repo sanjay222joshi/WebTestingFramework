@@ -1,6 +1,6 @@
 @seo
-@items
-Feature: The Canonical URL of all the Items' Pages should match the Test Data
+@all
+Feature: The Canonical URL of all the Pages should match the Test Data
 
   Scenario Outline: I will validate the Page Canonical URL
     Given I want to the check the content of the url "<URL>"
@@ -8,7 +8,7 @@ Feature: The Canonical URL of all the Items' Pages should match the Test Data
     Then the canonical url should match the Test Data
     Examples:
       | URL | SCENARIO-ID |
-  <LOAD_URLS>
+  <LOAD_BASE_URLS>
 
 
 

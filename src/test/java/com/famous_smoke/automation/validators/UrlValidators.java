@@ -14,6 +14,7 @@ public class UrlValidators {
      * The Brand Group URL pattern.
      */
     private static final String BRAND_GROUP_URL = "/brandgroup/";
+    private static final String BRAND_ITEM_URL = "/item+";
 
     private UrlValidators() {
         //not called
@@ -38,5 +39,9 @@ public class UrlValidators {
      */
     public static boolean isBrandGroupPage(final String url) {
         return url.contains(BRAND_GROUP_URL);
+    }
+
+    public static boolean isBrandItemPage(final String url) {
+        return url.contains(BRAND_ITEM_URL);
     }
 }

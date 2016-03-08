@@ -1,8 +1,10 @@
 package com.famous_smoke.automation.actions;
 
 
+import com.famous_smoke.automation.data.BasePageData;
 import com.famous_smoke.automation.data.BrandPageData;
 import com.famous_smoke.automation.navigation.Navigator;
+import com.famous_smoke.automation.pageobjects.BasePage;
 import com.famous_smoke.automation.pageobjects.BrandPage;
 
 import static com.famous_smoke.automation.validators.SourceValidators.isInternalError;
@@ -27,20 +29,20 @@ public class CheckBreadcrumbsAction {
      * in any step of the navigation.
      * @throws Throwable
      */
-    public static BrandPageData execute() throws Throwable {
-        int breadcrumbs = BrandPage.getBreadcrumbsCount();
+    public static BasePageData execute() throws Throwable {
+        int breadcrumbs = BasePage.getBreadcrumbsCount();
         for (int i = 0; i < breadcrumbs; ++i) {
-            if (BrandPage.hasPromo()) {
-                BrandPage.closePromo();
+            if (BasePage.hasPromo()) {
+                BasePage.closePromo();
             }
-            BrandPage.clickBreadcrumb(i);
+            BasePage.clickBreadcrumb(i);
             String source = Navigator.getPageSource();
             Navigator.goBack();
             if (isNotFound(source) || isInternalError(source)) {
                 return null;
             }
         }
-        return BrandPage.getBrandData();
+        return BasePage.getBasePageData();
     }
 
 

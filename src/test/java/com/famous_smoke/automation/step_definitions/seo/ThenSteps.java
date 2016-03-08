@@ -11,87 +11,111 @@ import static com.famous_smoke.automation.assertions.FamousSmokeAssertions.asser
  */
 public class ThenSteps {
 
-    @Then("^the description should not be empty$")
-    public void the_description_should_not_be_empty() throws Throwable {
+    @Then("^the brand description should not be empty$")
+    public void the_brand_description_should_not_be_empty() throws Throwable {
         assertThat(Hooks.testBrandPageData)
                 .hasDescription();
     }
 
-    @Then("^the description should match the TestData$")
-    public void the_description_should_match_the_TestData() throws Throwable {
+    @Then("^the brand description should match the TestData$")
+    public void the_brand_description_should_match_the_TestData() throws Throwable {
         assertThat(Hooks.testBrandPageData)
                 .hasDescriptionEqualTo(Hooks.extractedBrandPageData.getDescription());
     }
 
-    @Then("^the header one should not be empty$")
-    public void the_header_one_should_not_be_empty() throws Throwable {
+    @Then("^the brand header one should not be empty$")
+    public void the_brand_header_one_should_not_be_empty() throws Throwable {
         assertThat(Hooks.testBrandPageData)
                 .hasHeader1();
     }
 
-    @Then("^the header one should match the TestData$")
-    public void the_header_one_should_match_the_TestData() throws Throwable {
+    @Then("^the brand header one should match the TestData$")
+    public void the_brand_header_one_should_match_the_TestData() throws Throwable {
         assertThat(Hooks.testBrandPageData)
                 .hasHeader1EqualTo(Hooks.extractedBrandPageData.getHeader1());
     }
 
+    @Then("^the item description should not be empty$")
+    public void the_item_description_should_not_be_empty() throws Throwable {
+        assertThat(Hooks.testBrandItemPageData)
+                .hasDescription();
+    }
+
+    @Then("^the item description should match the TestData$")
+    public void the_item_description_should_match_the_TestData() throws Throwable {
+        assertThat(Hooks.testBrandItemPageData)
+                .hasDescriptionEqualTo(Hooks.extractedBrandItemPageData.getDescription());
+    }
+
+    @Then("^the item header one should not be empty$")
+    public void the_item_header_one_should_not_be_empty() throws Throwable {
+        assertThat(Hooks.testBrandItemPageData)
+                .hasHeader1();
+    }
+
+    @Then("^the item header one should match the TestData$")
+    public void the_item_header_one_should_match_the_TestData() throws Throwable {
+        assertThat(Hooks.testBrandItemPageData)
+                .hasHeader1EqualTo(Hooks.extractedBrandItemPageData.getHeader1());
+    }
+
     @Then("^the breadcrumbs should not be empty$")
     public void the_breadcrumbs_should_not_be_empty() throws Throwable {
-        assertThat(Hooks.testBrandPageData)
+        assertThat(Hooks.testBasePageData)
                 .hasBreadcrumbs();
 
-        assertThat(Hooks.testBrandPageData)
+        assertThat(Hooks.testBasePageData)
                 .hasBreadcrumbsText();
     }
 
     @Then("^the breadcrumbs text should match the Test Data$")
     public void the_breadcrumbs_text_should_match_the_Test_Data() throws Throwable {
-        assertThat(Hooks.testBrandPageData)
-                .hasBreadcrumbsTextEqualTo(Hooks.extractedBrandPageData.getBreadcrumbsText());
+        assertThat(Hooks.testBasePageData)
+                .hasBreadcrumbsTextEqualTo(Hooks.extractedBasePageData.getBreadcrumbsText());
     }
 
     @Then("^the breadcrumbs links should match the Test Data$")
     public void the_breadcrumbs_links_should_match_the_Test_Data() throws Throwable {
-        assertThat(Hooks.testBrandPageData)
-                .hasBreadcrumbsEqualTo(Hooks.extractedBrandPageData.getBreadcrumbsLinks());
+        assertThat(Hooks.testBasePageData)
+                .hasBreadcrumbsEqualTo(Hooks.extractedBasePageData.getBreadcrumbsLinks());
     }
 
     @Then("^the canonical url should match the Test Data$")
     public void the_canonical_url_should_match_the_TestData() throws Throwable {
-        assertThat(Hooks.testBrandPageData)
-                .hasCanonicalEqualTo(Hooks.extractedBrandPageData.getCanonical());
+        assertThat(Hooks.testBasePageData)
+                .hasCanonicalEqualTo(Hooks.extractedBasePageData.getCanonical());
     }
 
     @Then("^the meta description should match the Test Data$")
     public void the_meta_description_should_match_the_TestData() throws Throwable {
-        assertThat(Hooks.testBrandPageData)
-                .hasMetaDescriptionEqualTo(Hooks.extractedBrandPageData.getMetaDescription());
+        assertThat(Hooks.testBasePageData)
+                .hasMetaDescriptionEqualTo(Hooks.extractedBasePageData.getMetaDescription());
     }
 
     @Then("^the meta description should be over (\\d+) characters$")
     public void the_meta_description_should_be_over_characters(final int min) throws Throwable {
-        assertThat(Hooks.testBrandPageData)
+        assertThat(Hooks.testBasePageData)
                 .hasMetaDescriptionLengthGreaterThan(min);
     }
 
     @Then("^the meta description should be under (\\d+) characters$")
     public void the_meta_description_should_be_under_characters(final int max) throws Throwable {
-        assertThat(Hooks.testBrandPageData)
+        assertThat(Hooks.testBasePageData)
                 .hasMetaDescriptionLengthLessThan(max);
     }
 
     @Then("^the title should match the Test Data$")
     public void the_title_should_match_the_Test_Data() throws Throwable {
-        assertThat(Hooks.testBrandPageData)
+        assertThat(Hooks.testBasePageData)
                 .hasTitle();
 
-        assertThat(Hooks.testBrandPageData)
-                .hasTitleEqualTo(Hooks.extractedBrandPageData.getTitle());
+        assertThat(Hooks.testBasePageData)
+                .hasTitleEqualTo(Hooks.extractedBasePageData.getTitle());
     }
 
     @Then("^the title should be  under (\\d+) characters$")
     public void the_title_should_be_under_characters(final int max) throws Throwable {
-        assertThat(Hooks.testBrandPageData)
+        assertThat(Hooks.testBasePageData)
                 .hasTitleLengthLessThan(max);
     }
 

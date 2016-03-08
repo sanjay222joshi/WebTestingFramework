@@ -7,4 +7,5 @@ Feature: We need to extract the Brand Page Data
     And I navigate to the page "https://www.famous-smoke.com/brand-list"
     And I crawl through the brands list
     When I store the extracted brands data
-    Then I should process the brands features
+    Then I should process the base features templates
+    And I should process the brands features templates

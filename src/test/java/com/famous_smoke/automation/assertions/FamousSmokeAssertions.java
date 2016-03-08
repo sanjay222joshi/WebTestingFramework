@@ -1,5 +1,7 @@
 package com.famous_smoke.automation.assertions;
 
+import com.famous_smoke.automation.data.BasePageData;
+import com.famous_smoke.automation.data.BrandItemPageData;
 import com.famous_smoke.automation.data.BrandPageData;
 import org.assertj.core.api.Assertions;
 
@@ -17,6 +19,10 @@ import org.assertj.core.api.Assertions;
  */
 public class FamousSmokeAssertions extends Assertions {
 
+    public static BasePageDataAssert assertThat(final BasePageData actual) {
+        return new BasePageDataAssert(actual);
+    }
+
     /**
      * Asserts BrandPageData objects.
      * @param actual the BrandPageData to assert.
@@ -24,6 +30,10 @@ public class FamousSmokeAssertions extends Assertions {
      */
     public static BrandPageDataAssert assertThat(final BrandPageData actual) {
         return new BrandPageDataAssert(actual);
+    }
+
+    public static BrandItemPageDataAssert assertThat(final BrandItemPageData actual) {
+        return new BrandItemPageDataAssert(actual);
     }
 
     /**

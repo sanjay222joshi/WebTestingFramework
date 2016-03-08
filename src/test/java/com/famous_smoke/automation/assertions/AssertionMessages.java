@@ -10,6 +10,7 @@ package com.famous_smoke.automation.assertions;
 public class AssertionMessages {
     public static final String URL_NOT_BRAND        = "The URL %s is not of a brand.";
     public static final String URL_NOT_BRANDGROUP   = "The URL %s is not of a brand group.";
+    public static final String URL_NOT_ITEM         = "The URL %s is not of an item.";
     public static final String BRAND_NOT_IDENTIFIED = "The URL %s is not identified by a logo or a video.";
     public static final String FIELD_IS_EMPTY       = "The field %s in the URL %s is empty.";
     public static final String FIELD_LENGTH_IS_LESS = "The field %s in the URL %s length is inappropriate.\n"

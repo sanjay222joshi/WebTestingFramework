@@ -11,8 +11,15 @@ import static com.famous_smoke.automation.assertions.FamousSmokeAssertions.fail;
  */
 public class ThenSteps {
 
-    @Then("^I should process the brands features$")
-    public void i_should_process_the_brands_features() throws Throwable {
+    @Then("^I should process the base features templates$")
+    public void i_should_process_the_base_features_templates() throws Throwable {
+        if (Hooks.testSetupNeeded) {
+            FeaturesProcessor.processBaseFeatures(Hooks.getBasePagesData());
+        }
+    }
+
+    @Then("^I should process the brands features templates$")
+    public void i_should_process_the_brands_features_templates() throws Throwable {
         if (Hooks.testSetupNeeded) {
             FeaturesProcessor.processBrandFeatures(Hooks.testBrandPagesData);
         }

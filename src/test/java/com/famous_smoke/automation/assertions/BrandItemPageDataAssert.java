@@ -1,13 +1,14 @@
 package com.famous_smoke.automation.assertions;
 
-import com.famous_smoke.automation.data.BrandPageData;
+import com.famous_smoke.automation.data.BrandItemPageData;
+import com.famous_smoke.automation.data.BrandItemPageData;
 import org.assertj.core.api.AbstractAssert;
 
 import java.util.List;
 
 /**
  * <p>Custom <strong>FEST Assert</strong> class for the
- * BrandPageData objects.</p>
+ * BrandItemPageData objects.</p>
  *
  * <p>We use this class through the FamousSmokeAssertions
  * class in order to make our assertions more readable when
@@ -15,18 +16,18 @@ import java.util.List;
  *
  * <p>This class must extend the AbstractAssert class.</p>
  */
-public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, BrandPageData> {
+public class BrandItemPageDataAssert extends AbstractAssert<BrandItemPageDataAssert, BrandItemPageData> {
 
     private static final String COLLECTION_SEPARATOR = ",";
 
     /**
      * Constructor matching the one requested by
      * AbstractAssert.
-     * @param actual the BrandPageData object we are going
+     * @param actual the BrandItemPageData object we are going
      *               to evaluate.
      */
-    public BrandPageDataAssert(final BrandPageData actual) {
-        super(actual, BrandPageDataAssert.class);
+    public BrandItemPageDataAssert(final BrandItemPageData actual) {
+        super(actual, BrandItemPageDataAssert.class);
     }
 
     /**
@@ -34,8 +35,8 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
      * @return the current Assert object; this is done
      * to allow chain assertions.
      */
-    public BrandPageDataAssert hasHeader1() {
-        return isNotEmpty(BrandPageData.HEADER1_FIELD_NAME, actual.getHeader1());
+    public BrandItemPageDataAssert hasHeader1() {
+        return isNotEmpty(BrandItemPageData.HEADER1_FIELD_NAME, actual.getHeader1());
     }
 
     /**
@@ -45,8 +46,8 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
      * @return the current Assert object; this is done
      * to allow chain assertions
      */
-    public BrandPageDataAssert hasHeader1EqualTo(final String expected){
-        return isEqualTo(BrandPageData.HEADER1_FIELD_NAME, actual.getHeader1(), expected);
+    public BrandItemPageDataAssert hasHeader1EqualTo(final String expected){
+        return isEqualTo(BrandItemPageData.HEADER1_FIELD_NAME, actual.getHeader1(), expected);
     }
 
     /**
@@ -54,8 +55,8 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
      * @return the current Assert object; this is done
      * to allow chain assertions.
      */
-    public BrandPageDataAssert hasDescription() {
-        return isNotEmpty(BrandPageData.DESCRIPTION_FIELD_NAME, actual.getDescription());
+    public BrandItemPageDataAssert hasDescription() {
+        return isNotEmpty(BrandItemPageData.DESCRIPTION_FIELD_NAME, actual.getDescription());
     }
 
     /**
@@ -65,8 +66,8 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
      * @return the current Assert object; this is done
      * to allow chain assertions
      */
-    public BrandPageDataAssert hasDescriptionEqualTo(final String expected){
-        return isEqualTo(BrandPageData.DESCRIPTION_FIELD_NAME, actual.getDescription(), expected);
+    public BrandItemPageDataAssert hasDescriptionEqualTo(final String expected){
+        return isEqualTo(BrandItemPageData.DESCRIPTION_FIELD_NAME, actual.getDescription(), expected);
     }
 
     /**
@@ -74,7 +75,7 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
      * @return the current Assert object; this is done
      * to allow chain assertions.
      */
-    public BrandPageDataAssert isIdentified() {
+    public BrandItemPageDataAssert isIdentified() {
         FamousSmokeAssertions
                 .assertThat(actual.getIdentified())
                 .overridingErrorMessage(AssertionMessages.BRAND_NOT_IDENTIFIED, actual.getURL())
@@ -94,8 +95,8 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
      * @return the current Assert object; this is done
      * to allow chain assertions.
      */
-    private BrandPageDataAssert isNotEmpty(final String fieldName,
-                                           final String field) {
+    private BrandItemPageDataAssert isNotEmpty(final String fieldName,
+                                               final String field) {
         FamousSmokeAssertions
                 .assertThat(field)
                 .overridingErrorMessage(
@@ -120,9 +121,9 @@ public class BrandPageDataAssert extends AbstractAssert<BrandPageDataAssert, Bra
      * @return the current Assert object; this is done
      * to allow chain assertions.
      */
-    private BrandPageDataAssert isEqualTo(final String fieldName,
-                                          final String field,
-                                          final String expected) {
+    private BrandItemPageDataAssert isEqualTo(final String fieldName,
+                                              final String field,
+                                              final String expected) {
         FamousSmokeAssertions
                 .assertThat(field)
                 .overridingErrorMessage(
