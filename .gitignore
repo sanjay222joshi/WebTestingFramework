@@ -215,3 +215,6 @@ hs_err_pid*
 
 # The json results for the cucumber-jvm tests
 cucumber.json
+
+# The processed TestData
+**/data/TestData.xlsx
