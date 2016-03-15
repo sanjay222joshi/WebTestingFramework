@@ -39,6 +39,7 @@ public class CrawlThroughBrandPageItemsAction {
             List<String> itemsURLs = BrandPage.getItemsURLs();
             for (String itemURL : itemsURLs) {
                 Hooks.testUrl = itemURL;
+                System.out.println("SCRAPPING DATA FROM " + Hooks.testUrl);
                 itemsData.add(NavigateToBrandItemPageAction.execute());
                 Navigator.goBack();
             }
