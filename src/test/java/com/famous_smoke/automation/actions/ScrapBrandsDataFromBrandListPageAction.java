@@ -43,6 +43,7 @@ public class ScrapBrandsDataFromBrandListPageAction {
         int crawl = 0;
         for (String brandLink : Hooks.testBrandListPageData.getBrandLinks()) {
             Hooks.testUrl = brandLink;
+            System.out.println("SCRAPPING DATA FROM " + Hooks.testUrl);
             brandsData.add(NavigateToBrandPageAction.execute());
             if (++crawl == Hooks.testMaximumCrawls) {
                 break;
