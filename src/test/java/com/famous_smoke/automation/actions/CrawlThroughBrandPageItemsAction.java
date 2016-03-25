@@ -38,10 +38,19 @@ public class CrawlThroughBrandPageItemsAction {
         if (UrlValidators.isBrandPage(url)) {
             List<String> itemsURLs = BrandPage.getItemsURLs();
             for (String itemURL : itemsURLs) {
+                String previousURL = Hooks.testUrl;
                 Hooks.testUrl = itemURL;
-                System.out.println("SCRAPPING DATA FROM " + Hooks.testUrl);
-                itemsData.add(NavigateToBrandItemPageAction.execute());
-                Navigator.goBack();
+                try {
+                    System.out.println("SCRAPPING DATA FROM " + Hooks.testUrl);
+                    itemsData.add(NavigateToBrandItemPageAction.execute());
+                    Navigator.goBack();
+                } catch (Exception ex) {
+                    String message = "FAILED TO SCRAP DATA FROM " + Hooks.testUrl + "\n"
+                                   + "EXCEPTION MESSAGE IS: " + ex.getMessage();
+                    System.err.println(message);
+                    Hooks.testUrl = previousURL;
+                    NavigateToTestUrlAction.execute();
+                }
             }
         }
         return itemsData;

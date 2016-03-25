@@ -42,9 +42,15 @@ public class ScrapBrandsDataFromBrandListPageAction {
         Hooks.testBrandListPageData = BrandListPage.getBrandListData();
         int crawl = 0;
         for (String brandLink : Hooks.testBrandListPageData.getBrandLinks()) {
-            Hooks.testUrl = brandLink;
-            System.out.println("SCRAPPING DATA FROM " + Hooks.testUrl);
-            brandsData.add(NavigateToBrandPageAction.execute());
+            try {
+                Hooks.testUrl = brandLink;
+                System.out.println("SCRAPPING DATA FROM " + Hooks.testUrl);
+                brandsData.add(NavigateToBrandPageAction.execute());
+            } catch (Exception ex) {
+                String message = "FAILED TO SCRAP DATA FROM " + Hooks.testUrl + "\n"
+                               + "EXCEPTION MESSAGE IS: " + ex.getMessage();
+                System.err.println(message);
+            }
             if (++crawl == Hooks.testMaximumCrawls) {
                 break;
             }
