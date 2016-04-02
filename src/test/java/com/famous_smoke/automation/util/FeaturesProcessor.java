@@ -9,6 +9,8 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -232,7 +234,10 @@ public class FeaturesProcessor {
         return urls
                 .filter(url -> !url.isEmpty())
                 .reduce("", (urlAccumulator, url) ->
-                        urlAccumulator + "| " + url + " | " + UUID.randomUUID().toString() + " |" + LINE_BREAKER);
+                        urlAccumulator + "| "
+                                + url  + " | "
+                                + UUID.randomUUID().toString() + "-" + Instant.now().toEpochMilli() + " |"
+                                + LINE_BREAKER);
 
     }
 
