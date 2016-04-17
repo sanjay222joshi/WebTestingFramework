@@ -17,6 +17,7 @@
         <aspectj.version>1.8.7</aspectj.version>
         <phantomdriver.version>1.2.1</phantomdriver.version>
         <selenium.version>2.49.0</selenium.version>
+        <bitcoinj.version>0.13.6</bitcoinj.version>
     </properties>
 
     <dependencies>
@@ -59,6 +60,13 @@
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>${apache.poi.version}</version>
+        </dependency>
+
+        <!-- We use the bouncycastle engine for its Random Number Generator -->
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk16</artifactId>
+            <version>1.46</version>
         </dependency>
 
         <dependency>
