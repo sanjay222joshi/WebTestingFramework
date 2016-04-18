@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -254,7 +255,9 @@ public class Hooks {
                                        final String fileName) {
         try {
             Files.createDirectory(Paths.get("target/screenshots/"));
-            File outputFile = Files.createFile(Paths.get("target/screenshots/"+fileName+".png")).toFile();
+            File outputFile = Files.createFile(
+                    Paths.get("target/screenshots/"+fileName+"-"+ Instant.now().toEpochMilli()+".png")
+            ).toFile();
             ImageIO.write(
                     screenshot.getImage(),
                     "png",
