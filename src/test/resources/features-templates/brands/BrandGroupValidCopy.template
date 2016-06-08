@@ -1,6 +1,6 @@
 @seo1
 @brands
-Feature: The Brand Group Pages have a Description matching the extracted Data
+Feature: The Brand Group Pages have a SEO paragraph matching the extracted Data
 
   Scenario Outline: I will validate the Brand Group Description
     Given I want to the check the content of the brand url "<URL>"
