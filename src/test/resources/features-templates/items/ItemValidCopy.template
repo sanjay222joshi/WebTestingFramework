@@ -1,8 +1,8 @@
 @seo1
 @items
-Feature: The Item Pages have a Description matching the extracted Data
+Feature: The Item Pages have an SEO Paragraph matching the extracted Data
 
-  Scenario Outline: I will validate the Brand Description
+  Scenario Outline: I will validate the Brand SEO Paragraph
     Given I want to the check the content of the item url "<URL>"
     And the url is from an item page
     When I navigate to the item page
