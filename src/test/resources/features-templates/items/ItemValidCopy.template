@@ -8,7 +8,6 @@ Feature: The Item Pages have an SEO Paragraph matching the extracted Data
     When I navigate to the item page
     Then the item description should not be empty
     And the item description should match the TestData
-    And the page should not have any na.gif image
     Examples:
       | URL | SCENARIO-ID |
   <LOAD_ITEM_URLS>

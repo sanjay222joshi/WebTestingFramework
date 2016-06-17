@@ -8,7 +8,6 @@ Feature: The Brand Pages have a Description matching the extracted Data
     When I navigate to the brand page
     Then the brand description should not be empty
     And the brand description should match the TestData
-    And the page should not have any na.gif image
     Examples:
       | URL | SCENARIO-ID |
   <LOAD_BRAND_URLS>
