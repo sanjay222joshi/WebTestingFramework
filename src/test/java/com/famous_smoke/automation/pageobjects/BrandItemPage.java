@@ -35,6 +35,10 @@ public class BrandItemPage extends BasePage {
     private static WebElement image;
     @FindBy(css = PageConstants.ITEM_VIDEO_CSS)
     private static WebElement video;
+    
+  //Added as na.gif validator
+    @FindBy(xpath = PageConstants.NA_IMAGE)
+    private static WebElement placeholderNaImage;
 
     public static boolean hasHeader1() {
         return hasCSSElement(PageConstants.ITEM_HEADER1_CSS);
@@ -66,6 +70,11 @@ public class BrandItemPage extends BasePage {
 
     public static boolean isIdentified() {
         return hasVideo() || hasImage();
+    }
+    
+  //Added by drew as na.gif validator
+    public static boolean hasNaImage() {
+        return hasXPATHElement(PageConstants.NA_IMAGE);
     }
 
     public static BrandItemPageData getItemData() {
