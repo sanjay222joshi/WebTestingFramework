@@ -35,6 +35,9 @@ public final class PageConstants {
     public static final String CATEGORIES_BRANDS_CSS = ".brand";
 
     public static final String PAGE_HEADER_CSS       = ".pagebar";
+    
+  //Added as na.gif validator
+    public static final String NA_IMAGE = "//img[contains(@src,'na.gif')]";
 
 
     private PageConstants() {

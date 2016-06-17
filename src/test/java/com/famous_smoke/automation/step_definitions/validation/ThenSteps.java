@@ -2,6 +2,8 @@ package com.famous_smoke.automation.step_definitions.validation;
 
 
 import com.famous_smoke.automation.Hooks;
+import com.famous_smoke.automation.pageobjects.BrandItemPage;
+
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 
@@ -21,6 +23,12 @@ public class ThenSteps {
     @Then("^the item identification should be visible$")
     public void the_item_identification_should_be_visible() throws Throwable {
         assertThat(Hooks.testBrandItemPageData).isIdentified();
+    }
+    
+  //Added as na.gif validator
+    @Then("^the page should not have any na.gif image$")
+    public void the_page_does_not_have_any_na_gif_image() throws Throwable {
+        assertThat(BrandItemPage.hasNaImage()).isFalse();
     }
 
 }
