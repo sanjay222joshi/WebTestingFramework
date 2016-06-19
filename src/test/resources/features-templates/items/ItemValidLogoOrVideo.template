@@ -5,8 +5,8 @@ Feature: The Item Pages should have a visible Logo or visible Video
   Scenario Outline: I will validate the Brand Logo or Video
     Given I want to the validate the item in "<URL>"
     When I load the item page
+    Then the page should not have any na_gif image
     Then the item identification should be visible
-	And the page should not have any na.gif image
     Examples:
       | URL | SCENARIO-ID |
   <LOAD_ITEM_URLS>
