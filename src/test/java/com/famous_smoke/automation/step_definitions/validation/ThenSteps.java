@@ -28,6 +28,7 @@ public class ThenSteps {
   //Added as na.gif validator
     @Then("^the page should not have any na_gif image$")
     public void the_page_does_not_have_any_na_gif_image() throws Throwable {
+		Thread.sleep(8000);
         assertThat(BrandItemPage.hasNaImage()).isFalse();
     }
 
